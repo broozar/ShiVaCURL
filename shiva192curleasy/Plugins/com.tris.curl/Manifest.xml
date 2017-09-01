@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+	<plugin name="cURL_Easy" version="7.54.1" s3dx_sdk_version="0x1090200">
+
+		<info>
+			<description>cURL Easy API</description>
+			<author>
+				<name>Felix Caffier</name>
+				<mail>support@shiva-engine.com</mail>
+				<site>http://www.trisymphony.com</site>
+			</author>
+		</info>
+
+		<certificate></certificate>
+
+		<files>
+			<platform type="Windows">
+				<arch type="x86_32">cURL_Easy_Windows.dll</arch>
+			</platform>
+
+			<platform type="WinRT">
+				<arch type="x86_32">cURL_Easy_WinRT_x86_32.dll</arch>
+				<arch type="x86_64">cURL_Easy_WinRT_x86_64.dll</arch>
+				<arch type="arm_32">cURL_Easy_WinRT_arm_32.dll</arch>
+			</platform>
+
+			<platform type="WinRT" toolset="wp8">
+				<arch type="x86_32">cURL_Easy_WinRT_wp8_x86_32.dll</arch>
+				<arch type="arm_32">cURL_Easy_WinRT_wp8_arm_32.dll</arch>
+			</platform>
+
+			<platform type="Mac">
+				<arch type="ppc_32">cURL_Easy_Mac.dylib</arch>
+				<arch type="ppc_64">cURL_Easy_Mac.dylib</arch>
+				<arch type="x86_32">cURL_Easy_Mac.dylib</arch>
+				<arch type="x86_64">cURL_Easy_Mac.dylib</arch>
+			</platform>
+
+			<platform type="Linux">
+				<arch type="x86_32">cURL_Easy_Linux.so</arch>
+			</platform>
+
+			<platform type="iOS">
+				<arch type="arm_v6">cURL_Easy_iOS.a</arch>
+				<arch type="arm_v7">cURL_Easy_iOS.a</arch>
+			</platform>
+
+			<platform type="Android">
+				<arch type="arm_v5te">cURL_Easy_Android.a</arch>
+			</platform>
+
+			<platform type="Palm">
+				<arch type="arm_v6">cURL_Easy_Palm.a</arch>
+			</platform>
+
+			<platform type="BlackBerry">
+				<arch type="arm_v7">cURL_Easy_BlackBerry.a</arch>
+			</platform>
+
+			<platform type="Flash">
+				<arch type="noarch">cURL_Easy_Flash.swc</arch>
+			</platform>
+
+			<platform type="Wii">
+				<arch type="ppc_32">cURL_Easy_Wii.a</arch>
+			</platform>
+
+			<platform type="PS3">
+				<arch type="ppc_32">cURL_Easy_PS3.a</arch>
+			</platform>
+
+			<platform type="NaCl">
+				<arch type="x86_32">cURL_Easy_NaCl_x86_32.a</arch>
+				<arch type="x86_64">cURL_Easy_NaCl_x86_64.a</arch>
+			</platform>
+
+			<platform type="XB360">
+				<arch type="ppc_32">cURL_Easy_XB360.lib</arch>
+			</platform>
+
+		</files>
+	</plugin>
+</manifest>
