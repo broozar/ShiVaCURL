@@ -61,4 +61,4 @@ The API provides several constants for error handling:
     { "kError404" , 1, "page not found"               , 0 }, 
     { "kWebsite"  , 2, "regular response from website", 0 }	
     
-Error handling on Mac is different for HTTP(S) document requests (forwards the entire error line from the command line tool) and very limited for file downloads. Do not rely on any error codes except for kWebsite/kFile for GOOD and kWebsiteError/kFileError for BAD requests.
+Error handling on Mac is different for HTTP(S) document requests (forwards the entire error line from the command line tool) and very limited for file downloads. Do not rely on any error codes except for kWebsite/kFile for GOOD and kErrorWebsite/kErrorFile for BAD requests.
