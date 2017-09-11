@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>	
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>	
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{88FC4501-9AA9-47A9-9EC5-7F8C27A86666}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+	<WindowsTargetPlatformVersion>10.0.10240.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>  
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v140</PlatformToolset>
+  </PropertyGroup>  
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>  
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>  
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Contents\WinRT\w10_x86_32\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Contents\WinRT\w10_x86_64\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\Contents\WinRT\w10_arm_32\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\Temp\WinRT\Release\w10_x86_32\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">..\..\Temp\WinRT\Release\w10_x86_64\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">..\..\Temp\WinRT\Release\w10_arm_32\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ScURL2</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">ScURL2</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">ScURL2</TargetName>
+    <CustomBuildAfterTargets Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Clean</CustomBuildAfterTargets>
+    <CustomBuildAfterTargets Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Clean</CustomBuildAfterTargets>
+    <CustomBuildAfterTargets Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Clean</CustomBuildAfterTargets>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../Sources/;../../Sources/S3DX/;../../Sources/Platforms/WinRT/;../../Frameworks/WinRT/include</AdditionalIncludeDirectories>
+      <!-- Additional Preprocessor Definitions -->
+	  <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;S3DX_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <StringPooling>true</StringPooling>
+	  <!-- Additional Cflags -->
+	  <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+	  <!-- Additional Libraries -->
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)ScURL2.dll</OutputFile>
+      <AdditionalLibraryDirectories>../../Frameworks/WinRT/w10_x86_32/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>
+      </DelayLoadDLLs>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <SupportUnloadOfDelayLoadedDLL>false</SupportUnloadOfDelayLoadedDLL>
+      <ImportLibrary>$(IntDir)ScURL2.lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <ProfileGuidedDatabase>$(IntDir)$(TargetName).pgd</ProfileGuidedDatabase>
+	  <!-- Additional LDflags -->
+	  <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>	  
+    </Link>
+    <PostBuildEvent>
+       <Command>xcopy /E /Y /K /H "../../Frameworks/WinRT/w10_x86_32/bin/." "../../Contents/WinRT/w10_x86_32/."</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>del /S /Q /F "../../Contents/WinRT/w10_x86_32/."</Command>
+      <Message>Remove all Contents/WinRT/w10_x86_32 files</Message>	  
+      <Outputs>clean.log</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../Sources/;../../Sources/S3DX/;../../Sources/Platforms/WinRT/;../../Frameworks/WinRT/include</AdditionalIncludeDirectories>
+	  <!-- Additional Preprocessor Definitions -->
+	  <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;S3DX_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <StringPooling>true</StringPooling>
+	  <!-- Additional Cflags -->
+	  <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+	  <!-- Additional Libraries -->
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)ScURL2.dll</OutputFile>
+      <AdditionalLibraryDirectories>../../Frameworks/WinRT/w10_x86_64/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>
+      </DelayLoadDLLs>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <SupportUnloadOfDelayLoadedDLL>false</SupportUnloadOfDelayLoadedDLL>
+      <ImportLibrary>$(IntDir)ScURL2.lib</ImportLibrary>
+      <ProfileGuidedDatabase>$(IntDir)$(TargetName).pgd</ProfileGuidedDatabase>
+	  <!-- Additional LDflags -->
+	  <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>	  
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /E /Y /K /H "../../Frameworks/WinRT/w10_x86_64/bin/." "../../Contents/WinRT/w10_x86_64/."</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>del /S /Q /F "../../Contents/WinRT/w10_x86_64/."</Command>
+      <Message>Remove all Contents/WinRT/w10_x86_64 files</Message>
+      <Outputs>clean.log</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../Sources/;../../Sources/S3DX/;../../Sources/Platforms/WinRT/;../../Frameworks/WinRT/include</AdditionalIncludeDirectories>
+	  <!-- Additional Preprocessor Definitions -->
+	  <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;S3DX_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>PrecompiledHeader.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Full</Optimization>
+      <StringPooling>true</StringPooling>
+	  <!-- Additional Cflags -->
+	  <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+	  <!-- Additional Libraries -->
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)ScURL2.dll</OutputFile>
+      <AdditionalLibraryDirectories>../../Frameworks/WinRT/w10_arm_32/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <DelayLoadDLLs>
+      </DelayLoadDLLs>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <ProgramDatabaseFile>
+      </ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <RandomizedBaseAddress>true</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <SupportUnloadOfDelayLoadedDLL>false</SupportUnloadOfDelayLoadedDLL>
+      <ImportLibrary>$(IntDir)ScURL2.lib</ImportLibrary>
+      <ProfileGuidedDatabase>$(IntDir)$(TargetName).pgd</ProfileGuidedDatabase>
+	  <!-- Additional LDflags -->
+	  <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>	  
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /E /Y /K /H "../../Frameworks/WinRT/w10_arm_32/bin/." "../../Contents/WinRT/w10_arm_32/."</Command>
+    </PostBuildEvent>
+    <CustomBuildStep>
+      <Command>del /S /Q /F "../../Contents/WinRT/w10_arm_32/."</Command>
+      <Message>Remove all Contents/WinRT/w10_arm_32 files</Message>
+      <Outputs>clean.log</Outputs>
+    </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Sources\Plugin.cpp" />
+    <ClCompile Include="..\..\Sources\Platforms\WinRT\PrecompiledHeader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">Create</PrecompiledHeader>
+    </ClCompile>
+	<!-- Include implementation files -->
+    <ClCompile Include="..\..\Sources\scurl.cpp"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXTypes.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXPlugin.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXPlatform.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXMacros.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXConfig.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAudioBackend.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIVariables.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIVariable.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIPackage.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIModel.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIFunction.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIEngineAPI.h" />
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIConstant.h" />
+    <ClInclude Include="..\..\Sources\Platforms\WinRT\PrecompiledHeader.h" />
+    <ClInclude Include="..\..\Sources\Plugin.h" />
+	<!-- Include header files -->
+    <ClInclude Include="..\..\Sources\scurl.h"/>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

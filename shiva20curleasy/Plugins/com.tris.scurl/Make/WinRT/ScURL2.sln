@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 14.00
+# Visual Studio
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScURL2", "ScURL2.vcxproj", "{88FC4501-9AA9-47A9-9EC5-7F8C27A86666}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+		Release|ARM = Release|ARM
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88FC4501-9AA9-47A9-9EC5-7F8C27A86666}.Release|Win32.ActiveCfg = Release|Win32
+		{88FC4501-9AA9-47A9-9EC5-7F8C27A86666}.Release|Win32.Build.0 = Release|Win32
+		{88FC4501-9AA9-47A9-9EC5-7F8C27A86666}.Release|x64.ActiveCfg = Release|x64
+		{88FC4501-9AA9-47A9-9EC5-7F8C27A86666}.Release|x64.Build.0 = Release|x64
+		{88FC4501-9AA9-47A9-9EC5-7F8C27A86666}.Release|ARM.ActiveCfg = Release|ARM
+		{88FC4501-9AA9-47A9-9EC5-7F8C27A86666}.Release|ARM.Build.0 = Release|ARM
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

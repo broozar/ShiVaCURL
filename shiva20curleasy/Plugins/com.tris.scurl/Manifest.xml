@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest version="2" >
+	<plugin name="ScURL2" version="1.0" s3dx_sdk_version="0x2000000" >
+		<info>
+			<description>7.54.1</description>
+			<author>
+				<name>Felix Caffier</name>
+				<mail>support@shiva-engine.com</mail>
+				<site>http://www.trisymphony.com</site>
+			</author>
+		</info>
+		<certificate/>
+		<files>
+			<platform type="Windows" >
+				<arch type="x86_32" >x86_32/ScURL2.dll</arch>
+				<arch type="x86_64" >x86_64/ScURL2.dll</arch>
+			</platform>
+			<platform type="WinRT" toolset="w10" >
+				<arch type="x86_32" >w10_x86_32/ScURL2.dll</arch>
+				<arch type="x86_64" >w10_x86_64/ScURL2.dll</arch>
+				<arch type="arm_32" >w10_arm_32/ScURL2.dll</arch>
+			</platform>
+			<platform type="WinRT" toolset="wp8" >
+				<arch type="x86_32" >wp8_x86_32/ScURL2.dll</arch>
+				<arch type="arm_32" >wp8_arm_32/ScURL2.dll</arch>
+			</platform>
+			<platform type="Mac" >
+				<arch type="ppc_32" >ScURL2.dylib</arch>
+				<arch type="ppc_64" >ScURL2.dylib</arch>
+				<arch type="x86_32" >ScURL2.dylib</arch>
+				<arch type="x86_64" >ScURL2.dylib</arch>
+			</platform>
+			<platform type="Linux" >
+				<arch type="x86_32" >x86_32/ScURL2.so</arch>
+				<arch type="x86_64" >x86_64/ScURL2.so</arch>
+			</platform>
+			<platform type="iOS" >
+				<arch type="arm_v6" >ScURL2.a</arch>
+				<arch type="arm_v7" >ScURL2.a</arch>
+			</platform>
+			<platform type="tvOS" >
+				<arch type="arm_v6" >ScURL2.a</arch>
+				<arch type="arm_v7" >ScURL2.a</arch>
+			</platform>
+			<platform type="Android" >
+				<arch type="arm_v5te" >arm_v5te/ScURL2.a</arch>
+				<arch type="arm_v7a" >arm_v7a/ScURL2.a</arch>
+				<arch type="x86_32" >x86_32/ScURL2.a</arch>
+			</platform>
+			<platform type="Palm" >
+				<arch type="arm_v6" >ScURL2.a</arch>
+			</platform>
+			<platform type="BlackBerry" >
+				<arch type="arm_v7" >ScURL2.a</arch>
+			</platform>
+			<platform type="Flash" >
+				<arch type="noarch" >ScURL2.swc</arch>
+			</platform>
+			<platform type="Marmalade" >
+				<arch type="arm_v4t" >ScURL2.a</arch>
+			</platform>
+			<platform type="Wii" >
+				<arch type="ppc_32" >ScURL2.a</arch>
+			</platform>
+			<platform type="PSP" >
+				<arch type="mips_32" >ScURL2.a</arch>
+			</platform>
+			<platform type="PS3" >
+				<arch type="ppc_32" >ScURL2.a</arch>
+			</platform>
+			<platform type="NaCl" >
+				<arch type="x86_32" >x86_32/ScURL2.a</arch>
+				<arch type="x86_64" >x86_64/ScURL2.a</arch>
+			</platform>
+			<platform type="XB360" >
+				<arch type="ppc_32" >ScURL2.lib</arch>
+			</platform>
+			<platform type="HTML5" >
+				<arch type="noarch" >ScURL2.bc</arch>
+			</platform>
+		</files>
+	</plugin>
+</manifest>
