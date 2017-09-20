@@ -289,35 +289,30 @@
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Sources\Plugin.cpp" />
-    <ClCompile Include="..\..\Sources\Platforms\Windows\DLLMain.cpp" />
-    <ClCompile Include="..\..\Sources\Platforms\Windows\PrecompiledHeader.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
     <!-- Include implementation files -->
-    <ClCompile Include="..\..\Sources\scurl.cpp" />
+    <ClCompile Include="..\..\Sources\scurl.cpp"/>
+    <ClCompile Include="..\..\Sources\Plugin.cpp"/>
+    <ClCompile Include="..\..\Sources\Platforms\Windows\PrecompiledHeader.cpp"/>
+    <ClCompile Include="..\..\Sources\Platforms\Windows\DLLMain.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXTypes.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXPlugin.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXPlatform.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXMacros.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXConfig.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAudioBackend.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIVariables.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIVariable.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIPackage.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIModel.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIFunction.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIEngineAPI.h" />
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIConstant.h" />
-    <ClInclude Include="..\..\Sources\Platforms\Windows\PrecompiledHeader.h" />
-    <ClInclude Include="..\..\Sources\Plugin.h" />
     <!-- Include header files -->
-    <ClInclude Include="..\..\Sources\scurl.h" />
+    <ClInclude Include="..\..\Sources\scurl.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXTypes.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXPlugin.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXPlatform.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXMacros.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXConfig.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAudioBackend.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIVariables.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIVariable.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIPackage.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIModel.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIFunction.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIEngineAPI.h"/>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIConstant.h"/>
+    <ClInclude Include="..\..\Sources\Plugin.h"/>
+    <ClInclude Include="..\..\Sources\Platforms\Windows\PrecompiledHeader.h"/>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

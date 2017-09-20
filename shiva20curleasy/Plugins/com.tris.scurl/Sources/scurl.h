@@ -43,6 +43,7 @@ public :
 	//-------------------------------------------------------------------------
                                 scurlAPI       ( ) 
                                 {
+                                    pfn_scurl_raw = NULL ;
                                     pfn_scurl_easyDownloadHTTPS = NULL ;
                                     pfn_scurl_easyDownloadHTTP = NULL ;
                                     pfn_scurl_easyPostHTTPS = NULL ;
@@ -59,6 +60,7 @@ public :
 	//  API Callbacks 
 	//-------------------------------------------------------------------------
 
+    S3DX::AICallback    pfn_scurl_raw ;
     S3DX::AICallback    pfn_scurl_easyDownloadHTTPS ;
     S3DX::AICallback    pfn_scurl_easyDownloadHTTP ;
     S3DX::AICallback    pfn_scurl_easyPostHTTPS ;
@@ -73,6 +75,7 @@ public :
 	//  API Functions 
 	//-------------------------------------------------------------------------
 
+    inline S3DX::AIVariable     raw ( const S3DX::AIVariable& sID, const S3DX::AIVariable& sCommandString ) { S3DX_DECLARE_VIN_02( sID, sCommandString ) ; S3DX::AIVariable vOut ; if ( pfn_scurl_raw ) pfn_scurl_raw ( 2, vIn, &vOut ); return vOut ; }
     inline S3DX::AIVariable     easyDownloadHTTPS ( const S3DX::AIVariable& sID, const S3DX::AIVariable& sURL, const S3DX::AIVariable& sTargetFile, const S3DX::AIVariable& bSkipPeerVerification, const S3DX::AIVariable& bSkipHostnameVerification ) { S3DX_DECLARE_VIN_05( sID, sURL, sTargetFile, bSkipPeerVerification, bSkipHostnameVerification ) ; S3DX::AIVariable vOut ; if ( pfn_scurl_easyDownloadHTTPS ) pfn_scurl_easyDownloadHTTPS ( 5, vIn, &vOut ); return vOut ; }
     inline S3DX::AIVariable     easyDownloadHTTP ( const S3DX::AIVariable& sID, const S3DX::AIVariable& sURL, const S3DX::AIVariable& sTargetFile ) { S3DX_DECLARE_VIN_03( sID, sURL, sTargetFile ) ; S3DX::AIVariable vOut ; if ( pfn_scurl_easyDownloadHTTP ) pfn_scurl_easyDownloadHTTP ( 3, vIn, &vOut ); return vOut ; }
     inline S3DX::AIVariable     easyPostHTTPS ( const S3DX::AIVariable& sID, const S3DX::AIVariable& sURL, const S3DX::AIVariable& bSkipPeerVerification, const S3DX::AIVariable& bSkipHostnameVerification, const S3DX::AIVariable& sPostdata ) { S3DX_DECLARE_VIN_05( sID, sURL, bSkipPeerVerification, bSkipHostnameVerification, sPostdata ) ; S3DX::AIVariable vOut ; if ( pfn_scurl_easyPostHTTPS ) pfn_scurl_easyPostHTTPS ( 5, vIn, &vOut ); return vOut ; }

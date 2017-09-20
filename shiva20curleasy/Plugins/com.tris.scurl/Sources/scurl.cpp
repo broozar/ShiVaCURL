@@ -115,7 +115,7 @@ inline void _ccustomF(CURL * curl, const std::string & url, FILE * pagefile) {
 #ifdef __MAC__
 
 inline const int HTTPstatusCode (const std::string & URL) {
-    auto check = "curl -s -o /dev/null -I -L -w \"%{http_code}\" " + URL;
+    auto check = "curl -s -o /dev/null -I -L -w \"%{http_code}\" '" + URL + "'";
     
     FILE* lsofFile_p (popen(check.c_str(), "r"));
     if (!lsofFile_p) return 0;
@@ -128,7 +128,7 @@ inline const int HTTPstatusCode (const std::string & URL) {
 
 inline void statusCodeText (const std::string & URL, std::string & returnStr) {
 
-    auto check = "curl -s -f -o /dev/null -I -L --show-error " + URL + " 2>&1";
+    auto check = "curl -s -f -o /dev/null -I -L --show-error '" + URL + "' 2>&1";
     char buffer[256];
     
     FILE * stream = popen(check.c_str(), "r");
@@ -158,7 +158,7 @@ inline void performCURL(const std::string & request, std::string & returnStr) {
 }
 
 inline bool doesFileExist (const std::string & URL) {
-    auto check = "if curl -o /dev/null -s --fail -I -L " + URL + "; then echo YES ; else echo NO ; fi";
+    auto check = "if curl -o /dev/null -s --fail -I -L '" + URL + "'; then echo YES ; else echo NO ; fi";
     
     FILE * lsofFile_p (popen(check.c_str(), "r"));
     if (!lsofFile_p) return false;
@@ -505,10 +505,10 @@ void thrEasyGetHTTP(const std::string && sID, const std::string && url) {
     
     if (res == 200) {
         // all OK
-        std::string url3 ("curl --user-agent \""); // new URL
+        std::string url3 ("curl --user-agent '"); // new URL
         url3 +=  _useragent;
-        url3 += "\" -L ";
-        url3 += url2;
+        url3 += "' -L ";
+        url3 += "'" + url2 + "'";
         
         std::string s;
         performCURL(url3, s);
@@ -537,11 +537,12 @@ void thrEasyPostHTTP(const std::string && sID, const std::string && url, const s
 
     std::string url2 ("http://" + url); // new URL
     
-    std::string url3 ("curl --user-agent \""); // new URL
+    std::string url3 ("curl --user-agent '"); // new URL
     url3 +=  _useragent;
-    url3 += "\" ";
-    url3 += "--data \"" + pdata + "\" ";
-    url3 += "-f --show-error -L http://" + url;
+    url3 += "' ";
+    url3 += "--data '" + pdata + "' ";
+    url3 += "-f --show-error -L ";
+    url3 += "'" + url2 + "'";
         
     std::string s;
     performCURL(url3, s);
@@ -571,10 +572,10 @@ void thrEasyGetHTTPS(const std::string && sID, const std::string && url, const b
     if (res == 200) {
         // all OK
         
-        std::string url3 ("curl --user-agent \""); // new URL
+        std::string url3 ("curl --user-agent '"); // new URL
         url3 +=  _useragent;
-        url3 += "\" ";
-        url3 += "-L https://" + url;
+        url3 += "' -L ";
+        url3 += "'" + url2 + "'";
         
         // MISSING:
         // CURLOPT_SSL_VERIFYPEER
@@ -612,11 +613,11 @@ void thrEasyPostHTTPS(const std::string && sID, const std::string && url, const 
     if (res == 200) {
         // all OK
         
-        std::string url3 ("curl --user-agent \""); // new URL
+        std::string url3 ("curl --user-agent '"); // new URL
         url3 +=  _useragent;
-        url3 += "\" ";
-        url3 += "--data \"" + postdata + "\" ";
-        url3 += "-L https://" + url;
+        url3 += "' ";
+        url3 += "--data '" + postdata + "' -L ";
+        url3 += "'" + url2 + "'";
         
         // MISSING:
         // CURLOPT_SSL_VERIFYPEER
@@ -651,8 +652,8 @@ void thrDownloadHTTP(const std::string && sID, const std::string && url, const s
 	auto url2 = "http://" + url; // new URL
     
     std::string url3 ("curl ");
-    url3 += "-s --fail -o \"" + sTargetFile + "\" ";
-    url3 += url2;
+    url3 += "-s --fail -o '" + sTargetFile + "' ";
+    url3 += "'" + url2 + "'";
     
     if (doesFileExist(url2)) {
         std::string s;
@@ -676,8 +677,8 @@ void thrDownloadHTTPS(const std::string && sID, const std::string && url, const 
 	auto url2 = "https://" + url; // new URL
     
     std::string url3 ("curl ");
-    url3 += "-s --fail -o \"" + sTargetFile + "\" ";
-    url3 += url2;
+    url3 += "-s --fail -o '" + sTargetFile + "' ";
+    url3 += "'" + url2 + "'";
     // TODO: SSL
     // CURLOPT_SSL_VERIFYPEER
     // CURLOPT_SSL_VERIFYHOST
@@ -696,6 +697,29 @@ void thrDownloadHTTPS(const std::string && sID, const std::string && url, const 
         _vCurlFiles.push_back({ std::move(sID), 5, "General file download error!" });
     }
 }
+
+//-----------------------------------------------------------------------------
+
+void thrRaw(const std::string && sID, const std::string && sCommand) {
+    
+    std::string url3 ("curl " + sCommand + " 2>&1"); // full control, with stderr
+    
+    std::string s;
+    performCURL(url3, s);
+    
+    if (!s.empty()) {
+        std::lock_guard<std::mutex> _(mu_vCurlResults);
+        //        _vCurlMessages.push_back({ std::move(sID), scurl.kWebsite, std::move(s) });
+        _vCurlMessages.push_back({ std::move(sID), 2, std::move(s) });
+    }
+    else {
+        std::lock_guard<std::mutex> _(mu_vCurlResults);
+        //        _vCurlMessages.push_back({ std::move(sID), scurl.kErrorWebsite, err.c_str() });
+        _vCurlMessages.push_back({ std::move(sID), 3, "Empty return string!" });
+    }
+}
+
+
 
 #endif // __MAC__
 
@@ -1031,6 +1055,44 @@ int Callback_scurl_easyDownloadHTTPS ( int _iInCount, const S3DX::AIVariable *_p
 }
 
 //-----------------------------------------------------------------------------
+
+int Callback_scurl_raw ( int _iInCount, const S3DX::AIVariable *_pIn, S3DX::AIVariable *_pOut )
+{
+    S3DX_API_PROFILING_START( "scurl.raw" ) ;
+
+    // Input Parameters
+    int iInputCount = 0 ;
+    S3DX::AIVariable sID = ( iInputCount < _iInCount ) ? _pIn[iInputCount++] : S3DX::AIVariable ( ) ;
+    S3DX::AIVariable sCommandString = ( iInputCount < _iInCount ) ? _pIn[iInputCount++] : S3DX::AIVariable ( ) ;
+
+    // Output Parameters 
+    S3DX::AIVariable bOK ;
+
+#ifdef _WINDOWS
+    // not available on Windows due to missing CLI
+	bOK.SetBooleanValue(false);
+#endif
+
+#ifdef __MAC__
+    if (!_init) {
+        bOK.SetBooleanValue(false);
+    }
+    else {
+        std::thread thr(thrRaw, sID.GetStringValue(), sCommandString.GetStringValue());
+        thr.detach();
+        bOK.SetBooleanValue(true);
+    }
+#endif
+    
+    // Return output Parameters
+    int iReturnCount = 0 ;
+    _pOut[iReturnCount++] = bOK ;
+
+    S3DX_API_PROFILING_STOP( ) ;
+    return iReturnCount;
+}
+
+//-----------------------------------------------------------------------------
 //  Constructor / Destructor
 //-----------------------------------------------------------------------------
 
@@ -1060,6 +1122,8 @@ scurlPackage::scurlPackage ( )
     scurl.kError404 = 1 ;
     scurl.kWebsite = 2 ;
 
+    scurl.pfn_scurl_raw = Callback_scurl_raw ;
+
 #endif
 
 }
@@ -1085,7 +1149,8 @@ static S3DX::AIFunction aMyFunctions [ ] =
     { "easyGetHTTPS", Callback_scurl_easyGetHTTPS, "bOK", "sID, sURL, bSkipPeerVerification, bSkipHostnameVerification", "GET request over SSL, result in string event handler", 0 },
     { "easyPostHTTPS", Callback_scurl_easyPostHTTPS, "bOK", "sID, sURL, bSkipPeerVerification, bSkipHostnameVerification, sPostdata", "POST request over SSL, result in string event handler", 0 },
     { "easyDownloadHTTP", Callback_scurl_easyDownloadHTTP, "bOK", "sID, sURL, sTargetFile", "file download request, result in file event handler", 0 },
-    { "easyDownloadHTTPS", Callback_scurl_easyDownloadHTTPS, "bOK", "sID, sURL, sTargetFile, bSkipPeerVerification, bSkipHostnameVerification", "file download request over SSL, result in file event handler", 0 }
+    { "easyDownloadHTTPS", Callback_scurl_easyDownloadHTTPS, "bOK", "sID, sURL, sTargetFile, bSkipPeerVerification, bSkipHostnameVerification", "file download request over SSL, result in file event handler", 0 },
+    { "raw", Callback_scurl_raw, "bOK", "sID, sCommandString", "raw cURL CLI access. executes 'curl + sCommandString' on platforms with CLI access like MacOS.", 0 }
     //{ NULL, NULL, NULL, NULL, NULL, 0}
 } ;
 

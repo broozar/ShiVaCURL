@@ -17,37 +17,32 @@
 	<!-- Include filters -->
   </ItemGroup>
   <ItemGroup>
+	<!-- Include implementation files -->
+    <ClCompile Include="..\..\Sources\scurl.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Sources\Plugin.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Sources\Platforms\WinRT\PrecompiledHeader.cpp">
       <Filter>Sources\Platforms\WinRT</Filter>
     </ClCompile>
-	<!-- Include implementation files -->
-    <ClCompile Include="..\..\Sources\scurl.cpp">
-      <Filter>Sources</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIConstant.h">
+	<!-- Include header files -->
+    <ClInclude Include="..\..\Sources\scurl.h">
+      <Filter>Sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXTypes.h">
       <Filter>Sources\S3DX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIEngineAPI.h">
+    <ClInclude Include="..\..\Sources\S3DX\S3DXPlugin.h">
       <Filter>Sources\S3DX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIFunction.h">
+    <ClInclude Include="..\..\Sources\S3DX\S3DXPlatform.h">
       <Filter>Sources\S3DX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIModel.h">
-      <Filter>Sources\S3DX</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIPackage.h">
-      <Filter>Sources\S3DX</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIVariable.h">
-      <Filter>Sources\S3DX</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXAIVariables.h">
+    <ClInclude Include="..\..\Sources\S3DX\S3DXMacros.h">
       <Filter>Sources\S3DX</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Sources\S3DX\S3DXConfig.h">
@@ -56,16 +51,25 @@
     <ClInclude Include="..\..\Sources\S3DX\S3DXAudioBackend.h">
       <Filter>Sources\S3DX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXMacros.h">
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIVariables.h">
       <Filter>Sources\S3DX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXPlatform.h">
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIVariable.h">
       <Filter>Sources\S3DX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXPlugin.h">
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIPackage.h">
       <Filter>Sources\S3DX</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Sources\S3DX\S3DXTypes.h">
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIModel.h">
+      <Filter>Sources\S3DX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIFunction.h">
+      <Filter>Sources\S3DX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIEngineAPI.h">
+      <Filter>Sources\S3DX</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Sources\S3DX\S3DXAIConstant.h">
       <Filter>Sources\S3DX</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Sources\Plugin.h">
@@ -73,10 +77,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Sources\Platforms\WinRT\PrecompiledHeader.h">
       <Filter>Sources\Platforms\WinRT</Filter>
-    </ClInclude>
-	<!-- Include header files -->
-    <ClInclude Include="..\..\Sources\scurl.h">
-      <Filter>Sources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
