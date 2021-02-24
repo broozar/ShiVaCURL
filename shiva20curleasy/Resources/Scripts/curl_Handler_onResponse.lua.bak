@@ -14,7 +14,7 @@ function curl.onResponse ( sID, kType, sContent )
         log.warning ( "sCURL Lua: '", sID, "' hit an init error!" )
 
     elseif kType == scurl.kError404 then
-        log.warning ( "sCURL Lua: '", sID, "' received a 404! ", sContent )
+        log.warning ( "sCURL Lua: '", sID, "' received a 404! " )
 
     elseif kType == scurl.kErrorPost then
         log.warning ( "sCURL Lua: '", sID, "' hit a POST error: ", sContent )

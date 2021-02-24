@@ -11,7 +11,7 @@ function curl.onDownload ( sID, kType, sContent )
     -- error handling, capture/forward as needed
 
     if kType == scurl.kErrorFilePartial then
-        log.warning ( "sCURL Lua: '", sID, "' File transferwas incomplete: ", sContent )
+        log.warning ( "sCURL Lua: '", sID, "' File transfer was incomplete: ", sContent )
 
     elseif kType == scurl.kErrorFileRetrieval then
         log.warning ( "sCURL Lua: '", sID, "' File could not be retrieved: ", sContent )
