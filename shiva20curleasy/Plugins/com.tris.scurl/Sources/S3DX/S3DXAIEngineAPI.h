@@ -167,6 +167,9 @@ namespace S3DX
             CallbackID_application_flushAIEvents                                            = 0xC23E914D,
             CallbackID_application_isPluginRegistered                                       = 0xCB81ED53,
             CallbackID_application_getOffscreenRenderingSurfaceNativeHandle                 = 0xA919181D,
+            CallbackID_application_getDataProfileName                                       = 0x831C73EF,
+            CallbackID_application_createRuntimeScene                                       = 0x1AFC9F9D,
+            CallbackID_application_destroyRuntimeScene                                      = 0xEEBC336B,
 
             CallbackID_cache_addFile                                                        = 0xAC10CECA,
             CallbackID_cache_addStreamFile                                                  = 0x8D35DCF2,
@@ -232,6 +235,7 @@ namespace S3DX
             CallbackID_camera_setDistortionMeshClearFlag                                    = 0x62DCFCE1,
             CallbackID_camera_setDistortionMeshClearColor                                   = 0xA132C84A,
             CallbackID_camera_setFrustumMargins                                             = 0x4D9FF618,
+            CallbackID_camera_getFrustumPlane                                               = 0x925C6777,
 
             CallbackID_collider_create                                                      = 0x78735A33,
             CallbackID_collider_destroy                                                     = 0xE9026943,
@@ -256,6 +260,8 @@ namespace S3DX
             CallbackID_debug_dumpLoadedModels                                               = 0xB462F8A0,
             CallbackID_debug_dumpLoadedResources                                            = 0xF6E0A7C2,
             CallbackID_debug_setDisplayFilter                                               = 0xAA61CB5B,
+            CallbackID_debug_getCallStack                                                   = 0x79E60C9A,
+            CallbackID_debug_getGraphicMemoryUsed                                           = 0xEB874E6D,
 
             CallbackID_dynamics_getBodyType                                                 = 0xAE9F6969,
             CallbackID_dynamics_createSphereBody                                            = 0x87F0F727,
@@ -610,6 +616,10 @@ namespace S3DX
             CallbackID_hud_setPixelMap                                                      = 0xEE903298,
             CallbackID_hud_getPixelMapName                                                  = 0x59E796C4,
             CallbackID_hud_getPixelMap                                                      = 0xF0BF85D1,
+            CallbackID_hud_setPixelMapUVScale                                               = 0xAFC080FF,
+            CallbackID_hud_getPixelMapUVScale                                               = 0x8ACB0BE1,
+            CallbackID_hud_setPixelMapUVOffset                                              = 0x9E9EE4C1,
+            CallbackID_hud_getPixelMapUVOffset                                              = 0x64B4D229,
             CallbackID_hud_setProgressValue                                                 = 0x9CFA1A97,
             CallbackID_hud_getProgressValue                                                 = 0xAEEC688E,
             CallbackID_hud_setProgressType                                                  = 0xBF8A39FD,
@@ -723,6 +733,7 @@ namespace S3DX
             CallbackID_hud_isComponentAspectInvariant                                       = 0xF1B75424,
             CallbackID_hud_isComponentIgnoredByMouse                                        = 0x980A36C9,
             CallbackID_hud_enableOffscreenOutput                                            = 0xE1B80048,
+            CallbackID_hud_getLabelTextAspectRatio                                          = 0xB08BA569,
 
             CallbackID_input_setJoypadVibrationsMagnitude                                   = 0x7BB71948,
             CallbackID_input_getJoypadType                                                  = 0x552514F7,
@@ -795,6 +806,8 @@ namespace S3DX
             CallbackID_math_vectorInterpolate                                               = 0x36DC1C3C,
             CallbackID_math_vectorReflect                                                   = 0x6812E3D5,
             CallbackID_math_vectorSetLength                                                 = 0x8033F48B,
+            CallbackID_math_perlinNoise                                                     = 0x6864CF4B,
+            CallbackID_math_perlinTurbulence                                                = 0xAE6255F0,
 
             CallbackID_mesh_getSubsetCount                                                  = 0x173F69C0,
             CallbackID_mesh_getSubsetVertexCount                                            = 0x6052CBEE,
@@ -803,8 +816,10 @@ namespace S3DX
             CallbackID_mesh_addSubset                                                       = 0x170A22F8,
             CallbackID_mesh_removeSubset                                                    = 0xCDAAF3C7,
             CallbackID_mesh_createSubsetVertexBuffer                                        = 0xFC73B640,
+            CallbackID_mesh_copySubsetVertexBuffer                                          = 0xBF688C20,
             CallbackID_mesh_destroySubsetVertexBuffer                                       = 0x8C4CF344,
             CallbackID_mesh_createSubsetIndexBuffer                                         = 0x35CA1E9D,
+            CallbackID_mesh_copySubsetIndexBuffer                                           = 0x471914F5,
             CallbackID_mesh_destroySubsetIndexBuffer                                        = 0x607B9598,
             CallbackID_mesh_destroySubsetIndexBuffers                                       = 0xE5BAAFE8,
             CallbackID_mesh_lockSubsetVertexBuffer                                          = 0x4B6B4F74,
@@ -840,6 +855,12 @@ namespace S3DX
             CallbackID_mesh_getSubsetValidIndexCount                                        = 0xDE89EF03,
             CallbackID_mesh_resizeSubsetVertexBuffer                                        = 0x92FAE068,
             CallbackID_mesh_resizeSubsetIndexBuffer                                         = 0xD79AD10A,
+            CallbackID_mesh_setSubsetIndexValues                                            = 0x8BD74C8C,   // C/C++ addon
+            CallbackID_mesh_removeSubsetVertexBufferRange                                   = 0x1E983282,
+            CallbackID_mesh_removeSubsetIndexBufferRange                                    = 0xA896B8DC,
+            CallbackID_mesh_moveSubsetIndexBufferRange                                      = 0x7A7BED31,
+            CallbackID_mesh_decreaseSubsetIndexBufferValues                                 = 0xC6403B1C,
+            CallbackID_mesh_getSubsetFirstHitFaceInRange                                    = 0xD290089A,
 
             CallbackID_microphone_setRate                                                   = 0xE5C21961,
             CallbackID_microphone_enable                                                    = 0x2620D09B,
@@ -1006,6 +1027,7 @@ namespace S3DX
             CallbackID_pixelmap_getPixel                                                    = 0xE54FD258,
             CallbackID_pixelmap_setPixels                                                   = 0x8F774A62,  // C/C++ addon for speed
             CallbackID_pixelmap_getPixels                                                   = 0x7E5B591F,  // C/C++ addon for speed
+            CallbackID_pixelmap_getSurfaceNativeHandle                                      = 0x5E731594,  // C/C++ addon
             CallbackID_pixelmap_createBrushFromTexture                                      = 0x09B99A08,
             CallbackID_pixelmap_createBrushFromRectangle                                    = 0xF7A2E6DD,
             CallbackID_pixelmap_destroyBrush                                                = 0x11149B5F,
@@ -1227,6 +1249,16 @@ namespace S3DX
             CallbackID_scene_destroyAllActivationZones                                      = 0xA8954150,
             CallbackID_scene_getActivationZoneCount                                         = 0x7C80B214,
             CallbackID_scene_getActivationZoneNameAt                                        = 0xA7ABF1FF,
+            CallbackID_scene_getObjectFromHashCode                                          = 0xA4EF99F9,
+            CallbackID_scene_forceDynamicsFrame                                             = 0x42D21A23,
+            CallbackID_scene_resetDynamicsRandomSeed                                        = 0x88B9BF4A,
+            CallbackID_scene_setBackgroundMap                                               = 0x3ACB3A77,
+            CallbackID_scene_setBackgroundMapOpacity                                        = 0x013D5F9B,
+            CallbackID_scene_setBackgroundMapUVOffset                                       = 0xEDBDBCC6,
+            CallbackID_scene_setBackgroundMapUVScale                                        = 0x508E0478,
+            CallbackID_scene_setBackgroundMapAddressingMode                                 = 0xDA6BC358,
+            CallbackID_scene_setBackgroundMapFilteringMode                                  = 0x2FB4CBC2,
+            CallbackID_scene_getBackgroundMap                                               = 0x08DD486E,
 
             CallbackID_sensor_getCount                                                      = 0x9D39FE26,
             CallbackID_sensor_setActiveAt                                                   = 0xAE727832,
@@ -1442,9 +1474,11 @@ namespace S3DX
             CallbackID_shape_getCurveCount                                                  = 0xA1C9A121,
             CallbackID_shape_addCurvePoint                                                  = 0x0603411E,
             CallbackID_shape_removeCurvePoint                                               = 0xF6938578,
+            CallbackID_shape_removeAllCurvePoints                                           = 0x88EED8F7,
             CallbackID_shape_getCurvePointCount                                             = 0x83812D5A,
             CallbackID_shape_getCurvePoint                                                  = 0x93B51667,
             CallbackID_shape_setCurvePoint                                                  = 0xE70BDA2B,
+            CallbackID_shape_setCurvePoints                                                 = 0xB7553D91,   // C/C++ addon
             CallbackID_shape_setCurveStartColor                                             = 0xF33C206F,
             CallbackID_shape_setCurveEndColor                                               = 0xAA04CDDB,
             CallbackID_shape_setCurveStartOpacity                                           = 0x6D4D2EAB,
@@ -1491,6 +1525,8 @@ namespace S3DX
             CallbackID_sound_setSpatializationReferenceDistance                             = 0xDE5CB6DE,
             CallbackID_sound_getSpatializationReferenceDistance                             = 0x69E3EBA5,
             CallbackID_sound_getSpatializationGain                                          = 0xD06788E2,
+            CallbackID_sound_enableDopplerEffect                                            = 0x186FA968,
+            CallbackID_sound_isDopplerEffectEnabled                                         = 0xC3130BB1,
 
             CallbackID_string_isEmpty                                                       = 0x15025591,
             CallbackID_string_getLength                                                     = 0x0B56F67D,
@@ -1516,7 +1552,10 @@ namespace S3DX
             CallbackID_string_encodeURL                                                     = 0x69D8EFCF,
             CallbackID_string_decodeURL                                                     = 0x23C9E7DA,
             CallbackID_string_encodeBase64                                                  = 0x82F2C94A,
+            CallbackID_string_decodeBase64                                                  = 0x3A760261,
             CallbackID_string_encodeUTF8                                                    = 0x0FD0C4E5,
+            CallbackID_string_startsWith                                                    = 0xB475DCA2,
+            CallbackID_string_endsWith                                                      = 0xC84569B8,
 
             CallbackID_system_getOSType                                                     = 0x31474FA7,
             CallbackID_system_getOSVersion                                                  = 0x5F7F564D,
@@ -1567,6 +1606,7 @@ namespace S3DX
             CallbackID_system_isInstalled                                                   = 0x0B52C391,
             CallbackID_system_getInstallationStatus                                         = 0x94BB1235,
             CallbackID_system_launch                                                        = 0x8498F015,
+            CallbackID_system_getEngineBuildString                                          = 0XAEFAE859,
 
             CallbackID_table_isEmpty                                                        = 0x8E421FD4,
             CallbackID_table_getSize                                                        = 0x1E327295,
@@ -1699,7 +1739,10 @@ namespace S3DX
             CallbackID_xml_getSendStatus                                                    = 0xDD3484F3,
             CallbackID_xml_getReceiveStatus                                                 = 0xD748C5B1,
             CallbackID_xml_newInstance                                                      = 0xFF6B159B,
-            CallbackID_xml_copy                                                             = 0xFE220246
+            CallbackID_xml_copy                                                             = 0xFE220246,
+            CallbackID_xml_getElementFirstChildWithNameAndAttribute                         = 0x04F7D318,
+            CallbackID_xml_getElementNextSiblingWithNameAndAttribute                        = 0x4CB2EEFC,
+            CallbackID_xml_toJSONString                                                     = 0x7CF899CD
         } ;
 
         //---------------------------------------------------------------------
@@ -1833,6 +1876,9 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  setUseAverageFrameTime                                  ; , 0x01090200 )
             S3DX_AVAILABLE( AICallback  getUseAverageFrameTime                                  ; , 0x01090200 )
             S3DX_AVAILABLE( AICallback  getOffscreenRenderingSurfaceNativeHandle                ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  getDataProfileName                                      ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  createRuntimeScene                                      ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  destroyRuntimeScene                                     ; , 0x02000000 )
         } ;
 
         struct CacheCallbacks
@@ -1904,6 +1950,7 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  setFrustumMargins                                       ; , 0x01090200 )
             S3DX_AVAILABLE( AICallback  setRenderMap                                            ; , 0x01090200 )
             S3DX_AVAILABLE( AICallback  getRenderMapName                                        ; , 0x01090200 )
+            S3DX_AVAILABLE( AICallback  getFrustumPlane                                         ; , 0x02000001 )
         } ;
 
         struct ColliderCallbacks
@@ -1934,6 +1981,8 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  dumpLoadedModels                                        ; , 0x01090009 )
             S3DX_AVAILABLE( AICallback  dumpLoadedResources                                     ; , 0x01090009 )
             S3DX_AVAILABLE( AICallback  setDisplayFilter                                        ; , 0x01090009 )
+            S3DX_AVAILABLE( AICallback  getCallStack                                            ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  getGraphicMemoryUsed                                    ; , 0x02000000 )
         } ;
 
         struct DynamicsCallbacks
@@ -2413,6 +2462,11 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  enableOffscreenOutput                                   ; , 0x01090200 )
             S3DX_AVAILABLE( AICallback  getTimer                                                ; , 0x01090200 )
             S3DX_AVAILABLE( AICallback  getTimerTag                                             ; , 0x01090200 )
+            S3DX_AVAILABLE( AICallback  setPixelMapUVScale                                      ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  getPixelMapUVScale                                      ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  setPixelMapUVOffset                                     ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  getPixelMapUVOffset                                     ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  getLabelTextAspectRatio                                 ; , 0x02000000 )
         } ;
 
         struct InputCallbacks
@@ -2497,6 +2551,8 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  vectorInterpolate                                       ; , 0x01090000 )
             S3DX_AVAILABLE( AICallback  vectorReflect                                           ; , 0x01090000 )
             S3DX_AVAILABLE( AICallback  vectorSetLength                                         ; , 0x01090000 )
+            S3DX_AVAILABLE( AICallback  perlinNoise                                             ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  perlinTurbulence                                        ; , 0x02000000 )
         } ;
 
         struct MeshCallbacks
@@ -2545,6 +2601,14 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  getSubsetValidIndexCount                                ; , 0x02000000 )
             S3DX_AVAILABLE( AICallback  resizeSubsetVertexBuffer                                ; , 0x02000000 )
             S3DX_AVAILABLE( AICallback  resizeSubsetIndexBuffer                                 ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  copySubsetVertexBuffer                                  ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  copySubsetIndexBuffer                                   ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  setSubsetIndexValues                                    ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  removeSubsetVertexBufferRange                           ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  removeSubsetIndexBufferRange                            ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  moveSubsetIndexBufferRange                              ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  decreaseSubsetIndexBufferValues                         ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  getSubsetFirstHitFaceInRange                            ; , 0x02000000 )
         } ;
 
         struct MicrophoneCallbacks
@@ -2750,6 +2814,7 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  saveToTexture                                           ; , 0x01090000 )
             S3DX_AVAILABLE( AICallback  newInstance                                             ; , 0x02000000 )
             S3DX_AVAILABLE( AICallback  resize                                                  ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  getSurfaceNativeHandle                                  ; , 0x02000000 )
         } ;
 
         struct ProjectorCallbacks
@@ -2956,6 +3021,16 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  destroyAllActivationZones                               ; , 0x01090200 )
             S3DX_AVAILABLE( AICallback  getActivationZoneCount                                  ; , 0x01090200 )
             S3DX_AVAILABLE( AICallback  getActivationZoneNameAt                                 ; , 0x01090200 )
+            S3DX_AVAILABLE( AICallback  getObjectFromHashCode                                   ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  forceDynamicsFrame                                      ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  resetDynamicsRandomSeed                                 ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  setBackgroundMap                                        ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  setBackgroundMapOpacity                                 ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  setBackgroundMapUVOffset                                ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  setBackgroundMapUVScale                                 ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  setBackgroundMapAddressingMode                          ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  setBackgroundMapFilteringMode                           ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  getBackgroundMap                                        ; , 0x02000000 )
         } ;
 
         struct SensorCallbacks
@@ -3217,6 +3292,8 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  getCurveStyleOption                                     ; , 0x02000000 )
             S3DX_AVAILABLE( AICallback  setCurveOption                                          ; , 0x02000000 )
             S3DX_AVAILABLE( AICallback  getCurveOption                                          ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  setCurvePoints                                          ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  removeAllCurvePoints                                    ; , 0x02000000 )
         } ;
 
         struct SoundCallbacks
@@ -3239,6 +3316,8 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  setSpatializationReferenceDistance                      ; , 0x01090000 )
             S3DX_AVAILABLE( AICallback  getSpatializationReferenceDistance                      ; , 0x01090000 )
             S3DX_AVAILABLE( AICallback  getSpatializationGain                                   ; , 0x01090200 )
+            S3DX_AVAILABLE( AICallback  enableDopplerEffect                                     ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  isDopplerEffectEnabled                                  ; , 0x02000000 )
         } ;
 
         struct StringCallbacks
@@ -3268,6 +3347,9 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  encodeBase64                                            ; , 0x01090003 )
             S3DX_AVAILABLE( AICallback  hmacsha1                                                ; , 0x01090003 )
             S3DX_AVAILABLE( AICallback  encodeUTF8                                              ; , 0x01090200 )
+            S3DX_AVAILABLE( AICallback  decodeBase64                                            ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  startsWith                                              ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  endsWith                                                ; , 0x02000000 )
         } ;
 
         struct SystemCallbacks
@@ -3321,6 +3403,7 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  getCurrentScreenPixelAspectRatio                        ; , 0x01090009 )
             S3DX_AVAILABLE( AICallback  callClientFunction                                      ; , 0x01090009 )
             S3DX_AVAILABLE( AICallback  getCurrentScreenPixelDensity                            ; , 0x01090200 )
+            S3DX_AVAILABLE( AICallback  getEngineBuildString                                    ; , 0x02000000 )
         } ;
 
         struct TableCallbacks
@@ -3466,6 +3549,9 @@ namespace S3DX
             S3DX_AVAILABLE( AICallback  newInstance                                             ; , 0x01090009 )
             S3DX_AVAILABLE( AICallback  copy                                                    ; , 0x01090009 )
             S3DX_AVAILABLE( AICallback  createFromResource                                      ; , 0x01090009 )
+            S3DX_AVAILABLE( AICallback  getElementFirstChildWithNameAndAttribute                ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  getElementNextSiblingWithNameAndAttribute               ; , 0x02000000 )
+            S3DX_AVAILABLE( AICallback  toJSONString                                            ; , 0x02000000 )
         } ;
 
         //-----------------------------------------------------------------------------
@@ -3642,7 +3728,7 @@ namespace S3DX
             const AIVariable        kOptionStereoscopic3DDistortionCenterOffsetX            ; // 2.0.0.0
             const AIVariable        kOptionStereoscopic3DDistortionCenterOffsetY            ; // 2.0.0.0
             const AIVariable        kOptionOffscreenRenderingRetainedBacking                ; // 2.0.0.0
-
+            const AIVariable        kOptionOffscreenRenderingAntialiasingSampleCount        ; // 2.0.0.0
 
             ApplicationPackage                                      (    ):
             kStatusSaving                                           (  3 ),
@@ -3738,7 +3824,8 @@ namespace S3DX
             kOptionStereoscopic3DDistortionScaleY                   ( 68 ), // 2.0.0.0
             kOptionStereoscopic3DDistortionCenterOffsetX            ( 69 ), // 2.0.0.0
             kOptionStereoscopic3DDistortionCenterOffsetY            ( 70 ), // 2.0.0.0
-            kOptionOffscreenRenderingRetainedBacking                ( 74 )  // 2.0.0.0
+            kOptionOffscreenRenderingRetainedBacking                ( 74 ), // 2.0.0.0
+            kOptionOffscreenRenderingAntialiasingSampleCount        ( 76 )  // 2.0.0.0
             { }
 
             // Functions
@@ -3832,26 +3919,37 @@ namespace S3DX
             inline void             setUseAverageFrameTime                              ( const AIVariable& bUse ) const { S3DX_DECLARE_VIN_01( bUse ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->application.setUseAverageFrameTime ( 1, vIn, NULL ) ; }
             inline AIVariable       getUseAverageFrameTime                              ( ) const { AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->application.getUseAverageFrameTime ( 0, NULL, &vOut ) ; return vOut ; }
             inline AIVariable       getOffscreenRenderingSurfaceNativeHandle            ( const AIVariable& nDisplay, const AIVariable& nRoute ) const { S3DX_DECLARE_VIN_02( nDisplay, nRoute ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->application.getOffscreenRenderingSurfaceNativeHandle ( 2, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       getDataProfileName                                  ( ) const { AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->application.getDataProfileName ( 0, NULL, &vOut ) ; return vOut ; }
+            inline AIVariable       createRuntimeScene                                  ( const AIVariable& sName, const AIVariable& sLoadName ) const { S3DX_DECLARE_VIN_02( sName, sLoadName ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->application.createRuntimeScene ( 2, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       createRuntimeScene                                  ( const AIVariable& sName ) const { S3DX_DECLARE_VIN_01( sName ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->application.createRuntimeScene ( 1, vIn, &vOut ) ; return vOut ; }
+            inline void             destroyRuntimeScene                                 ( const AIVariable& sName ) const { S3DX_DECLARE_VIN_01( sName ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->application.destroyRuntimeScene ( 1, vIn, NULL ) ; }
         } ;
 
         struct CachePackage
         {
             // Constants
             //
-            const AIVariable        kPropertyWidth  ;
-            const AIVariable        kPropertyHeight ;
-            const AIVariable        kPropertySize   ;
+            const AIVariable        kPropertyWidth      ;
+            const AIVariable        kPropertyHeight     ;
+            const AIVariable        kPropertySize       ;
+            const AIVariable        kRequestTypeAuto    ; // 2.0.0.0
+            const AIVariable        kRequestTypeGet     ; // 2.0.0.0
+            const AIVariable        kRequestTypePost    ; // 2.0.0.0
 
             CachePackage            (   ):
             kPropertyWidth          ( 1 ),
             kPropertyHeight         ( 2 ),
-            kPropertySize           ( 6 )
+            kPropertySize           ( 6 ),
+            kRequestTypeAuto        ( 0 ),
+            kRequestTypeGet         ( 1 ),
+            kRequestTypePost        ( 2 )
             { }
 
             // Functions
             //
             inline void             addFile                                             ( const AIVariable& sFileName, const AIVariable& sFileURI ) const { S3DX_DECLARE_VIN_02( sFileName, sFileURI ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->cache.addFile ( 2, vIn, NULL ) ; }
             inline void             addFile                                             ( const AIVariable& sFileName, const AIVariable& sFileURI, const AIVariable& sOptionalHeader ) const { S3DX_DECLARE_VIN_03( sFileName, sFileURI, sOptionalHeader ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->cache.addFile ( 3, vIn, NULL ) ; }
+            inline void             addFile                                             ( const AIVariable& sFileName, const AIVariable& sFileURI, const AIVariable& sOptionalHeader, const AIVariable& kRequestType ) const { S3DX_DECLARE_VIN_04( sFileName, sFileURI, sOptionalHeader, kRequestType ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->cache.addFile ( 4, vIn, NULL ) ; }
             inline void             addStreamFile                                       ( const AIVariable& sFileName, const AIVariable& sFileURI ) const { S3DX_DECLARE_VIN_02( sFileName, sFileURI ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->cache.addStreamFile ( 2, vIn, NULL ) ; }
             inline AIVariable       getFileStatus                                       ( const AIVariable& sFileName ) const { S3DX_DECLARE_VIN_01( sFileName ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->cache.getFileStatus ( 1, vIn, &vOut ) ; return vOut ; } // Deprecated
             inline void             pauseFileReceiving                                  ( const AIVariable& sFileName ) const { S3DX_DECLARE_VIN_01( sFileName ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->cache.pauseFileReceiving ( 1, vIn, NULL ) ; }
@@ -3936,6 +4034,7 @@ namespace S3DX
             inline void             setFrustumMargins                                   ( const AIVariable& hObject, const AIVariable& nLeft, const AIVariable& nRight, const AIVariable& nTop, const AIVariable& nBottom ) const { S3DX_DECLARE_VIN_05( hObject, nLeft, nRight, nTop, nBottom ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->camera.setFrustumMargins ( 5, vIn, NULL ) ; }
             inline void             setRenderMap                                        ( const AIVariable& hObject, const AIVariable& sRenderMap ) const { S3DX_DECLARE_VIN_02( hObject, sRenderMap ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->camera.setRenderMap ( 2, vIn, NULL ) ; }
             inline AIVariable       getRenderMapName                                    ( const AIVariable& hObject ) const { S3DX_DECLARE_VIN_01( hObject ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->camera.getRenderMapName ( 1, vIn, &vOut ) ; return vOut ; }
+            inline AIVariables<4>   getFrustumPlane                                     ( const AIVariable& hObject, const AIVariable& nPlane, const AIVariable& kSpace ) const { S3DX_DECLARE_VIN_03( hObject, nPlane, kSpace ) ; AIVariables<4> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->camera.getFrustumPlane ( 3, vIn, vOut ) ; return vOut ; }
         } ;
 
         struct ColliderPackage
@@ -3982,6 +4081,8 @@ namespace S3DX
             inline void             dumpLoadedModels                                    ( ) const { S3DX_MODULE_GUID::__pS3DXEAPIMI->debug.dumpLoadedModels ( 0, NULL, NULL ) ; }
             inline void             dumpLoadedResources                                 ( ) const { S3DX_MODULE_GUID::__pS3DXEAPIMI->debug.dumpLoadedResources ( 0, NULL, NULL ) ; }
             inline void             setDisplayFilter                                    ( const AIVariable& kFilter, const AIVariable& bEnable ) const { S3DX_DECLARE_VIN_02( kFilter, bEnable ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->debug.setDisplayFilter ( 2, vIn, NULL ) ; }
+            inline AIVariable       getCallStack                                        ( ) const { AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->debug.getCallStack ( 0, NULL, &vOut ) ; return vOut ; }
+            inline AIVariable       getGraphicMemoryUsed                                ( ) const { AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->debug.getGraphicMemoryUsed ( 0, NULL, &vOut ) ; return vOut ; }
        } ;
 
         struct DynamicsPackage
@@ -4303,7 +4404,11 @@ namespace S3DX
             const AIVariable        kCommandTypeFinishAction                        ;
             const AIVariable        kFilteringModeNearestNoMipmaps                  ;
             const AIVariable        kFilteringModeBilinearNoMipmaps                 ;
-
+            const AIVariable        kCommandTypeInterpolateBackgroundImageUVOffset  ;
+            const AIVariable        kCommandTypeInterpolateBackgroundImageUVScale   ;
+            const AIVariable        kCommandTypeInterpolateSizeAndOpacity           ;
+            const AIVariable        kCommandTypeInterpolatePositionX                ;
+            const AIVariable        kCommandTypeInterpolatePositionY                ;
 
             HudPackage                                      (    ):
             kComponentTypeContainer                         (  1 ),
@@ -4465,7 +4570,12 @@ namespace S3DX
             kCommandTypeRestart                             ( 67 ), // 1.9.0.9
             kCommandTypeFinishAction                        ( 68 ), // 1.9.1.0
             kFilteringModeNearestNoMipmaps                  (  3 ), // 1.9.1.0
-            kFilteringModeBilinearNoMipmaps                 (  4 )  // 1.9.1.0
+            kFilteringModeBilinearNoMipmaps                 (  4 ), // 1.9.1.0
+            kCommandTypeInterpolateBackgroundImageUVOffset  ( 69 ), // 2.0.0.0
+            kCommandTypeInterpolateBackgroundImageUVScale   ( 70 ), // 2.0.0.0
+            kCommandTypeInterpolateSizeAndOpacity           ( 71 ), // 2.0.0.0
+            kCommandTypeInterpolatePositionX                ( 72 ), // 2.0.0.0
+            kCommandTypeInterpolatePositionY                ( 73 )  // 2.0.0.0
             { }
 
             // Functions
@@ -4815,6 +4925,7 @@ namespace S3DX
             inline AIVariable       enterModalMode                                      ( const AIVariable& hComponent ) const { S3DX_DECLARE_VIN_01( hComponent ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.enterModalMode ( 1, vIn, &vOut ) ; return vOut ; }
             inline void             leaveModalMode                                      ( const AIVariable& hComponent ) const { S3DX_DECLARE_VIN_01( hComponent ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.leaveModalMode ( 1, vIn, NULL ) ; }
             inline AIVariable       getComponentAtPoint                                 ( const AIVariable& hUser, const AIVariable& nPointX, const AIVariable& nPointY ) const { S3DX_DECLARE_VIN_03( hUser, nPointX, nPointY ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.getComponentAtPoint ( 3, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       getComponentAtPoint                                 ( const AIVariable& hUser, const AIVariable& nPointX, const AIVariable& nPointY, const AIVariable& hRootComponent ) const { S3DX_DECLARE_VIN_04( hUser, nPointX, nPointY, hRootComponent ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.getComponentAtPoint ( 4, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       setListItemChildAt                                  ( const AIVariable& hComponent, const AIVariable& nItem, const AIVariable& nColumn, const AIVariable& hChild ) const { S3DX_DECLARE_VIN_04( hComponent, nItem, nColumn, hChild ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.setListItemChildAt ( 4, vIn, &vOut ) ; return vOut ; }
             inline void             setListFingerScrollingInertia                       ( const AIVariable& hComponent, const AIVariable& nInertia ) const { S3DX_DECLARE_VIN_02( hComponent, nInertia ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.setListFingerScrollingInertia ( 2, vIn, NULL ) ; }
             inline AIVariable       getListFingerScrollingInertia                       ( const AIVariable& hComponent ) const { S3DX_DECLARE_VIN_01( hComponent ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.getListFingerScrollingInertia ( 1, vIn, &vOut ) ; return vOut ; }
@@ -4828,6 +4939,11 @@ namespace S3DX
             inline AIVariable       isComponentAspectInvariant                          ( const AIVariable& hComponent ) const { S3DX_DECLARE_VIN_01( hComponent ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.isComponentAspectInvariant ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       isComponentIgnoredByMouse                           ( const AIVariable& hComponent ) const { S3DX_DECLARE_VIN_01( hComponent ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.isComponentIgnoredByMouse ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       enableOffscreenOutput                               ( const AIVariable& hUser, const AIVariable& sRenderMap, const AIVariable& bEnabled ) const { S3DX_DECLARE_VIN_03( hUser, sRenderMap, bEnabled ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.enableOffscreenOutput ( 3, vIn, &vOut ) ; return vOut ; }
+            inline void             setPixelMapUVScale                                  ( const AIVariable& hComponent, const AIVariable& nScaleU, const AIVariable& nScaleV ) const { S3DX_DECLARE_VIN_03( hComponent, nScaleU, nScaleV ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.setPixelMapUVScale ( 3, vIn, NULL ) ; }
+            inline AIVariables<2>   getPixelMapUVScale                                  ( const AIVariable& hComponent ) const { S3DX_DECLARE_VIN_01( hComponent ) ; AIVariables<2> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.getPixelMapUVScale ( 1, vIn, vOut ) ; return vOut ; }
+            inline void             setPixelMapUVOffset                                 ( const AIVariable& hComponent, const AIVariable& nOffsetU, const AIVariable& nOffsetV ) const { S3DX_DECLARE_VIN_03( hComponent, nOffsetU, nOffsetV ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.setPixelMapUVOffset ( 3, vIn, NULL ) ; }
+            inline AIVariables<2>   getPixelMapUVOffset                                 ( const AIVariable& hComponent ) const { S3DX_DECLARE_VIN_01( hComponent ) ; AIVariables<2> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.getPixelMapUVOffset ( 1, vIn, vOut ) ; return vOut ; }
+            inline AIVariable       getLabelTextAspectRatio                             ( const AIVariable& hComponent ) const { S3DX_DECLARE_VIN_01( hComponent ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->hud.getLabelTextAspectRatio ( 1, vIn, &vOut ) ; return vOut ; }
         } ;
 
         struct InputPackage
@@ -5254,6 +5370,8 @@ namespace S3DX
             inline AIVariables<3>   vectorInterpolate                                   ( const AIVariable& nV1x, const AIVariable& nV1y, const AIVariable& nV1z, const AIVariable& nV2x, const AIVariable& nV2y, const AIVariable& nV2z, const AIVariable& nFactor ) const { S3DX_DECLARE_VIN_07( nV1x, nV1y, nV1z, nV2x, nV2y, nV2z, nFactor ) ; AIVariables<3> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->math.vectorInterpolate ( 7, vIn, vOut ) ; return vOut ; }
             inline AIVariables<3>   vectorReflect                                       ( const AIVariable& nV1x, const AIVariable& nV1y, const AIVariable& nV1z, const AIVariable& nV2x, const AIVariable& nV2y, const AIVariable& nV2z ) const { S3DX_DECLARE_VIN_06( nV1x, nV1y, nV1z, nV2x, nV2y, nV2z ) ; AIVariables<3> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->math.vectorReflect ( 6, vIn, vOut ) ; return vOut ; }
             inline AIVariables<3>   vectorSetLength                                     ( const AIVariable& nV1x, const AIVariable& nV1y, const AIVariable& nV1z, const AIVariable& nLength ) const { S3DX_DECLARE_VIN_04( nV1x, nV1y, nV1z, nLength ) ; AIVariables<3> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->math.vectorSetLength ( 4, vIn, vOut ) ; return vOut ; }
+            inline AIVariable       perlinNoise                                         ( const AIVariable& nValue ) const { S3DX_DECLARE_VIN_01( nValue ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->math.perlinNoise ( 1, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       perlinTurbulence                                    ( const AIVariable& nValue, const AIVariable& nFrequency ) const { S3DX_DECLARE_VIN_02( nValue, nFrequency ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->math.perlinTurbulence ( 2, vIn, &vOut ) ; return vOut ; }
         } ;
 
         struct MeshPackage
@@ -5287,8 +5405,12 @@ namespace S3DX
             inline AIVariable       createSubsetIndexBuffer                             ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD, const AIVariable& nIndexCount, const AIVariable& b32bpi, const AIVariable& nLODThreshold ) const { S3DX_DECLARE_VIN_06( hMesh, nSubset, nLOD, nIndexCount, b32bpi, nLODThreshold ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.createSubsetIndexBuffer ( 6, vIn, &vOut ) ; return vOut ; }
             inline void             destroySubsetIndexBuffer                            ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD ) const { S3DX_DECLARE_VIN_03( hMesh, nSubset, nLOD ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.destroySubsetIndexBuffer ( 3, vIn, NULL ) ; }
             inline AIVariable       lockSubsetVertexBuffer                              ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& kLockMode ) const { S3DX_DECLARE_VIN_03( hMesh, nSubset, kLockMode ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.lockSubsetVertexBuffer ( 3, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       lockSubsetVertexBuffer                              ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& kLockMode, const AIVariable& nStartVertex ) const { S3DX_DECLARE_VIN_04( hMesh, nSubset, kLockMode, nStartVertex ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.lockSubsetVertexBuffer ( 4, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       lockSubsetVertexBuffer                              ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& kLockMode, const AIVariable& nStartVertex, const AIVariable& nVertexCount ) const { S3DX_DECLARE_VIN_05( hMesh, nSubset, kLockMode, nStartVertex, nVertexCount ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.lockSubsetVertexBuffer ( 5, vIn, &vOut ) ; return vOut ; }
             inline void             unlockSubsetVertexBuffer                            ( const AIVariable& hMesh, const AIVariable& nSubset ) const { S3DX_DECLARE_VIN_02( hMesh, nSubset ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.unlockSubsetVertexBuffer ( 2, vIn, NULL ) ; }
             inline AIVariable       lockSubsetIndexBuffer                               ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD, const AIVariable& kLockMode ) const { S3DX_DECLARE_VIN_04( hMesh, nSubset, nLOD, kLockMode ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.lockSubsetIndexBuffer ( 4, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       lockSubsetIndexBuffer                               ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD, const AIVariable& kLockMode, const AIVariable& nStartIndex ) const { S3DX_DECLARE_VIN_05( hMesh, nSubset, nLOD, kLockMode, nStartIndex ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.lockSubsetIndexBuffer ( 5, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       lockSubsetIndexBuffer                               ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD, const AIVariable& kLockMode, const AIVariable& nStartIndex, const AIVariable& nIndexCount ) const { S3DX_DECLARE_VIN_06( hMesh, nSubset, nLOD, kLockMode, nStartIndex, nIndexCount ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.lockSubsetIndexBuffer ( 6, vIn, &vOut ) ; return vOut ; }
             inline void             unlockSubsetIndexBuffer                             ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD ) const { S3DX_DECLARE_VIN_03( hMesh, nSubset, nLOD ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.unlockSubsetIndexBuffer ( 3, vIn, NULL ) ; }
             inline void             setSubsetVertexPosition                             ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nVertex, const AIVariable& x, const AIVariable& y, const AIVariable& z ) const { S3DX_DECLARE_VIN_06( hMesh, nSubset, nVertex, x, y, z ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.setSubsetVertexPosition ( 6, vIn, NULL ) ; }
             inline AIVariables<3>   getSubsetVertexPosition                             ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nVertex ) const { S3DX_DECLARE_VIN_03( hMesh, nSubset, nVertex ) ; AIVariables<3> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.getSubsetVertexPosition ( 3, vIn, vOut ) ; return vOut ; }
@@ -5320,6 +5442,14 @@ namespace S3DX
             inline AIVariable       getSubsetValidIndexCount                            ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD ) const { S3DX_DECLARE_VIN_03( hMesh, nSubset, nLOD ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.getSubsetValidIndexCount ( 3, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       resizeSubsetVertexBuffer                            ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nVertexCount ) const { S3DX_DECLARE_VIN_03( hMesh, nSubset, nVertexCount ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.resizeSubsetVertexBuffer ( 3, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       resizeSubsetIndexBuffer                             ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD, const AIVariable& nIndexCount ) const { S3DX_DECLARE_VIN_04( hMesh, nSubset, nLOD, nIndexCount ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.resizeSubsetIndexBuffer ( 4, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       copySubsetVertexBuffer                              ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& hOtherMesh, const AIVariable& nOtherSubset, const AIVariable& bReference ) const { S3DX_DECLARE_VIN_05( hMesh, nSubset, hOtherMesh, nOtherSubset, bReference ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.copySubsetVertexBuffer ( 5, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       copySubsetIndexBuffer                               ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD, const AIVariable& hOtherMesh, const AIVariable& nOtherSubset, const AIVariable& nOtherLOD, const AIVariable& bReference ) const { S3DX_DECLARE_VIN_07( hMesh, nSubset, nLOD, hOtherMesh, nOtherSubset, nOtherLOD, bReference ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.copySubsetIndexBuffer ( 7, vIn, &vOut ) ; return vOut ; }
+            inline void             setSubsetIndexValues                                ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD, const AIVariable& nStartIndex, const AIVariable& nIndexCount, const AIVariable& nIndexStride, const AIVariable& pIndexList ) const { S3DX_DECLARE_VIN_07( hMesh, nSubset, nLOD, nStartIndex, nIndexCount, nIndexStride, pIndexList ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.setSubsetIndexValues ( 7, vIn, NULL ) ; }
+            inline AIVariable       removeSubsetVertexBufferRange                       ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nStartVertex, const AIVariable& nVertexCount ) const { S3DX_DECLARE_VIN_04( hMesh, nSubset, nStartVertex, nVertexCount ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.removeSubsetVertexBufferRange ( 4, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       removeSubsetIndexBufferRange                        ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD, const AIVariable& nStartIndex, const AIVariable& nIndexCount ) const { S3DX_DECLARE_VIN_05( hMesh, nSubset, nLOD, nStartIndex, nIndexCount ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.removeSubsetIndexBufferRange ( 5, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       moveSubsetIndexBufferRange                          ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD, const AIVariable& nStartIndex, const AIVariable& nIndexCount, const AIVariable& nTargetIndex ) const { S3DX_DECLARE_VIN_06( hMesh, nSubset, nLOD, nStartIndex, nIndexCount, nTargetIndex ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.moveSubsetIndexBufferRange ( 6, vIn, &vOut ) ; return vOut ; }
+            inline void             decreaseSubsetIndexBufferValues                     ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nLOD, const AIVariable& nAboveValue, const AIVariable& nDeltaValue ) const { S3DX_DECLARE_VIN_05( hMesh, nSubset, nLOD, nAboveValue, nDeltaValue ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.decreaseSubsetIndexBufferValues ( 5, vIn, NULL ) ; }
+            inline AIVariables<8>   getSubsetFirstHitFaceInRange                        ( const AIVariable& hMesh, const AIVariable& nSubset, const AIVariable& nRayPosX, const AIVariable& nRayPosY, const AIVariable& nRayPosZ, const AIVariable& nRayDirX, const AIVariable& nRayDirY, const AIVariable& nRayDirZ, const AIVariable& nRayLength, const AIVariable& nStartFace, const AIVariable& nFaceCount ) const { S3DX_DECLARE_VIN_11( hMesh, nSubset, nRayPosX, nRayPosY, nRayPosZ, nRayDirX, nRayDirY, nRayDirZ, nRayLength, nStartFace, nFaceCount ) ; AIVariables<8> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->mesh.getSubsetFirstHitFaceInRange ( 11, vIn, vOut ) ; return vOut ; }
         } ;
 
         struct MicrophonePackage
@@ -5519,9 +5649,9 @@ namespace S3DX
             inline AIVariables<3>   getZAxis                                            ( const AIVariable& hObject, const AIVariable& kSpace ) const { S3DX_DECLARE_VIN_02( hObject, kSpace ) ; AIVariables<3> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.getZAxis ( 2, vIn, vOut ) ; return vOut ; }
             inline void             resetTranslation                                    ( const AIVariable& hObject, const AIVariable& kSpace ) const { S3DX_DECLARE_VIN_02( hObject, kSpace ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.resetTranslation ( 2, vIn, NULL ) ; }
             inline void             matchTranslation                                    ( const AIVariable& hObject, const AIVariable& hOtherObject, const AIVariable& kSpace ) const { S3DX_DECLARE_VIN_03(  hObject, hOtherObject, kSpace ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.matchTranslation ( 3, vIn, NULL ) ; }
-            inline void             setTranslation                                      ( const AIVariable& hObject, const AIVariable& nTx, const AIVariable& nTy, const AIVariable& nTz, uint8 kSpace ) const { S3DX_DECLARE_VIN_05( hObject, nTx, nTy, nTz, kSpace ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.setTranslation ( 5, vIn, NULL ) ; }
-            inline void             translate                                           ( const AIVariable& hObject, const AIVariable& nTx, const AIVariable& nTy, const AIVariable& nTz, uint8 kSpace ) const { S3DX_DECLARE_VIN_05( hObject, nTx, nTy, nTz, kSpace ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.translate ( 5, vIn, NULL ) ; }
-            inline void             translateTo                                         ( const AIVariable& hObject, const AIVariable& nTx, const AIVariable& nTy, const AIVariable& nTz, uint8 kSpace, float32 nFactor ) const { S3DX_DECLARE_VIN_06( hObject, nTx, nTy, nTz, kSpace, nFactor ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.translateTo ( 6, vIn, NULL ) ; }
+            inline void             setTranslation                                      ( const AIVariable& hObject, const AIVariable& nTx, const AIVariable& nTy, const AIVariable& nTz, const AIVariable& kSpace ) const { S3DX_DECLARE_VIN_05( hObject, nTx, nTy, nTz, kSpace ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.setTranslation ( 5, vIn, NULL ) ; }
+            inline void             translate                                           ( const AIVariable& hObject, const AIVariable& nTx, const AIVariable& nTy, const AIVariable& nTz, const AIVariable& kSpace ) const { S3DX_DECLARE_VIN_05( hObject, nTx, nTy, nTz, kSpace ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.translate ( 5, vIn, NULL ) ; }
+            inline void             translateTo                                         ( const AIVariable& hObject, const AIVariable& nTx, const AIVariable& nTy, const AIVariable& nTz, const AIVariable& kSpace, const AIVariable& nFactor ) const { S3DX_DECLARE_VIN_06( hObject, nTx, nTy, nTz, kSpace, nFactor ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.translateTo ( 6, vIn, NULL ) ; }
             inline void             resetRotation                                       ( const AIVariable& hObject, const AIVariable& kSpace ) const { S3DX_DECLARE_VIN_02( hObject, kSpace ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.resetRotation ( 2, vIn, NULL ) ; }
             inline void             matchRotation                                       ( const AIVariable& hObject, const AIVariable& hOtherObject, const AIVariable& kSpace ) const { S3DX_DECLARE_VIN_03(  hObject, hOtherObject, kSpace ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.matchRotation ( 3, vIn, NULL ) ; }
             inline void             setRotation                                         ( const AIVariable& hObject, const AIVariable& nRx, const AIVariable& nRy, const AIVariable& nRz, const AIVariable& kSpace ) const { S3DX_DECLARE_VIN_05( hObject, nRx, nRy, nRz, kSpace ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->object.setRotation ( 5, vIn, NULL ) ; }
@@ -5634,14 +5764,16 @@ namespace S3DX
         {
             // Constants
             //
-            const AIVariable        kPenModeNone        ;
-            const AIVariable        kPenModeSolid       ;
-            const AIVariable        kPenModeBrush       ;
-            const AIVariable        kFillModeNone       ;
-            const AIVariable        kFillModeSolid      ;
-            const AIVariable        kFillModeBrush      ;
-            const AIVariable        kBlendModeDecal     ;
-            const AIVariable        kBlendModeReplace   ;
+            const AIVariable        kPenModeNone            ;
+            const AIVariable        kPenModeSolid           ;
+            const AIVariable        kPenModeBrush           ;
+            const AIVariable        kFillModeNone           ;
+            const AIVariable        kFillModeSolid          ;
+            const AIVariable        kFillModeBrush          ;
+            const AIVariable        kBlendModeDecal         ;
+            const AIVariable        kBlendModeReplace       ;
+            const AIVariable        kPixelFormatR8G8B8A8    ;
+            const AIVariable        kPixelFormatB8G8R8A8    ;
 
             PixelmapPackage         (   ):
             kPenModeNone            ( 0 ),
@@ -5651,7 +5783,9 @@ namespace S3DX
             kFillModeSolid          ( 1 ),
             kFillModeBrush          ( 2 ),
             kBlendModeDecal         ( 0 ),
-            kBlendModeReplace       ( 1 )
+            kBlendModeReplace       ( 1 ),
+            kPixelFormatR8G8B8A8    ( 3 ),
+            kPixelFormatB8G8R8A8    ( 5 )
             { }
 
             // Functions
@@ -5664,6 +5798,7 @@ namespace S3DX
             inline void             setPixels                                           ( const AIVariable& hPixelMap, const AIVariable& pixels ) const { S3DX_DECLARE_VIN_02( hPixelMap, pixels ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->pixelmap.setPixels ( 2, vIn, NULL ) ; }
             inline AIVariables<4>   getPixel                                            ( const AIVariable& hPixelMap, const AIVariable& x, const AIVariable& y ) const { S3DX_DECLARE_VIN_03( hPixelMap, x, y ) ; AIVariables<4> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->pixelmap.getPixel ( 3, vIn, vOut ) ; return vOut ; }
             inline AIVariable       getPixels                                           ( const AIVariable& hPixelMap ) const { S3DX_DECLARE_VIN_01( hPixelMap ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->pixelmap.getPixels ( 1, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       getSurfaceNativeHandle                              ( const AIVariable& hPixelMap ) const { S3DX_DECLARE_VIN_01( hPixelMap ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->pixelmap.getSurfaceNativeHandle ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       createBrushFromTexture                              ( const AIVariable& hPixelMap, const AIVariable& sBrush, const AIVariable& sTexture ) const { S3DX_DECLARE_VIN_03( hPixelMap, sBrush, sTexture ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->pixelmap.createBrushFromTexture ( 3, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       createBrushFromRectangle                            ( const AIVariable& hPixelMap, const AIVariable& sBrush, const AIVariable& x1, const AIVariable& y1, const AIVariable& x2, const AIVariable& y2 ) const { S3DX_DECLARE_VIN_06( hPixelMap, sBrush, x1, y1, x2, y2 ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->pixelmap.createBrushFromRectangle ( 6, vIn, &vOut ) ; return vOut ; }
             inline void             destroyBrush                                        ( const AIVariable& hPixelMap, const AIVariable& sBrush ) const { S3DX_DECLARE_VIN_02( hPixelMap, sBrush ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->pixelmap.destroyBrush ( 2, vIn, NULL ) ; }
@@ -5743,6 +5878,7 @@ namespace S3DX
             const AIVariable        kSkyBoxFaceLeft         ;
             const AIVariable        kSkyBoxFaceTop          ;
             const AIVariable        kSkyBoxFaceBottom       ;
+            const AIVariable        kAddressingModeMirror   ; // 2.0.0.0
 
             ScenePackage            (   ):
             kAddressingModeClamp    ( 1 ),
@@ -5755,7 +5891,8 @@ namespace S3DX
             kSkyBoxFaceBack         ( 2 ),
             kSkyBoxFaceLeft         ( 3 ),
             kSkyBoxFaceTop          ( 4 ),
-            kSkyBoxFaceBottom       ( 5 )
+            kSkyBoxFaceBottom       ( 5 ),
+            kAddressingModeMirror   ( 2 )
             { }
 
             // Functions
@@ -5940,6 +6077,17 @@ namespace S3DX
             inline void             destroyAllActivationZones                           ( const AIVariable& hScene ) const { S3DX_DECLARE_VIN_01( hScene ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.destroyAllActivationZones ( 1, vIn, NULL ) ; }
             inline AIVariable       getActivationZoneCount                              ( const AIVariable& hScene ) const { S3DX_DECLARE_VIN_01( hScene ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.getActivationZoneCount ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       getActivationZoneNameAt                             ( const AIVariable& hScene, const AIVariable& nIndex ) const { S3DX_DECLARE_VIN_02( hScene, nIndex ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.getActivationZoneNameAt ( 2, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       getObjectFromHashCode                               ( const AIVariable& hScene, const AIVariable& sHashCode ) const { S3DX_DECLARE_VIN_02( hScene, sHashCode ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.getObjectFromHashCode ( 2, vIn, &vOut ) ; return vOut ; }
+            inline void             forceDynamicsFrame                                  ( const AIVariable& hScene, const AIVariable& nFrameTime ) const { S3DX_DECLARE_VIN_02( hScene, nFrameTime ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.forceDynamicsFrame ( 2, vIn, NULL ) ; }
+            inline void             resetDynamicsRandomSeed                             ( const AIVariable& hScene, const AIVariable& nValue ) const { S3DX_DECLARE_VIN_02( hScene, nValue ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.resetDynamicsRandomSeed ( 2, vIn, NULL ) ; }
+            inline void             setBackgroundMap                                    ( const AIVariable& hScene, const AIVariable& nSlot, const AIVariable& hResource ) const { S3DX_DECLARE_VIN_03( hScene, nSlot, hResource ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.setBackgroundMap ( 3, vIn, NULL ) ; }
+            inline void             setBackgroundMap                                    ( const AIVariable& hScene, const AIVariable& nSlot, const AIVariable& sMapName, const AIVariable& kMapType ) const { S3DX_DECLARE_VIN_04( hScene, nSlot, sMapName, kMapType ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.setBackgroundMap ( 4, vIn, NULL ) ; }
+            inline void             setBackgroundMapOpacity                             ( const AIVariable& hScene, const AIVariable& nSlot, const AIVariable& nOpacity ) const { S3DX_DECLARE_VIN_03( hScene, nSlot, nOpacity ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.setBackgroundMapOpacity ( 3, vIn, NULL ) ; }
+            inline void             setBackgroundMapUVOffset                            ( const AIVariable& hScene, const AIVariable& nSlot, const AIVariable& nOffsetU, const AIVariable& nOffsetV ) const { S3DX_DECLARE_VIN_04( hScene, nSlot, nOffsetU, nOffsetV ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.setBackgroundMapUVOffset ( 4, vIn, NULL ) ; }
+            inline void             setBackgroundMapUVScale                             ( const AIVariable& hScene, const AIVariable& nSlot, const AIVariable& nScaleU, const AIVariable& nScaleV ) const { S3DX_DECLARE_VIN_04( hScene, nSlot, nScaleU, nScaleV ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.setBackgroundMapUVScale ( 4, vIn, NULL ) ; }
+            inline void             setBackgroundMapAddressingMode                      ( const AIVariable& hScene, const AIVariable& nSlot, const AIVariable& kAddressingModeU, const AIVariable& kAddressingModeV ) const { S3DX_DECLARE_VIN_04( hScene, nSlot, kAddressingModeU, kAddressingModeV ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.setBackgroundMapAddressingMode ( 4, vIn, NULL ) ; }
+            inline void             setBackgroundMapFilteringMode                       ( const AIVariable& hScene, const AIVariable& nSlot, const AIVariable& kFilteringMode ) const { S3DX_DECLARE_VIN_03( hScene, nSlot, kFilteringMode ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.setBackgroundMapFilteringMode ( 3, vIn, NULL ) ; }
+            inline AIVariables<2>   getBackgroundMap                                    ( const AIVariable& hScene, const AIVariable& nSlot ) const { S3DX_DECLARE_VIN_02( hScene, nSlot ) ; AIVariables<2> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.getBackgroundMap ( 2, vIn, vOut ) ; return vOut ; }
 
             inline void             sendEventToAllUsers                                 ( const AIVariable& hScene, const AIVariable& sAIModel, const AIVariable& sEvent ) const { S3DX_DECLARE_VIN_03( hScene, sAIModel, sEvent ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.sendEventToAllUsers ( 3, vIn, NULL ) ; }
             inline void             sendEventToAllUsers                                 ( const AIVariable& hScene, const AIVariable& sAIModel, const AIVariable& sEvent, const AIVariable& vParam0 ) const { S3DX_DECLARE_VIN_04( hScene, sAIModel, sEvent, vParam0 ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->scene.sendEventToAllUsers ( 4, vIn, NULL ) ; }
@@ -6193,6 +6341,8 @@ namespace S3DX
             const AIVariable        kCurveStyleOptionStripStrokeTexture         ; // 2.0.0.0
             const AIVariable        kCurveStyleOptionStripStrokeTiling          ; // 2.0.0.0
             const AIVariable        kCurveOptionOverlay                         ; // 2.0.0.0
+            const AIVariable        kCurveOptionUseDepthTest                    ; // 2.0.0.0
+            const AIVariable        kCurveOptionUseBakingCache                  ; // 2.0.0.0
 
             ShapePackage                                (    ):
             kCurveTypePolyLine                          (  0 ),
@@ -6217,7 +6367,9 @@ namespace S3DX
             kCurveStyleOptionStripWidth                 (  0 ),
             kCurveStyleOptionStripStrokeTexture         (  1 ),
             kCurveStyleOptionStripStrokeTiling          (  2 ),
-            kCurveOptionOverlay                         (  0 )
+            kCurveOptionOverlay                         (  0 ),
+            kCurveOptionUseDepthTest                    (  1 ),
+            kCurveOptionUseBakingCache                  (  2 )
             { }
 
             // Functions
@@ -6230,7 +6382,7 @@ namespace S3DX
             inline void             setMeshMaterial                                         ( const AIVariable& hObject, const AIVariable& sMaterialName ) const { S3DX_DECLARE_VIN_02( hObject, sMaterialName ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.setMeshMaterial ( 2, vIn, NULL ) ; }
             inline AIVariable       compareMeshSubsetMaterial                               ( const AIVariable& hObject, const AIVariable& nSubsetIndex, const AIVariable& sMaterialName ) const { S3DX_DECLARE_VIN_03( hObject, nSubsetIndex, sMaterialName ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.compareMeshSubsetMaterial ( 3, vIn, &vOut ) ; return vOut ; }
             inline void             enableMeshFrustumCulling                                ( const AIVariable& hObject, const AIVariable& bEnable ) const { S3DX_DECLARE_VIN_02( hObject, bEnable ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.enableMeshFrustumCulling ( 2, vIn, NULL ) ; }
-            inline void             overrideMeshSubsetMaterialEmissive                      ( const AIVariable& hObject, const AIVariable& nSubsetIndex, const AIVariable& nRed, const AIVariable& nGreen, const AIVariable& nBlue, const AIVariable& nFactor ) const { S3DX_DECLARE_VIN_06( hObject, nSubsetIndex, nRed, nGreen, nBlue, nFactor ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshSubsetMaterialEmissive ( 3, vIn, NULL ) ; }
+            inline void             overrideMeshSubsetMaterialEmissive                      ( const AIVariable& hObject, const AIVariable& nSubsetIndex, const AIVariable& nRed, const AIVariable& nGreen, const AIVariable& nBlue, const AIVariable& nFactor ) const { S3DX_DECLARE_VIN_06( hObject, nSubsetIndex, nRed, nGreen, nBlue, nFactor ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshSubsetMaterialEmissive ( 6, vIn, NULL ) ; }
             inline void             overrideMeshSubsetMaterialAmbient                       ( const AIVariable& hObject, const AIVariable& nSubsetIndex, const AIVariable& nRed, const AIVariable& nGreen, const AIVariable& nBlue, const AIVariable& nFactor ) const { S3DX_DECLARE_VIN_06( hObject, nSubsetIndex, nRed, nGreen, nBlue, nFactor ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshSubsetMaterialAmbient ( 6, vIn, NULL ) ; }
             inline void             overrideMeshSubsetMaterialDiffuse                       ( const AIVariable& hObject, const AIVariable& nSubsetIndex, const AIVariable& nRed, const AIVariable& nGreen, const AIVariable& nBlue, const AIVariable& nFactor ) const { S3DX_DECLARE_VIN_06( hObject, nSubsetIndex, nRed, nGreen, nBlue, nFactor ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshSubsetMaterialDiffuse ( 6, vIn, NULL ) ; }
             inline void             overrideMeshSubsetMaterialSpecular                      ( const AIVariable& hObject, const AIVariable& nSubsetIndex, const AIVariable& nRed, const AIVariable& nGreen, const AIVariable& nBlue, const AIVariable& nFactor ) const { S3DX_DECLARE_VIN_06( hObject, nSubsetIndex, nRed, nGreen, nBlue, nFactor ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshSubsetMaterialSpecular ( 6, vIn, NULL ) ; }
@@ -6258,7 +6410,9 @@ namespace S3DX
             inline void             overrideMeshMaterialEffectMap0                          ( const AIVariable& hObject, const AIVariable& sMapName, const AIVariable& kMapType ) const { S3DX_DECLARE_VIN_03( hObject, sMapName, kMapType ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshMaterialEffectMap0 ( 3, vIn, NULL ) ; }
             inline void             overrideMeshMaterialEffectMap0                          ( const AIVariable& hObject, const AIVariable& hResource ) const { S3DX_DECLARE_VIN_02( hObject, hResource ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshMaterialEffectMap0 ( 2, vIn, NULL ) ; }
             inline void             overrideMeshSubsetMaterialEffectMap1                    ( const AIVariable& hObject, const AIVariable& nSubsetIndex, const AIVariable& sMapName, const AIVariable& kMapType ) const { S3DX_DECLARE_VIN_04( hObject, nSubsetIndex, sMapName, kMapType ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshSubsetMaterialEffectMap1 ( 4, vIn, NULL ) ; }
+            inline void             overrideMeshSubsetMaterialEffectMap1                    ( const AIVariable& hObject, const AIVariable& nSubsetIndex, const AIVariable& hResource ) const { S3DX_DECLARE_VIN_03( hObject, nSubsetIndex, hResource ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshSubsetMaterialEffectMap1 ( 3, vIn, NULL ) ; }
             inline void             overrideMeshMaterialEffectMap1                          ( const AIVariable& hObject, const AIVariable& sMapName, const AIVariable& kMapType ) const { S3DX_DECLARE_VIN_03( hObject, sMapName, kMapType ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshMaterialEffectMap1 ( 3, vIn, NULL ) ; }
+            inline void             overrideMeshMaterialEffectMap1                          ( const AIVariable& hObject, const AIVariable& hResource ) const { S3DX_DECLARE_VIN_02( hObject, hResource ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshMaterialEffectMap1 ( 2, vIn, NULL ) ; }
             inline void             overrideMeshSubsetMaterialNormalMap                     ( const AIVariable& hObject, const AIVariable& nSubsetIndex, const AIVariable& sMapName, const AIVariable& kMapType ) const { S3DX_DECLARE_VIN_04( hObject, nSubsetIndex, sMapName, kMapType ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshSubsetMaterialNormalMap ( 4, vIn, NULL ) ; }
             inline void             overrideMeshMaterialNormalMap                           ( const AIVariable& hObject, const AIVariable& sMapName, const AIVariable& kMapType ) const { S3DX_DECLARE_VIN_03( hObject, sMapName, kMapType ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshMaterialNormalMap ( 3, vIn, NULL ) ; }
             inline void             overrideMeshSubsetMaterialSpecularMap                   ( const AIVariable& hObject, const AIVariable& nSubsetIndex, const AIVariable& sMapName, const AIVariable& kMapType ) const { S3DX_DECLARE_VIN_04( hObject, nSubsetIndex, sMapName, kMapType ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.overrideMeshSubsetMaterialSpecularMap ( 4, vIn, NULL ) ; }
@@ -6321,9 +6475,11 @@ namespace S3DX
             inline AIVariable       getCurveCount                                           ( const AIVariable& hObject ) const { S3DX_DECLARE_VIN_01( hObject ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.getCurveCount ( 1, vIn, &vOut ) ; return vOut ; }
             inline void             addCurvePoint                                           ( const AIVariable& hObject, const AIVariable& nCurveIndex, const AIVariable& x, const AIVariable& y, const AIVariable& z ) const { S3DX_DECLARE_VIN_05( hObject, nCurveIndex, x, y, z ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.addCurvePoint ( 5, vIn, NULL ) ; }
             inline void             removeCurvePoint                                        ( const AIVariable& hObject, const AIVariable& nCurveIndex, const AIVariable& nPointIndex ) const { S3DX_DECLARE_VIN_03( hObject, nCurveIndex, nPointIndex ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.removeCurvePoint ( 3, vIn, NULL ) ; }
+            inline void             removeAllCurvePoints                                    ( const AIVariable& hObject, const AIVariable& nCurveIndex ) const { S3DX_DECLARE_VIN_02( hObject, nCurveIndex ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.removeAllCurvePoints ( 2, vIn, NULL ) ; }
             inline AIVariable       getCurvePointCount                                      ( const AIVariable& hObject, const AIVariable& nCurveIndex ) const { S3DX_DECLARE_VIN_02( hObject, nCurveIndex ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.getCurvePointCount ( 2, vIn, &vOut ) ; return vOut ; }
             inline AIVariables<3>   getCurvePoint                                           ( const AIVariable& hObject, const AIVariable& nCurveIndex, const AIVariable& nPointIndex ) const { S3DX_DECLARE_VIN_03( hObject, nCurveIndex, nPointIndex ) ; AIVariables<3> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.getCurvePoint ( 3, vIn, vOut ) ; return vOut ; }
             inline void             setCurvePoint                                           ( const AIVariable& hObject, const AIVariable& nCurveIndex, const AIVariable& nPointIndex, const AIVariable& x, const AIVariable& y, const AIVariable& z ) const { S3DX_DECLARE_VIN_06( hObject, nCurveIndex, nPointIndex, x, y, z ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.setCurvePoint ( 6, vIn, NULL ) ; }
+            inline void             setCurvePoints                                          ( const AIVariable& hObject, const AIVariable& nCurveIndex, const AIVariable& nStartPoint, const AIVariable& nPointCount, const AIVariable& nPointStride, const AIVariable& pPointList ) const { S3DX_DECLARE_VIN_06( hObject, nCurveIndex, nStartPoint, nPointCount, nPointStride, pPointList ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.setCurvePoints ( 6, vIn, NULL ) ; }
             inline void             setCurveStartColor                                      ( const AIVariable& hObject, const AIVariable& nCurveIndex, const AIVariable& nRed, const AIVariable& nGreen, const AIVariable& nBlue ) const { S3DX_DECLARE_VIN_05( hObject, nCurveIndex, nRed, nGreen, nBlue ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.setCurveStartColor ( 5, vIn, NULL ) ; }
             inline void             setCurveEndColor                                        ( const AIVariable& hObject, const AIVariable& nCurveIndex, const AIVariable& nRed, const AIVariable& nGreen, const AIVariable& nBlue ) const { S3DX_DECLARE_VIN_05( hObject, nCurveIndex, nRed, nGreen, nBlue ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.setCurveEndColor ( 5, vIn, NULL ) ; }
             inline void             setCurveStartOpacity                                    ( const AIVariable& hObject, const AIVariable& nCurveIndex, const AIVariable& nOpacity ) const { S3DX_DECLARE_VIN_03( hObject, nCurveIndex, nOpacity ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->shape.setCurveStartOpacity ( 3, vIn, NULL ) ; }
@@ -6375,10 +6531,18 @@ namespace S3DX
             inline void             setSpatializationReferenceDistance                  ( const AIVariable& hObject, const AIVariable& nDistance ) const { S3DX_DECLARE_VIN_02( hObject, nDistance ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->sound.setSpatializationReferenceDistance ( 2, vIn, NULL ) ; }
             inline AIVariable       getSpatializationReferenceDistance                  ( const AIVariable& hObject ) const { S3DX_DECLARE_VIN_01( hObject ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->sound.getSpatializationReferenceDistance ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       getSpatializationGain                               ( const AIVariable& hObject ) const { S3DX_DECLARE_VIN_01( hObject ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->sound.getSpatializationGain ( 1, vIn, &vOut ) ; return vOut ; }
+            inline void             enableDopplerEffect                                 ( const AIVariable& hObject, const AIVariable& bEnable ) const { S3DX_DECLARE_VIN_02( hObject, bEnable ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->sound.enableDopplerEffect ( 2, vIn, NULL ) ; }
+            inline AIVariable       isDopplerEffectEnabled                              ( const AIVariable& hObject ) const { S3DX_DECLARE_VIN_01( hObject ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->sound.isDopplerEffectEnabled ( 1, vIn, &vOut ) ; return vOut ; }
         } ;
 
         struct StringPackage
         {
+            const AIVariable        kCompressionMethodZlib ; // 2.0.0.0
+
+            StringPackage           (   ):
+            kCompressionMethodZlib  ( 1 )
+            { }
+
             // Functions
             //
             inline AIVariable       isEmpty                                             ( const AIVariable& sString ) const { S3DX_DECLARE_VIN_01( sString ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.isEmpty ( 1, vIn, &vOut ) ; return vOut ; }
@@ -6404,7 +6568,12 @@ namespace S3DX
             inline AIVariable       encodeURL                                           ( const AIVariable& sString ) const { S3DX_DECLARE_VIN_01( sString ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.encodeURL ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       decodeURL                                           ( const AIVariable& sString ) const { S3DX_DECLARE_VIN_01( sString ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.decodeURL ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       encodeBase64                                        ( const AIVariable& sString, const AIVariable& bHexadecimal ) const { S3DX_DECLARE_VIN_02( sString, bHexadecimal ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.encodeBase64 ( 2, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       encodeBase64                                        ( const AIVariable& sString, const AIVariable& bHexadecimal, const AIVariable& nCompressionMethod ) const { S3DX_DECLARE_VIN_03( sString, bHexadecimal, nCompressionMethod ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.encodeBase64 ( 3, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       decodeBase64                                        ( const AIVariable& sString, const AIVariable& bHexadecimal ) const { S3DX_DECLARE_VIN_02( sString, bHexadecimal ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.decodeBase64 ( 2, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       decodeBase64                                        ( const AIVariable& sString, const AIVariable& bHexadecimal, const AIVariable& nCompressionMethod ) const { S3DX_DECLARE_VIN_03( sString, bHexadecimal, nCompressionMethod ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.decodeBase64 ( 3, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       encodeUTF8                                          ( const AIVariable& sString, const AIVariable& sFormat ) const { S3DX_DECLARE_VIN_02( sString, sFormat ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.encodeUTF8 ( 2, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       startsWith                                          ( const AIVariable& sString, const AIVariable& sPattern ) const { S3DX_DECLARE_VIN_02( sString, sPattern ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.startsWith ( 2, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       endsWith                                            ( const AIVariable& sString, const AIVariable& sPattern ) const { S3DX_DECLARE_VIN_02( sString, sPattern ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.endsWith ( 2, vIn, &vOut ) ; return vOut ; }
 
             inline AIVariable       format                                              ( const AIVariable& sFormat ) const { S3DX_DECLARE_VIN_01( sFormat ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.format ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       format                                              ( const AIVariable& sFormat, const AIVariable& v0 ) const { S3DX_DECLARE_VIN_02( sFormat, v0 ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->string.format ( 2, vIn, &vOut ) ; return vOut ; }
@@ -6506,6 +6675,7 @@ namespace S3DX
             const AIVariable        kOSTypePS4                                          ; // 2.0.0.0
             const AIVariable        kOSTypeHTML5                                        ; // 2.0.0.0
             const AIVariable        kOSTypeAppleTV                                      ; // 2.0.0.0
+            const AIVariable        kGPUCapabilityChromaticAberrationFilterSupport      ; // 2.0.0.0
 
             SystemPackage                                       (    ):
             kOSTypeLinux                                        (  4 ),
@@ -6591,7 +6761,8 @@ namespace S3DX
             kOSTypeXboxOne                                      ( 25 ), // 2.0.0.0
             kOSTypePS4                                          ( 26 ), // 2.0.0.0
             kOSTypeHTML5                                        ( 27 ), // 2.0.0.0
-            kOSTypeAppleTV                                      ( 28 )  // 2.0.0.0
+            kOSTypeAppleTV                                      ( 28 ), // 2.0.0.0
+            kGPUCapabilityChromaticAberrationFilterSupport      ( 21 )  // 2.0.0.0
             { }
 
             // Functions
@@ -6645,6 +6816,7 @@ namespace S3DX
             inline AIVariable       isInstalled                                         ( const AIVariable& sPackURI ) const { S3DX_DECLARE_VIN_01( sPackURI ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->system.isInstalled ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       getInstallationStatus                               ( const AIVariable& sPackURI ) const { S3DX_DECLARE_VIN_01( sPackURI ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->system.getInstallationStatus ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       launch                                              ( const AIVariable& sPackURI, const AIVariable& sConfURI ) const { S3DX_DECLARE_VIN_02( sPackURI, sConfURI ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->system.launch ( 2, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       getEngineBuildString                                ( ) const { AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->system.getEngineBuildString ( 0, NULL, &vOut ) ; return vOut ; }
 
             inline AIVariables<32>  callClientFunction                                  ( const AIVariable& sName ) const { S3DX_DECLARE_VIN_01( sName ) ; AIVariables<32> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->system.callClientFunction ( 1, vIn, vOut ) ; return vOut ; }
             inline AIVariables<32>  callClientFunction                                  ( const AIVariable& sName, const AIVariable& vParam0 ) const { S3DX_DECLARE_VIN_02( sName, vParam0 ) ; AIVariables<32> vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->system.callClientFunction ( 2, vIn, vOut ) ; return vOut ; }
@@ -6917,6 +7089,11 @@ namespace S3DX
             inline AIVariable       getReceiveStatus                                    ( const AIVariable& hXML ) const { S3DX_DECLARE_VIN_01( hXML ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->xml.getReceiveStatus ( 1, vIn, &vOut ) ; return vOut ; }
             inline AIVariable       newInstance                                         ( ) const { AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->xml.newInstance ( 0, NULL, &vOut ) ; return vOut ; }
             inline void             copy                                                ( const AIVariable& hXML, const AIVariable& hXMLToCopy ) const { S3DX_DECLARE_VIN_02( hXML, hXMLToCopy ) ; S3DX_MODULE_GUID::__pS3DXEAPIMI->xml.copy ( 2, vIn, NULL ) ; }
+            inline AIVariable       getElementFirstChildWithNameAndAttribute            ( const AIVariable& hXMLElement, const AIVariable& sName, const AIVariable& sAttributeName ) const { S3DX_DECLARE_VIN_03( hXMLElement, sName, sAttributeName ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->xml.getElementFirstChildWithNameAndAttribute ( 3, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       getElementFirstChildWithNameAndAttribute            ( const AIVariable& hXMLElement, const AIVariable& sName, const AIVariable& sAttributeName, const AIVariable& sAttributeValue ) const { S3DX_DECLARE_VIN_04( hXMLElement, sName, sAttributeName, sAttributeValue ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->xml.getElementFirstChildWithNameAndAttribute ( 4, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       getElementNextSiblingWithNameAndAttribute           ( const AIVariable& hXMLElement, const AIVariable& sName, const AIVariable& sAttributeName ) const { S3DX_DECLARE_VIN_03( hXMLElement, sName, sAttributeName ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->xml.getElementNextSiblingWithNameAndAttribute ( 3, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       getElementNextSiblingWithNameAndAttribute           ( const AIVariable& hXMLElement, const AIVariable& sName, const AIVariable& sAttributeName, const AIVariable& sAttributeValue ) const { S3DX_DECLARE_VIN_04( hXMLElement, sName, sAttributeName, sAttributeValue ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->xml.getElementNextSiblingWithNameAndAttribute ( 4, vIn, &vOut ) ; return vOut ; }
+            inline AIVariable       toJSONString                                        ( const AIVariable& hXMLElement ) const { S3DX_DECLARE_VIN_01( hXMLElement ) ; AIVariable vOut ; S3DX_MODULE_GUID::__pS3DXEAPIMI->xml.toJSONString ( 1, vIn, &vOut ) ; return vOut ; }
         } ;
 
         //---------------------------------------------------------------------
@@ -7137,6 +7314,9 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_application_mightBeCracked                                             ) { application.mightBeCracked                                        = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_application_flushAIEvents                                              ) { application.flushAIEvents                                         = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_application_getOffscreenRenderingSurfaceNativeHandle                   ) { application.getOffscreenRenderingSurfaceNativeHandle              = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_application_getDataProfileName                                         ) { application.getDataProfileName                                    = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_application_createRuntimeScene                                         ) { application.createRuntimeScene                                    = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_application_destroyRuntimeScene                                        ) { application.destroyRuntimeScene                                   = __pCallback ; return ; } \
                                                                                                                                                                                                                       \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_cache_addFile                                                          ) { cache.addFile                                                     = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_cache_addStreamFile                                                    ) { cache.addStreamFile                                               = __pCallback ; return ; } \
@@ -7202,6 +7382,7 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_camera_setFrustumMargins                                               ) { camera.setFrustumMargins                                          = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_camera_setRenderMap                                                    ) { camera.setRenderMap                                               = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_camera_getRenderMapName                                                ) { camera.getRenderMapName                                           = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_camera_getFrustumPlane                                                 ) { camera.getFrustumPlane                                            = __pCallback ; return ; } \
                                                                                                                                                                                                            \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_collider_create                                                        ) { collider.create                                                   = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_collider_destroy                                                       ) { collider.destroy                                                  = __pCallback ; return ; } \
@@ -7226,6 +7407,8 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_debug_dumpLoadedModels                                                 ) { debug.dumpLoadedModels                                            = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_debug_dumpLoadedResources                                              ) { debug.dumpLoadedResources                                         = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_debug_setDisplayFilter                                                 ) { debug.setDisplayFilter                                            = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_debug_getCallStack                                                     ) { debug.getCallStack                                                = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_debug_getGraphicMemoryUsed                                             ) { debug.getGraphicMemoryUsed                                        = __pCallback ; return ; } \
                                                                                                                                                                                                             \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_dynamics_getBodyType                                                   ) { dynamics.getBodyType                                              = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_dynamics_createSphereBody                                              ) { dynamics.createSphereBody                                         = __pCallback ; return ; } \
@@ -7590,6 +7773,11 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_isComponentAspectInvariant                                         ) { hud.isComponentAspectInvariant                                    = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_isComponentIgnoredByMouse                                          ) { hud.isComponentIgnoredByMouse                                     = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_enableOffscreenOutput                                              ) { hud.enableOffscreenOutput                                         = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_setPixelMapUVScale                                                 ) { hud.setPixelMapUVScale                                            = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_getPixelMapUVScale                                                 ) { hud.getPixelMapUVScale                                            = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_setPixelMapUVOffset                                                ) { hud.setPixelMapUVOffset                                           = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_getPixelMapUVOffset                                                ) { hud.getPixelMapUVOffset                                           = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_getLabelTextAspectRatio                                            ) { hud.getLabelTextAspectRatio                                       = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_removeListAllItems                                                 ) { hud.removeListAllItems                                            = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_selectListAllItems                                                 ) { hud.selectListAllItems                                            = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_hud_getListItemTextAt                                                  ) { hud.getListItemTextAt                                             = __pCallback ; return ; } \
@@ -7765,6 +7953,8 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_math_vectorInterpolate                                                 ) { math.vectorInterpolate                                            = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_math_vectorReflect                                                     ) { math.vectorReflect                                                = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_math_vectorSetLength                                                   ) { math.vectorSetLength                                              = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_math_perlinNoise                                                       ) { math.perlinNoise                                                  = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_math_perlinTurbulence                                                  ) { math.perlinTurbulence                                             = __pCallback ; return ; } \
                                                                                                                                                                                                             \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_getSubsetCount                                                    ) { mesh.getSubsetCount                                               = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_getSubsetVertexCount                                              ) { mesh.getSubsetVertexCount                                         = __pCallback ; return ; } \
@@ -7810,6 +8000,14 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_getSubsetValidIndexCount                                          ) { mesh.getSubsetValidIndexCount                                     = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_resizeSubsetVertexBuffer                                          ) { mesh.resizeSubsetVertexBuffer                                     = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_resizeSubsetIndexBuffer                                           ) { mesh.resizeSubsetIndexBuffer                                      = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_copySubsetIndexBuffer                                             ) { mesh.copySubsetIndexBuffer                                        = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_copySubsetVertexBuffer                                            ) { mesh.copySubsetVertexBuffer                                       = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_setSubsetIndexValues                                              ) { mesh.setSubsetIndexValues                                         = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_removeSubsetVertexBufferRange                                     ) { mesh.removeSubsetVertexBufferRange                                = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_removeSubsetIndexBufferRange                                      ) { mesh.removeSubsetIndexBufferRange                                 = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_moveSubsetIndexBufferRange                                        ) { mesh.moveSubsetIndexBufferRange                                   = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_decreaseSubsetIndexBufferValues                                   ) { mesh.decreaseSubsetIndexBufferValues                              = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_mesh_getSubsetFirstHitFaceInRange                                      ) { mesh.getSubsetFirstHitFaceInRange                                 = __pCallback ; return ; } \
                                                                                                                                                                                                             \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_microphone_setRate                                                     ) { microphone.setRate                                                = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_microphone_enable                                                      ) { microphone.enable                                                 = __pCallback ; return ; } \
@@ -7976,6 +8174,7 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_pixelmap_getPixel                                                      ) { pixelmap.getPixel                                                 = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_pixelmap_setPixels                                                     ) { pixelmap.setPixels                                                = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_pixelmap_getPixels                                                     ) { pixelmap.getPixels                                                = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_pixelmap_getSurfaceNativeHandle                                        ) { pixelmap.getSurfaceNativeHandle                                   = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_pixelmap_createBrushFromTexture                                        ) { pixelmap.createBrushFromTexture                                   = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_pixelmap_createBrushFromRectangle                                      ) { pixelmap.createBrushFromRectangle                                 = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_pixelmap_destroyBrush                                                  ) { pixelmap.destroyBrush                                             = __pCallback ; return ; } \
@@ -8197,6 +8396,16 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_destroyAllActivationZones                                        ) { scene.destroyAllActivationZones                                   = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_getActivationZoneCount                                           ) { scene.getActivationZoneCount                                      = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_getActivationZoneNameAt                                          ) { scene.getActivationZoneNameAt                                     = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_getObjectFromHashCode                                            ) { scene.getObjectFromHashCode                                       = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_forceDynamicsFrame                                               ) { scene.forceDynamicsFrame                                          = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_resetDynamicsRandomSeed                                          ) { scene.resetDynamicsRandomSeed                                     = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_setBackgroundMap                                                 ) { scene.setBackgroundMap                                            = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_getBackgroundMap                                                 ) { scene.getBackgroundMap                                            = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_setBackgroundMapOpacity                                          ) { scene.setBackgroundMapOpacity                                     = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_setBackgroundMapUVOffset                                         ) { scene.setBackgroundMapUVOffset                                    = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_setBackgroundMapUVScale                                          ) { scene.setBackgroundMapUVScale                                     = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_setBackgroundMapAddressingMode                                   ) { scene.setBackgroundMapAddressingMode                              = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_scene_setBackgroundMapFilteringMode                                    ) { scene.setBackgroundMapFilteringMode                               = __pCallback ; return ; } \
                                                                                                                                                                                                             \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_sensor_getCount                                                        ) { sensor.getCount                                                   = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_sensor_setActiveAt                                                     ) { sensor.setActiveAt                                                = __pCallback ; return ; } \
@@ -8412,9 +8621,11 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_getCurveCount                                                    ) { shape.getCurveCount                                               = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_addCurvePoint                                                    ) { shape.addCurvePoint                                               = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_removeCurvePoint                                                 ) { shape.removeCurvePoint                                            = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_removeAllCurvePoints                                             ) { shape.removeAllCurvePoints                                        = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_getCurvePointCount                                               ) { shape.getCurvePointCount                                          = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_getCurvePoint                                                    ) { shape.getCurvePoint                                               = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_setCurvePoint                                                    ) { shape.setCurvePoint                                               = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_setCurvePoints                                                   ) { shape.setCurvePoints                                              = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_setCurveStartColor                                               ) { shape.setCurveStartColor                                          = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_setCurveEndColor                                                 ) { shape.setCurveEndColor                                            = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_shape_setCurveStartOpacity                                             ) { shape.setCurveStartOpacity                                        = __pCallback ; return ; } \
@@ -8461,6 +8672,8 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_sound_setSpatializationReferenceDistance                               ) { sound.setSpatializationReferenceDistance                          = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_sound_getSpatializationReferenceDistance                               ) { sound.getSpatializationReferenceDistance                          = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_sound_getSpatializationGain                                            ) { sound.getSpatializationGain                                       = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_sound_enableDopplerEffect                                              ) { sound.enableDopplerEffect                                         = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_sound_isDopplerEffectEnabled                                           ) { sound.isDopplerEffectEnabled                                      = __pCallback ; return ; } \
                                                                                                                                                                                                             \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_string_isEmpty                                                         ) { string.isEmpty                                                    = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_string_getLength                                                       ) { string.getLength                                                  = __pCallback ; return ; } \
@@ -8486,7 +8699,10 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_string_encodeURL                                                       ) { string.encodeURL                                                  = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_string_decodeURL                                                       ) { string.decodeURL                                                  = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_string_encodeBase64                                                    ) { string.encodeBase64                                               = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_string_decodeBase64                                                    ) { string.decodeBase64                                               = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_string_encodeUTF8                                                      ) { string.encodeUTF8                                                 = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_string_startsWith                                                      ) { string.startsWith                                                 = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_string_endsWith                                                        ) { string.endsWith                                                   = __pCallback ; return ; } \
                                                                                                                                                                                                             \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_system_getOSType                                                       ) { system.getOSType                                                  = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_system_getOSVersion                                                    ) { system.getOSVersion                                               = __pCallback ; return ; } \
@@ -8537,6 +8753,7 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_system_isInstalled                                                     ) { system.isInstalled                                                = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_system_getInstallationStatus                                           ) { system.getInstallationStatus                                      = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_system_launch                                                          ) { system.launch                                                     = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_system_getEngineBuildString                                            ) { system.getEngineBuildString                                       = __pCallback ; return ; } \
                                                                                                                                                                                                             \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_table_isEmpty                                                          ) { table.isEmpty                                                     = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_table_getSize                                                          ) { table.getSize                                                     = __pCallback ; return ; } \
@@ -8669,7 +8886,10 @@ namespace S3DX
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_xml_getSendStatus                                                      ) { xml.getSendStatus                                                 = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_xml_getReceiveStatus                                                   ) { xml.getReceiveStatus                                              = __pCallback ; return ; } \
     if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_xml_newInstance                                                        ) { xml.newInstance                                                   = __pCallback ; return ; } \
-    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_xml_copy                                                               ) { xml.copy                                                          = __pCallback ; return ; }
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_xml_copy                                                               ) { xml.copy                                                          = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_xml_getElementFirstChildWithNameAndAttribute                           ) { xml.getElementFirstChildWithNameAndAttribute                      = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_xml_getElementNextSiblingWithNameAndAttribute                          ) { xml.getElementNextSiblingWithNameAndAttribute                     = __pCallback ; return ; } \
+    if ( __iCallbackID == S3DX::AIEngineAPI::CallbackID_xml_toJSONString                                                       ) { xml.toJSONString                                                  = __pCallback ; return ; }
 
 //-----------------------------------------------------------------------------
 #define S3DX_DECLARE_AIENGINEAPI( )                                                                         \

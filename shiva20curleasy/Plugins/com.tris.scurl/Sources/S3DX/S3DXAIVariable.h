@@ -43,11 +43,12 @@ namespace S3DX
         inline                      AIVariable              ( const uint16                  _iValue ) ;
         inline                      AIVariable              ( const int32                   _iValue ) ;
         inline                      AIVariable              ( const uint32                  _iValue ) ;
-        inline                      AIVariable              ( const float32                 _fValue ) ;
+        inline                      AIVariable              ( const float32                 _nValue ) ;
+        inline                      AIVariable              ( const float64                 _nValue ) ;
         inline                      AIVariable              ( const bool                    _bValue ) ;
         inline                      AIVariable              ( const char                   *_pValue ) ;
         inline                      AIVariable              ( const void                   *_pValue ) ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline                      AIVariable              ( const AIVariables< _iCount > &_oValue ) ;
 
         //---------------------------------------------------------------------
@@ -66,13 +67,13 @@ namespace S3DX
 
         inline          Type        GetType                 ( ) const ;
         inline          bool        GetBooleanValue         ( ) const ;
-        inline          float32     GetNumberValue          ( ) const ;
+        inline          number      GetNumberValue          ( ) const ;
         inline  const   char       *GetStringValue          ( ) const ;
         inline  const   void       *GetHandleValue          ( ) const ;
 
         inline          void        SetNil                  ( ) ;
         inline          void        SetBooleanValue         ( const bool    _bValue ) ;
-        inline          void        SetNumberValue          ( const float32 _fValue ) ;
+        inline          void        SetNumberValue          ( const number  _nValue ) ;
         inline          void        SetStringValue          ( const char   *_pValue ) ;
         inline          void        SetHandleValue          ( const void   *_pValue ) ;
 
@@ -91,6 +92,7 @@ namespace S3DX
         inline                  operator int32              ( ) const ;
         inline                  operator uint32             ( ) const ;
         inline                  operator float32            ( ) const ;
+        inline                  operator float64            ( ) const ;
         inline                  operator bool               ( ) const ;
         //???inline                  operator const char *   ( ) const ;
         //???inline                  operator const void *   ( ) const ;
@@ -106,12 +108,13 @@ namespace S3DX
         inline  AIVariable     &operator =                  ( const uint16      _iValue ) ;
         inline  AIVariable     &operator =                  ( const int32       _iValue ) ;
         inline  AIVariable     &operator =                  ( const uint32      _iValue ) ;
-        inline  AIVariable     &operator =                  ( const float32     _fValue ) ;
+        inline  AIVariable     &operator =                  ( const float32     _nValue ) ;
+        inline  AIVariable     &operator =                  ( const float64     _nValue ) ;
         inline  AIVariable     &operator =                  ( const bool        _bValue ) ;
         inline  AIVariable     &operator =                  ( const char       *_pValue ) ;
         inline  AIVariable     &operator =                  ( const void       *_pValue ) ;
         inline  AIVariable     &operator =                  ( const AIVariable &_vValue ) ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  AIVariable     &operator =                  ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  AIVariable      operator +                  ( const int8        _iValue ) const ;
@@ -120,9 +123,10 @@ namespace S3DX
         inline  AIVariable      operator +                  ( const uint16      _iValue ) const ;
         inline  AIVariable      operator +                  ( const int32       _iValue ) const ;
         inline  AIVariable      operator +                  ( const uint32      _iValue ) const ;
-        inline  AIVariable      operator +                  ( const float32     _fValue ) const ;
+        inline  AIVariable      operator +                  ( const float32     _nValue ) const ;
+        inline  AIVariable      operator +                  ( const float64     _nValue ) const ;
         inline  AIVariable      operator +                  ( const AIVariable &_vValue ) const ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  AIVariable      operator +                  ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  AIVariable     &operator +=                 ( const int8        _iValue ) ;
@@ -131,9 +135,10 @@ namespace S3DX
         inline  AIVariable     &operator +=                 ( const uint16      _iValue ) ;
         inline  AIVariable     &operator +=                 ( const int32       _iValue ) ;
         inline  AIVariable     &operator +=                 ( const uint32      _iValue ) ;
-        inline  AIVariable     &operator +=                 ( const float32     _fValue ) ;
+        inline  AIVariable     &operator +=                 ( const float32     _nValue ) ;
+        inline  AIVariable     &operator +=                 ( const float64     _nValue ) ;
         inline  AIVariable     &operator +=                 ( const AIVariable &_vValue ) ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  AIVariable     &operator +=                 ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  AIVariable      operator -                  ( const int8        _iValue ) const ;
@@ -142,9 +147,10 @@ namespace S3DX
         inline  AIVariable      operator -                  ( const uint16      _iValue ) const ;
         inline  AIVariable      operator -                  ( const int32       _iValue ) const ;
         inline  AIVariable      operator -                  ( const uint32      _iValue ) const ;
-        inline  AIVariable      operator -                  ( const float32     _fValue ) const ;
+        inline  AIVariable      operator -                  ( const float32     _nValue ) const ;
+        inline  AIVariable      operator -                  ( const float64     _nValue ) const ;
         inline  AIVariable      operator -                  ( const AIVariable &_vValue ) const ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  AIVariable      operator -                  ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  AIVariable     &operator -=                 ( const int8        _iValue ) ;
@@ -153,9 +159,10 @@ namespace S3DX
         inline  AIVariable     &operator -=                 ( const uint16      _iValue ) ;
         inline  AIVariable     &operator -=                 ( const int32       _iValue ) ;
         inline  AIVariable     &operator -=                 ( const uint32      _iValue ) ;
-        inline  AIVariable     &operator -=                 ( const float32     _fValue ) ;
+        inline  AIVariable     &operator -=                 ( const float32     _nValue ) ;
+        inline  AIVariable     &operator -=                 ( const float64     _nValue ) ;
         inline  AIVariable     &operator -=                 ( const AIVariable &_vValue ) ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  AIVariable     &operator -=                 ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  AIVariable      operator *                  ( const int8        _iValue ) const ;
@@ -164,9 +171,10 @@ namespace S3DX
         inline  AIVariable      operator *                  ( const uint16      _iValue ) const ;
         inline  AIVariable      operator *                  ( const int32       _iValue ) const ;
         inline  AIVariable      operator *                  ( const uint32      _iValue ) const ;
-        inline  AIVariable      operator *                  ( const float32     _fValue ) const ;
+        inline  AIVariable      operator *                  ( const float32     _nValue ) const ;
+        inline  AIVariable      operator *                  ( const float64     _nValue ) const ;
         inline  AIVariable      operator *                  ( const AIVariable &_vValue ) const ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  AIVariable      operator *                  ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  AIVariable     &operator *=                 ( const int8        _iValue ) ;
@@ -175,9 +183,10 @@ namespace S3DX
         inline  AIVariable     &operator *=                 ( const uint16      _iValue ) ;
         inline  AIVariable     &operator *=                 ( const int32       _iValue ) ;
         inline  AIVariable     &operator *=                 ( const uint32      _iValue ) ;
-        inline  AIVariable     &operator *=                 ( const float32     _fValue ) ;
+        inline  AIVariable     &operator *=                 ( const float32     _nValue ) ;
+        inline  AIVariable     &operator *=                 ( const float64     _nValue ) ;
         inline  AIVariable     &operator *=                 ( const AIVariable &_vValue ) ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  AIVariable     &operator *=                 ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  AIVariable      operator /                  ( const int8        _iValue ) const ;
@@ -186,9 +195,10 @@ namespace S3DX
         inline  AIVariable      operator /                  ( const uint16      _iValue ) const ;
         inline  AIVariable      operator /                  ( const int32       _iValue ) const ;
         inline  AIVariable      operator /                  ( const uint32      _iValue ) const ;
-        inline  AIVariable      operator /                  ( const float32     _fValue ) const ;
+        inline  AIVariable      operator /                  ( const float32     _nValue ) const ;
+        inline  AIVariable      operator /                  ( const float64     _nValue ) const ;
         inline  AIVariable      operator /                  ( const AIVariable &_vValue ) const ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  AIVariable      operator /                  ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  AIVariable     &operator /=                 ( const int8        _iValue ) ;
@@ -197,9 +207,10 @@ namespace S3DX
         inline  AIVariable     &operator /=                 ( const uint16      _iValue ) ;
         inline  AIVariable     &operator /=                 ( const int32       _iValue ) ;
         inline  AIVariable     &operator /=                 ( const uint32      _iValue ) ;
-        inline  AIVariable     &operator /=                 ( const float32     _fValue ) ;
+        inline  AIVariable     &operator /=                 ( const float32     _nValue ) ;
+        inline  AIVariable     &operator /=                 ( const float64     _nValue ) ;
         inline  AIVariable     &operator /=                 ( const AIVariable &_vValue ) ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  AIVariable     &operator /=                 ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  bool            operator <                  ( const int8        _iValue ) const ;
@@ -208,9 +219,10 @@ namespace S3DX
         inline  bool            operator <                  ( const uint16      _iValue ) const ;
         inline  bool            operator <                  ( const int32       _iValue ) const ;
         inline  bool            operator <                  ( const uint32      _iValue ) const ;
-        inline  bool            operator <                  ( const float32     _fValue ) const ;
+        inline  bool            operator <                  ( const float32     _nValue ) const ;
+        inline  bool            operator <                  ( const float64     _nValue ) const ;
         inline  bool            operator <                  ( const AIVariable &_vValue ) const ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  bool            operator <                  ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  bool            operator >                  ( const int8        _iValue ) const ;
@@ -219,9 +231,10 @@ namespace S3DX
         inline  bool            operator >                  ( const uint16      _iValue ) const ;
         inline  bool            operator >                  ( const int32       _iValue ) const ;
         inline  bool            operator >                  ( const uint32      _iValue ) const ;
-        inline  bool            operator >                  ( const float32     _fValue ) const ;
+        inline  bool            operator >                  ( const float32     _nValue ) const ;
+        inline  bool            operator >                  ( const float64     _nValue ) const ;
         inline  bool            operator >                  ( const AIVariable &_vValue ) const ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  bool            operator >                  ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  bool            operator <=                 ( const int8        _iValue ) const ;
@@ -230,9 +243,10 @@ namespace S3DX
         inline  bool            operator <=                 ( const uint16      _iValue ) const ;
         inline  bool            operator <=                 ( const int32       _iValue ) const ;
         inline  bool            operator <=                 ( const uint32      _iValue ) const ;
-        inline  bool            operator <=                 ( const float32     _fValue ) const ;
+        inline  bool            operator <=                 ( const float32     _nValue ) const ;
+        inline  bool            operator <=                 ( const float64     _nValue ) const ;
         inline  bool            operator <=                 ( const AIVariable &_vValue ) const ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  bool            operator <=                 ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  bool            operator >=                 ( const int8        _iValue ) const ;
@@ -241,9 +255,10 @@ namespace S3DX
         inline  bool            operator >=                 ( const uint16      _iValue ) const ;
         inline  bool            operator >=                 ( const int32       _iValue ) const ;
         inline  bool            operator >=                 ( const uint32      _iValue ) const ;
-        inline  bool            operator >=                 ( const float32     _fValue ) const ;
+        inline  bool            operator >=                 ( const float32     _nValue ) const ;
+        inline  bool            operator >=                 ( const float64     _nValue ) const ;
         inline  bool            operator >=                 ( const AIVariable &_vValue ) const ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  bool            operator >=                 ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  bool            operator ==                 ( const int8        _iValue ) const ;
@@ -252,11 +267,12 @@ namespace S3DX
         inline  bool            operator ==                 ( const uint16      _iValue ) const ;
         inline  bool            operator ==                 ( const int32       _iValue ) const ;
         inline  bool            operator ==                 ( const uint32      _iValue ) const ;
-        inline  bool            operator ==                 ( const float32     _fValue ) const ;
+        inline  bool            operator ==                 ( const float32     _nValue ) const ;
+        inline  bool            operator ==                 ( const float64     _nValue ) const ;
         inline  bool            operator ==                 ( const bool        _bValue ) const ;
         inline  bool            operator ==                 ( const char       *_pValue ) const ;
         inline  bool            operator ==                 ( const AIVariable &_vValue ) const ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  bool            operator ==                 ( const AIVariables< _iCount > &_oValue ) ;
 
         inline  bool            operator !=                 ( const int8        _iValue ) const ;
@@ -265,11 +281,12 @@ namespace S3DX
         inline  bool            operator !=                 ( const uint16      _iValue ) const ;
         inline  bool            operator !=                 ( const int32       _iValue ) const ;
         inline  bool            operator !=                 ( const uint32      _iValue ) const ;
-        inline  bool            operator !=                 ( const float32     _fValue ) const ;
+        inline  bool            operator !=                 ( const float32     _nValue ) const ;
+        inline  bool            operator !=                 ( const float64     _nValue ) const ;
         inline  bool            operator !=                 ( const bool        _bValue ) const ;
         inline  bool            operator !=                 ( const char       *_pValue ) const ;
         inline  bool            operator !=                 ( const AIVariable &_vValue ) const ;
-        template< uint8 _iCount > 
+        template< uint8 _iCount >
         inline  bool            operator !=                 ( const AIVariables< _iCount > &_oValue ) ;
 
         //---------------------------------------------------------------------
@@ -284,7 +301,8 @@ namespace S3DX
         inline  AIVariable      operator <<                 ( const uint16      _iValue ) const ;
         inline  AIVariable      operator <<                 ( const int32       _iValue ) const ;
         inline  AIVariable      operator <<                 ( const uint32      _iValue ) const ;
-        inline  AIVariable      operator <<                 ( const float32     _fValue ) const ;
+        inline  AIVariable      operator <<                 ( const float32     _nValue ) const ;
+        inline  AIVariable      operator <<                 ( const float64     _nValue ) const ;
         inline  AIVariable      operator <<                 ( const AIVariable &_vValue ) const ;
 
         // Bitwise AND replacing 'and' in Lua (DEPRECATED)
@@ -295,7 +313,8 @@ namespace S3DX
         inline  AIVariable      operator &                  ( const uint16      _iValue ) const ; // DEPRECATED, PLEASE DO NOT USE
         inline  AIVariable      operator &                  ( const int32       _iValue ) const ; // DEPRECATED, PLEASE DO NOT USE
         inline  AIVariable      operator &                  ( const uint32      _iValue ) const ; // DEPRECATED, PLEASE DO NOT USE
-        inline  AIVariable      operator &                  ( const float32     _fValue ) const ; // DEPRECATED, PLEASE DO NOT USE
+        inline  AIVariable      operator &                  ( const float32     _nValue ) const ; // DEPRECATED, PLEASE DO NOT USE
+        inline  AIVariable      operator &                  ( const float64     _nValue ) const ; // DEPRECATED, PLEASE DO NOT USE
         inline  AIVariable      operator &                  ( const bool        _bValue ) const ; // DEPRECATED, PLEASE DO NOT USE
         inline  AIVariable      operator &                  ( const AIVariable &_vValue ) const ; // DEPRECATED, PLEASE DO NOT USE
 
@@ -307,12 +326,13 @@ namespace S3DX
         inline  AIVariable      operator |                  ( const uint16      _iValue ) const ; // DEPRECATED, PLEASE DO NOT USE
         inline  AIVariable      operator |                  ( const int32       _iValue ) const ; // DEPRECATED, PLEASE DO NOT USE
         inline  AIVariable      operator |                  ( const uint32      _iValue ) const ; // DEPRECATED, PLEASE DO NOT USE
-        inline  AIVariable      operator |                  ( const float32     _fValue ) const ; // DEPRECATED, PLEASE DO NOT USE
+        inline  AIVariable      operator |                  ( const float32     _nValue ) const ; // DEPRECATED, PLEASE DO NOT USE
+        inline  AIVariable      operator |                  ( const float64     _nValue ) const ; // DEPRECATED, PLEASE DO NOT USE
         inline  AIVariable      operator |                  ( const bool        _bValue ) const ; // DEPRECATED, PLEASE DO NOT USE
         inline  AIVariable      operator |                  ( const AIVariable &_vValue ) const ; // DEPRECATED, PLEASE DO NOT USE
 
         //---------------------------------------------------------------------
-        //  Temporary string buffer access 
+        //  Temporary string buffer access
         //  Public for some reasons but do *not* use it!!!
         //---------------------------------------------------------------------
         static  char           *GetStringPoolBuffer         ( const uint32      _iSize   ) ;
@@ -327,9 +347,9 @@ namespace S3DX
         //  Functions
         //---------------------------------------------------------------------
         inline  void            SetType                     ( const Type  _eType ) ;
-        inline  bool            StringToFloat               ( const char *_pString, float32 *_pFloat ) const ;
-        inline  float32         StringToFloat               ( const char *_pString ) const ;
-        inline  const char     *FloatToString               ( float32     _fFloat  ) const ;
+        inline  bool            StringToNumber              ( const char *_pString, number *_pNumber ) const ;
+        inline  number          StringToNumber              ( const char *_pString ) const ;
+        inline  const char     *NumberToString              ( number      _nNumber ) const ;
 
         //---------------------------------------------------------------------
         //  Variables
@@ -337,11 +357,11 @@ namespace S3DX
         uint8   iType       ;
         uint8   iUnused0    ; // For alignment, not actually used
         uint16  iUnused1    ; // For alignment, not actually used
-        union 
+        union
         {
             uintptr       iUnknownValue   ;
             bool          bBooleanValue   ;
-            float32       fNumberValue    ;
+            number        nNumberValue    ;
             const char   *pStringValue    ;
             const void   *pHandleValue    ;
         } ;
@@ -369,27 +389,28 @@ namespace S3DX
     inline AIVariable::~AIVariable ( )
     {
         iType           = (uint8)eTypeNil ;
-        iUnknownValue   = 0 ;        
+        iUnknownValue   = 0 ;
     }
     */
 
     //-------------------------------------------------------------------------
-    
-    inline  AIVariable::AIVariable ( const int8        _iValue ) { SetNumberValue  ( (float32) _iValue ) ; }
-    inline  AIVariable::AIVariable ( const uint8       _iValue ) { SetNumberValue  ( (float32) _iValue ) ; }
-    inline  AIVariable::AIVariable ( const int16       _iValue ) { SetNumberValue  ( (float32) _iValue ) ; }
-    inline  AIVariable::AIVariable ( const uint16      _iValue ) { SetNumberValue  ( (float32) _iValue ) ; }
-    inline  AIVariable::AIVariable ( const int32       _iValue ) { SetNumberValue  ( (float32) _iValue ) ; }
-    inline  AIVariable::AIVariable ( const uint32      _iValue ) { SetNumberValue  ( (float32) _iValue ) ; }
-    inline  AIVariable::AIVariable ( const float32     _fValue ) { SetNumberValue  (           _fValue ) ; }
+
+    inline  AIVariable::AIVariable ( const int8        _iValue ) { SetNumberValue  ( (number)  _iValue ) ; }
+    inline  AIVariable::AIVariable ( const uint8       _iValue ) { SetNumberValue  ( (number)  _iValue ) ; }
+    inline  AIVariable::AIVariable ( const int16       _iValue ) { SetNumberValue  ( (number)  _iValue ) ; }
+    inline  AIVariable::AIVariable ( const uint16      _iValue ) { SetNumberValue  ( (number)  _iValue ) ; }
+    inline  AIVariable::AIVariable ( const int32       _iValue ) { SetNumberValue  ( (number)  _iValue ) ; }
+    inline  AIVariable::AIVariable ( const uint32      _iValue ) { SetNumberValue  ( (number)  _iValue ) ; }
+    inline  AIVariable::AIVariable ( const float32     _nValue ) { SetNumberValue  ( (number)  _nValue ) ; }
+    inline  AIVariable::AIVariable ( const float64     _nValue ) { SetNumberValue  ( (number)  _nValue ) ; }
     inline  AIVariable::AIVariable ( const bool        _bValue ) { SetBooleanValue (           _bValue ) ; }
     inline  AIVariable::AIVariable ( const char       *_pValue ) { SetStringValue  (           _pValue ) ; }
     inline  AIVariable::AIVariable ( const void       *_pValue ) { SetHandleValue  (           _pValue ) ; }
 
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  AIVariable::AIVariable ( const AIVariables< _iCount > &_oValue ) { *this = (const AIVariable &)_oValue ; }
 
-    
+
     //-------------------------------------------------------------------------
     //  Misc functions
     //-------------------------------------------------------------------------
@@ -413,7 +434,7 @@ namespace S3DX
             {
                 S3DX_MEMCPY ( pNewStr,         p0, iLen0     ) ;
                 S3DX_MEMCPY ( pNewStr + iLen0, p1, iLen1 + 1 ) ;
-                
+
                 return AIVariable ( pNewStr ) ;
             }
         }
@@ -424,33 +445,33 @@ namespace S3DX
     //  Private functions
     //-------------------------------------------------------------------------
 
-    inline bool AIVariable::StringToFloat ( const char *_pString, float32 *_pFloat ) const
+    inline bool AIVariable::StringToNumber ( const char *_pString, number *_pNumber ) const
     {
         char   *pEndPtr ;
-        float32 fResult = S3DX_STRTOF( _pString, &pEndPtr ) ;
+        number  nResult = S3DX_STRTOF( _pString, &pEndPtr ) ;
         if    ( pEndPtr == _pString ) return false ;  // no conversion
         while ( S3DX_ISSPACE((unsigned char)(*pEndPtr))) pEndPtr++ ;
         if    ( *pEndPtr != '\0'    ) return false ;  // invalid trailing characters
-        *_pFloat = fResult ;
+        *_pNumber = nResult ;
         return true ;
     }
 
     //-------------------------------------------------------------------------
 
-    inline float32 AIVariable::StringToFloat ( const char *_pString ) const
+    inline number AIVariable::StringToNumber ( const char *_pString ) const
     {
-        float32 fRet = 0.0f ; StringToFloat ( _pString, &fRet ) ;
-        return  fRet ;
+        number nRet = 0.0f ; StringToNumber ( _pString, &nRet ) ;
+        return nRet ;
     }
 
     //-------------------------------------------------------------------------
-    
-    inline const char *AIVariable::FloatToString ( float32 _fFloat ) const
+
+    inline const char *AIVariable::NumberToString ( number _nNumber ) const
     {
         char *pNewStr = GetStringPoolBuffer ( 32 ) ;
         if  ( pNewStr )
         {
-            S3DX_SPRINTF( pNewStr, "%g", _fFloat ) ;
+            S3DX_SPRINTF( pNewStr, "%g", _nNumber ) ;
             return        pNewStr;
         }
         return "" ;
@@ -507,14 +528,14 @@ namespace S3DX
         if ( IsNumber ( ) ) return true ;
         if ( IsString ( ) && pStringValue )
         {
-            float32 fDummy ;
-            return  StringToFloat ( pStringValue, &fDummy ) ;
+            number nDummy ;
+            return StringToNumber ( pStringValue, &nDummy ) ;
         }
         return false ;
     }
 
     //-------------------------------------------------------------------------
-    
+
     inline bool AIVariable::CanConvertToString ( ) const
     {
         return IsString ( ) || IsNumber ( ) ;
@@ -536,16 +557,16 @@ namespace S3DX
 
     //-------------------------------------------------------------------------
 
-    inline float32 AIVariable::GetNumberValue ( ) const
+    inline number AIVariable::GetNumberValue ( ) const
     {
-        return IsNumber ( ) ? fNumberValue : ( ( IsString ( ) && pStringValue ) ? StringToFloat ( pStringValue ) : 0.0f ) ;
+        return IsNumber ( ) ? nNumberValue : ( ( IsString ( ) && pStringValue ) ? StringToNumber ( pStringValue ) : 0.0f ) ;
     }
 
     //-------------------------------------------------------------------------
 
     inline const char *AIVariable::GetStringValue ( ) const
     {
-        return IsString ( ) ? ( pStringValue ? pStringValue : "" ) : ( IsNumber ( ) ? FloatToString ( fNumberValue ) : NULL ) ;
+        return IsString ( ) ? ( pStringValue ? pStringValue : "" ) : ( IsNumber ( ) ? NumberToString ( nNumberValue ) : NULL ) ;
     }
 
     //-------------------------------------------------------------------------
@@ -564,7 +585,7 @@ namespace S3DX
     }
 
     //-------------------------------------------------------------------------
-    
+
     inline void AIVariable::SetNil ( )
     {
         SetType       ( eTypeNil ) ;
@@ -580,10 +601,10 @@ namespace S3DX
 
     //-------------------------------------------------------------------------
 
-    inline void AIVariable::SetNumberValue ( const float32 _fValue )
+    inline void AIVariable::SetNumberValue ( const number _nValue )
     {
         SetType       ( eTypeNumber ) ;
-        fNumberValue = _fValue ;
+        nNumberValue = _nValue ;
     }
 
     //-------------------------------------------------------------------------
@@ -613,6 +634,7 @@ namespace S3DX
     inline              AIVariable::operator int32          ( ) const { return (int32)   GetNumberValue  ( ) ; }
     inline              AIVariable::operator uint32         ( ) const { return (uint32)  GetNumberValue  ( ) ; }
     inline              AIVariable::operator float32        ( ) const { return (float32) GetNumberValue  ( ) ; }
+    inline              AIVariable::operator float64        ( ) const { return (float64) GetNumberValue  ( ) ; }
     inline              AIVariable::operator bool           ( ) const { return           GetBooleanValue ( ) ; }
     //???inline              AIVariable::operator const char *   ( ) const { return           GetStringValue  ( ) ; }
     //???inline              AIVariable::operator const void *   ( ) const { return           GetHandleValue  ( ) ; }
@@ -622,38 +644,41 @@ namespace S3DX
     inline  AIVariable  AIVariable::operator +              ( ) const { return *this ; }
     inline  AIVariable  AIVariable::operator -              ( ) const { AIVariable v ; v.SetNumberValue ( - GetNumberValue ( ) ) ; return v ; } // FIXME?
 
-    inline  AIVariable &AIVariable::operator =              ( const int8                    _iValue ) { SetNumberValue  ( (float32) _iValue ) ; return *this ; }
-    inline  AIVariable &AIVariable::operator =              ( const uint8                   _iValue ) { SetNumberValue  ( (float32) _iValue ) ; return *this ; }
-    inline  AIVariable &AIVariable::operator =              ( const int16                   _iValue ) { SetNumberValue  ( (float32) _iValue ) ; return *this ; }
-    inline  AIVariable &AIVariable::operator =              ( const uint16                  _iValue ) { SetNumberValue  ( (float32) _iValue ) ; return *this ; }
-    inline  AIVariable &AIVariable::operator =              ( const int32                   _iValue ) { SetNumberValue  ( (float32) _iValue ) ; return *this ; }
-    inline  AIVariable &AIVariable::operator =              ( const uint32                  _iValue ) { SetNumberValue  ( (float32) _iValue ) ; return *this ; }
-    inline  AIVariable &AIVariable::operator =              ( const float32                 _fValue ) { SetNumberValue  (           _fValue ) ; return *this ; }
+    inline  AIVariable &AIVariable::operator =              ( const int8                    _iValue ) { SetNumberValue  ( (number)  _iValue ) ; return *this ; }
+    inline  AIVariable &AIVariable::operator =              ( const uint8                   _iValue ) { SetNumberValue  ( (number)  _iValue ) ; return *this ; }
+    inline  AIVariable &AIVariable::operator =              ( const int16                   _iValue ) { SetNumberValue  ( (number)  _iValue ) ; return *this ; }
+    inline  AIVariable &AIVariable::operator =              ( const uint16                  _iValue ) { SetNumberValue  ( (number)  _iValue ) ; return *this ; }
+    inline  AIVariable &AIVariable::operator =              ( const int32                   _iValue ) { SetNumberValue  ( (number)  _iValue ) ; return *this ; }
+    inline  AIVariable &AIVariable::operator =              ( const uint32                  _iValue ) { SetNumberValue  ( (number)  _iValue ) ; return *this ; }
+    inline  AIVariable &AIVariable::operator =              ( const float32                 _nValue ) { SetNumberValue  ( (number)  _nValue ) ; return *this ; }
+    inline  AIVariable &AIVariable::operator =              ( const float64                 _nValue ) { SetNumberValue  ( (number)  _nValue ) ; return *this ; }
     inline  AIVariable &AIVariable::operator =              ( const bool                    _bValue ) { SetBooleanValue (           _bValue ) ; return *this ; }
     inline  AIVariable &AIVariable::operator =              ( const char                   *_pValue ) { SetStringValue  (           _pValue ) ; return *this ; }
     inline  AIVariable &AIVariable::operator =              ( const void                   *_pValue ) { SetHandleValue  (           _pValue ) ; return *this ; }
-    inline  AIVariable &AIVariable::operator =              ( const AIVariable             &_vValue ) { iType =_vValue.iType ; iUnknownValue = _vValue.iUnknownValue ; return *this ; }	
-    template< uint8 _iCount > 
+    inline  AIVariable &AIVariable::operator =              ( const AIVariable             &_vValue ) { iType =_vValue.iType ; iUnknownValue = _vValue.iUnknownValue ; return *this ; }
+    template< uint8 _iCount >
     inline  AIVariable &AIVariable::operator =              ( const AIVariables< _iCount > &_oValue ) { return *this = (const AIVariable &)_oValue ; }
-	
-    inline  AIVariable  AIVariable::operator +              ( const int8                    _iValue ) const { return GetNumberValue ( ) + (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator +              ( const uint8                   _iValue ) const { return GetNumberValue ( ) + (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator +              ( const int16                   _iValue ) const { return GetNumberValue ( ) + (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator +              ( const uint16                  _iValue ) const { return GetNumberValue ( ) + (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator +              ( const int32                   _iValue ) const { return GetNumberValue ( ) + (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator +              ( const uint32                  _iValue ) const { return GetNumberValue ( ) + (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator +              ( const float32                 _fValue ) const { return GetNumberValue ( ) + (float32)_fValue ; }
+
+    inline  AIVariable  AIVariable::operator +              ( const int8                    _iValue ) const { return GetNumberValue ( ) + (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator +              ( const uint8                   _iValue ) const { return GetNumberValue ( ) + (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator +              ( const int16                   _iValue ) const { return GetNumberValue ( ) + (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator +              ( const uint16                  _iValue ) const { return GetNumberValue ( ) + (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator +              ( const int32                   _iValue ) const { return GetNumberValue ( ) + (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator +              ( const uint32                  _iValue ) const { return GetNumberValue ( ) + (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator +              ( const float32                 _nValue ) const { return GetNumberValue ( ) + (number)_nValue ; }
+    inline  AIVariable  AIVariable::operator +              ( const float64                 _nValue ) const { return GetNumberValue ( ) + (number)_nValue ; }
     inline  AIVariable  AIVariable::operator +              ( const AIVariable             &_vValue ) const { return GetNumberValue ( ) + _vValue.GetNumberValue ( ) ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  AIVariable  AIVariable::operator +              ( const AIVariables< _iCount > &_oValue ) { return *this + (const AIVariable &)_oValue ; }
 
-    inline  AIVariable              operator +              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (float32)_iValue + _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator +              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue + _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator +              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue + _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator +              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue + _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator +              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue + _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator +              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue + _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator +              ( const float32                 _fValue, const AIVariable &_vVariable ) { return (float32)_fValue + _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator +              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (number)_iValue + _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator +              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue + _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator +              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue + _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator +              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue + _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator +              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue + _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator +              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue + _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator +              ( const float32                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue + _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator +              ( const float64                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue + _vVariable.GetNumberValue ( ) ; }
 
     inline  AIVariable &AIVariable::operator +=             ( const int8                    _iValue ) { *this = *this + _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator +=             ( const uint8                   _iValue ) { *this = *this + _iValue ; return *this ; }
@@ -661,29 +686,32 @@ namespace S3DX
     inline  AIVariable &AIVariable::operator +=             ( const uint16                  _iValue ) { *this = *this + _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator +=             ( const int32                   _iValue ) { *this = *this + _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator +=             ( const uint32                  _iValue ) { *this = *this + _iValue ; return *this ; }
-    inline  AIVariable &AIVariable::operator +=             ( const float32                 _fValue ) { *this = *this + _fValue ; return *this ; }
+    inline  AIVariable &AIVariable::operator +=             ( const float32                 _nValue ) { *this = *this + _nValue ; return *this ; }
+    inline  AIVariable &AIVariable::operator +=             ( const float64                 _nValue ) { *this = *this + _nValue ; return *this ; }
     inline  AIVariable &AIVariable::operator +=             ( const AIVariable             &_vValue ) { *this = *this + _vValue ; return *this ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  AIVariable &AIVariable::operator +=             ( const AIVariables< _iCount > &_oValue ) { return *this += (const AIVariable &)_oValue ; }
 
-    inline  AIVariable  AIVariable::operator -              ( const int8                    _iValue ) const { return GetNumberValue ( ) - (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator -              ( const uint8                   _iValue ) const { return GetNumberValue ( ) - (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator -              ( const int16                   _iValue ) const { return GetNumberValue ( ) - (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator -              ( const uint16                  _iValue ) const { return GetNumberValue ( ) - (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator -              ( const int32                   _iValue ) const { return GetNumberValue ( ) - (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator -              ( const uint32                  _iValue ) const { return GetNumberValue ( ) - (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator -              ( const float32                 _fValue ) const { return GetNumberValue ( ) - (float32)_fValue ; }
+    inline  AIVariable  AIVariable::operator -              ( const int8                    _iValue ) const { return GetNumberValue ( ) - (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator -              ( const uint8                   _iValue ) const { return GetNumberValue ( ) - (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator -              ( const int16                   _iValue ) const { return GetNumberValue ( ) - (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator -              ( const uint16                  _iValue ) const { return GetNumberValue ( ) - (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator -              ( const int32                   _iValue ) const { return GetNumberValue ( ) - (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator -              ( const uint32                  _iValue ) const { return GetNumberValue ( ) - (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator -              ( const float32                 _nValue ) const { return GetNumberValue ( ) - (number)_nValue ; }
+    inline  AIVariable  AIVariable::operator -              ( const float64                 _nValue ) const { return GetNumberValue ( ) - (number)_nValue ; }
     inline  AIVariable  AIVariable::operator -              ( const AIVariable             &_vValue ) const { return GetNumberValue ( ) - _vValue.GetNumberValue ( ) ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  AIVariable  AIVariable::operator -              ( const AIVariables< _iCount > &_oValue ) { return *this - (const AIVariable &)_oValue ; }
 
-    inline  AIVariable              operator -              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (float32)_iValue - _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator -              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue - _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator -              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue - _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator -              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue - _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator -              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue - _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator -              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue - _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator -              ( const float32                 _fValue, const AIVariable &_vVariable ) { return (float32)_fValue - _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator -              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (number)_iValue - _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator -              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue - _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator -              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue - _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator -              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue - _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator -              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue - _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator -              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue - _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator -              ( const float32                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue - _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator -              ( const float64                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue - _vVariable.GetNumberValue ( ) ; }
 
     inline  AIVariable &AIVariable::operator -=             ( const int8                    _iValue ) { *this = *this - _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator -=             ( const uint8                   _iValue ) { *this = *this - _iValue ; return *this ; }
@@ -691,29 +719,32 @@ namespace S3DX
     inline  AIVariable &AIVariable::operator -=             ( const uint16                  _iValue ) { *this = *this - _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator -=             ( const int32                   _iValue ) { *this = *this - _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator -=             ( const uint32                  _iValue ) { *this = *this - _iValue ; return *this ; }
-    inline  AIVariable &AIVariable::operator -=             ( const float32                 _fValue ) { *this = *this - _fValue ; return *this ; }
+    inline  AIVariable &AIVariable::operator -=             ( const float32                 _nValue ) { *this = *this - _nValue ; return *this ; }
+    inline  AIVariable &AIVariable::operator -=             ( const float64                 _nValue ) { *this = *this - _nValue ; return *this ; }
     inline  AIVariable &AIVariable::operator -=             ( const AIVariable             &_vValue ) { *this = *this - _vValue ; return *this ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  AIVariable &AIVariable::operator -=             ( const AIVariables< _iCount > &_oValue ) { return *this -= (const AIVariable &)_oValue ; }
 
-    inline  AIVariable  AIVariable::operator *              ( const int8                    _iValue ) const { return GetNumberValue ( ) * (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator *              ( const uint8                   _iValue ) const { return GetNumberValue ( ) * (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator *              ( const int16                   _iValue ) const { return GetNumberValue ( ) * (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator *              ( const uint16                  _iValue ) const { return GetNumberValue ( ) * (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator *              ( const int32                   _iValue ) const { return GetNumberValue ( ) * (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator *              ( const uint32                  _iValue ) const { return GetNumberValue ( ) * (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator *              ( const float32                 _fValue ) const { return GetNumberValue ( ) * (float32)_fValue ; }
+    inline  AIVariable  AIVariable::operator *              ( const int8                    _iValue ) const { return GetNumberValue ( ) * (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator *              ( const uint8                   _iValue ) const { return GetNumberValue ( ) * (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator *              ( const int16                   _iValue ) const { return GetNumberValue ( ) * (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator *              ( const uint16                  _iValue ) const { return GetNumberValue ( ) * (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator *              ( const int32                   _iValue ) const { return GetNumberValue ( ) * (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator *              ( const uint32                  _iValue ) const { return GetNumberValue ( ) * (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator *              ( const float32                 _nValue ) const { return GetNumberValue ( ) * (number)_nValue ; }
+    inline  AIVariable  AIVariable::operator *              ( const float64                 _nValue ) const { return GetNumberValue ( ) * (number)_nValue ; }
     inline  AIVariable  AIVariable::operator *              ( const AIVariable             &_vValue ) const { return GetNumberValue ( ) * _vValue.GetNumberValue ( ) ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  AIVariable  AIVariable::operator *              ( const AIVariables< _iCount > &_oValue ) { return *this * (const AIVariable &)_oValue ; }
 
-    inline  AIVariable              operator *              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (float32)_iValue * _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator *              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue * _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator *              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue * _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator *              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue * _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator *              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue * _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator *              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue * _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator *              ( const float32                 _fValue, const AIVariable &_vVariable ) { return (float32)_fValue * _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator *              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (number)_iValue * _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator *              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue * _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator *              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue * _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator *              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue * _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator *              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue * _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator *              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue * _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator *              ( const float32                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue * _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator *              ( const float64                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue * _vVariable.GetNumberValue ( ) ; }
 
     inline  AIVariable &AIVariable::operator *=             ( const int8                    _iValue ) { *this = *this * _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator *=             ( const uint8                   _iValue ) { *this = *this * _iValue ; return *this ; }
@@ -721,29 +752,32 @@ namespace S3DX
     inline  AIVariable &AIVariable::operator *=             ( const uint16                  _iValue ) { *this = *this * _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator *=             ( const int32                   _iValue ) { *this = *this * _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator *=             ( const uint32                  _iValue ) { *this = *this * _iValue ; return *this ; }
-    inline  AIVariable &AIVariable::operator *=             ( const float32                 _fValue ) { *this = *this * _fValue ; return *this ; }
+    inline  AIVariable &AIVariable::operator *=             ( const float32                 _nValue ) { *this = *this * _nValue ; return *this ; }
+    inline  AIVariable &AIVariable::operator *=             ( const float64                 _nValue ) { *this = *this * _nValue ; return *this ; }
     inline  AIVariable &AIVariable::operator *=             ( const AIVariable             &_vValue ) { *this = *this * _vValue ; return *this ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  AIVariable &AIVariable::operator *=             ( const AIVariables< _iCount > &_oValue ) { return *this *= (const AIVariable &)_oValue ; }
 
-    inline  AIVariable  AIVariable::operator /              ( const int8                    _iValue ) const { return GetNumberValue ( ) / (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator /              ( const uint8                   _iValue ) const { return GetNumberValue ( ) / (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator /              ( const int16                   _iValue ) const { return GetNumberValue ( ) / (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator /              ( const uint16                  _iValue ) const { return GetNumberValue ( ) / (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator /              ( const int32                   _iValue ) const { return GetNumberValue ( ) / (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator /              ( const uint32                  _iValue ) const { return GetNumberValue ( ) / (float32)_iValue ; }
-    inline  AIVariable  AIVariable::operator /              ( const float32                 _fValue ) const { return GetNumberValue ( ) / (float32)_fValue ; }
+    inline  AIVariable  AIVariable::operator /              ( const int8                    _iValue ) const { return GetNumberValue ( ) / (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator /              ( const uint8                   _iValue ) const { return GetNumberValue ( ) / (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator /              ( const int16                   _iValue ) const { return GetNumberValue ( ) / (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator /              ( const uint16                  _iValue ) const { return GetNumberValue ( ) / (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator /              ( const int32                   _iValue ) const { return GetNumberValue ( ) / (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator /              ( const uint32                  _iValue ) const { return GetNumberValue ( ) / (number)_iValue ; }
+    inline  AIVariable  AIVariable::operator /              ( const float32                 _nValue ) const { return GetNumberValue ( ) / (number)_nValue ; }
+    inline  AIVariable  AIVariable::operator /              ( const float64                 _nValue ) const { return GetNumberValue ( ) / (number)_nValue ; }
     inline  AIVariable  AIVariable::operator /              ( const AIVariable             &_vValue ) const { return GetNumberValue ( ) / _vValue.GetNumberValue ( ) ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  AIVariable  AIVariable::operator /              ( const AIVariables< _iCount > &_oValue ) { return *this / (const AIVariable &)_oValue ; }
 
-    inline  AIVariable              operator /              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (float32)_iValue / _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator /              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue / _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator /              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue / _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator /              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue / _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator /              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue / _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator /              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue / _vVariable.GetNumberValue ( ) ; }
-    inline  AIVariable              operator /              ( const float32                 _fValue, const AIVariable &_vVariable ) { return (float32)_fValue / _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator /              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (number)_iValue / _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator /              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue / _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator /              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue / _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator /              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue / _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator /              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue / _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator /              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue / _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator /              ( const float32                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue / _vVariable.GetNumberValue ( ) ; }
+    inline  AIVariable              operator /              ( const float64                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue / _vVariable.GetNumberValue ( ) ; }
 
     inline  AIVariable &AIVariable::operator /=             ( const int8                    _iValue ) { *this = *this / _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator /=             ( const uint8                   _iValue ) { *this = *this / _iValue ; return *this ; }
@@ -751,98 +785,108 @@ namespace S3DX
     inline  AIVariable &AIVariable::operator /=             ( const uint16                  _iValue ) { *this = *this / _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator /=             ( const int32                   _iValue ) { *this = *this / _iValue ; return *this ; }
     inline  AIVariable &AIVariable::operator /=             ( const uint32                  _iValue ) { *this = *this / _iValue ; return *this ; }
-    inline  AIVariable &AIVariable::operator /=             ( const float32                 _fValue ) { *this = *this / _fValue ; return *this ; }
+    inline  AIVariable &AIVariable::operator /=             ( const float32                 _nValue ) { *this = *this / _nValue ; return *this ; }
+    inline  AIVariable &AIVariable::operator /=             ( const float64                 _nValue ) { *this = *this / _nValue ; return *this ; }
     inline  AIVariable &AIVariable::operator /=             ( const AIVariable             &_vValue ) { *this = *this / _vValue ; return *this ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  AIVariable &AIVariable::operator /=             ( const AIVariables< _iCount > &_oValue ) { return *this /= (const AIVariable &)_oValue ; }
 
-    inline  bool        AIVariable::operator <              ( const int8                    _iValue ) const { return GetNumberValue ( ) < (float32)_iValue ; }
-    inline  bool        AIVariable::operator <              ( const uint8                   _iValue ) const { return GetNumberValue ( ) < (float32)_iValue ; }
-    inline  bool        AIVariable::operator <              ( const int16                   _iValue ) const { return GetNumberValue ( ) < (float32)_iValue ; }
-    inline  bool        AIVariable::operator <              ( const uint16                  _iValue ) const { return GetNumberValue ( ) < (float32)_iValue ; }
-    inline  bool        AIVariable::operator <              ( const int32                   _iValue ) const { return GetNumberValue ( ) < (float32)_iValue ; }
-    inline  bool        AIVariable::operator <              ( const uint32                  _iValue ) const { return GetNumberValue ( ) < (float32)_iValue ; }
-    inline  bool        AIVariable::operator <              ( const float32                 _fValue ) const { return GetNumberValue ( ) < (float32)_fValue ; }
+    inline  bool        AIVariable::operator <              ( const int8                    _iValue ) const { return GetNumberValue ( ) < (number)_iValue ; }
+    inline  bool        AIVariable::operator <              ( const uint8                   _iValue ) const { return GetNumberValue ( ) < (number)_iValue ; }
+    inline  bool        AIVariable::operator <              ( const int16                   _iValue ) const { return GetNumberValue ( ) < (number)_iValue ; }
+    inline  bool        AIVariable::operator <              ( const uint16                  _iValue ) const { return GetNumberValue ( ) < (number)_iValue ; }
+    inline  bool        AIVariable::operator <              ( const int32                   _iValue ) const { return GetNumberValue ( ) < (number)_iValue ; }
+    inline  bool        AIVariable::operator <              ( const uint32                  _iValue ) const { return GetNumberValue ( ) < (number)_iValue ; }
+    inline  bool        AIVariable::operator <              ( const float32                 _nValue ) const { return GetNumberValue ( ) < (number)_nValue ; }
+    inline  bool        AIVariable::operator <              ( const float64                 _nValue ) const { return GetNumberValue ( ) < (number)_nValue ; }
     inline  bool        AIVariable::operator <              ( const AIVariable             &_vValue ) const { return GetNumberValue ( ) < _vValue.GetNumberValue ( ) ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  bool        AIVariable::operator <              ( const AIVariables< _iCount > &_oValue ) { return *this < (const AIVariable &)_oValue ; }
 
-    inline  bool                    operator <              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (float32)_iValue < _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue < _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue < _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue < _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue < _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue < _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <              ( const float32                 _fValue, const AIVariable &_vVariable ) { return (float32)_fValue < _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (number)_iValue < _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue < _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue < _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue < _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue < _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue < _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <              ( const float32                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue < _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <              ( const float64                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue < _vVariable.GetNumberValue ( ) ; }
 
-    inline  bool        AIVariable::operator >              ( const int8                    _iValue ) const { return GetNumberValue ( ) > (float32)_iValue ; }
-    inline  bool        AIVariable::operator >              ( const uint8                   _iValue ) const { return GetNumberValue ( ) > (float32)_iValue ; }
-    inline  bool        AIVariable::operator >              ( const int16                   _iValue ) const { return GetNumberValue ( ) > (float32)_iValue ; }
-    inline  bool        AIVariable::operator >              ( const uint16                  _iValue ) const { return GetNumberValue ( ) > (float32)_iValue ; }
-    inline  bool        AIVariable::operator >              ( const int32                   _iValue ) const { return GetNumberValue ( ) > (float32)_iValue ; }
-    inline  bool        AIVariable::operator >              ( const uint32                  _iValue ) const { return GetNumberValue ( ) > (float32)_iValue ; }
-    inline  bool        AIVariable::operator >              ( const float32                 _fValue ) const { return GetNumberValue ( ) > (float32)_fValue ; }
+    inline  bool        AIVariable::operator >              ( const int8                    _iValue ) const { return GetNumberValue ( ) > (number)_iValue ; }
+    inline  bool        AIVariable::operator >              ( const uint8                   _iValue ) const { return GetNumberValue ( ) > (number)_iValue ; }
+    inline  bool        AIVariable::operator >              ( const int16                   _iValue ) const { return GetNumberValue ( ) > (number)_iValue ; }
+    inline  bool        AIVariable::operator >              ( const uint16                  _iValue ) const { return GetNumberValue ( ) > (number)_iValue ; }
+    inline  bool        AIVariable::operator >              ( const int32                   _iValue ) const { return GetNumberValue ( ) > (number)_iValue ; }
+    inline  bool        AIVariable::operator >              ( const uint32                  _iValue ) const { return GetNumberValue ( ) > (number)_iValue ; }
+    inline  bool        AIVariable::operator >              ( const float32                 _nValue ) const { return GetNumberValue ( ) > (number)_nValue ; }
+    inline  bool        AIVariable::operator >              ( const float64                 _nValue ) const { return GetNumberValue ( ) > (number)_nValue ; }
     inline  bool        AIVariable::operator >              ( const AIVariable             &_vValue ) const { return GetNumberValue ( ) > _vValue.GetNumberValue ( ) ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  bool        AIVariable::operator >              ( const AIVariables< _iCount > &_oValue ) { return *this > (const AIVariable &)_oValue ; }
 
-    inline  bool                    operator >              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (float32)_iValue > _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue > _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue > _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue > _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue > _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue > _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >              ( const float32                 _fValue, const AIVariable &_vVariable ) { return (float32)_fValue > _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >              ( const int8                    _iValue, const AIVariable &_vVariable ) { return (number)_iValue > _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >              ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue > _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >              ( const int16                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue > _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >              ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue > _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >              ( const int32                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue > _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >              ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue > _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >              ( const float32                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue > _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >              ( const float64                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue > _vVariable.GetNumberValue ( ) ; }
 
-    inline  bool        AIVariable::operator <=             ( const int8                    _iValue ) const { return GetNumberValue ( ) <= (float32)_iValue ; }
-    inline  bool        AIVariable::operator <=             ( const uint8                   _iValue ) const { return GetNumberValue ( ) <= (float32)_iValue ; }
-    inline  bool        AIVariable::operator <=             ( const int16                   _iValue ) const { return GetNumberValue ( ) <= (float32)_iValue ; }
-    inline  bool        AIVariable::operator <=             ( const uint16                  _iValue ) const { return GetNumberValue ( ) <= (float32)_iValue ; }
-    inline  bool        AIVariable::operator <=             ( const int32                   _iValue ) const { return GetNumberValue ( ) <= (float32)_iValue ; }
-    inline  bool        AIVariable::operator <=             ( const uint32                  _iValue ) const { return GetNumberValue ( ) <= (float32)_iValue ; }
-    inline  bool        AIVariable::operator <=             ( const float32                 _fValue ) const { return GetNumberValue ( ) <= (float32)_fValue ; }
+    inline  bool        AIVariable::operator <=             ( const int8                    _iValue ) const { return GetNumberValue ( ) <= (number)_iValue ; }
+    inline  bool        AIVariable::operator <=             ( const uint8                   _iValue ) const { return GetNumberValue ( ) <= (number)_iValue ; }
+    inline  bool        AIVariable::operator <=             ( const int16                   _iValue ) const { return GetNumberValue ( ) <= (number)_iValue ; }
+    inline  bool        AIVariable::operator <=             ( const uint16                  _iValue ) const { return GetNumberValue ( ) <= (number)_iValue ; }
+    inline  bool        AIVariable::operator <=             ( const int32                   _iValue ) const { return GetNumberValue ( ) <= (number)_iValue ; }
+    inline  bool        AIVariable::operator <=             ( const uint32                  _iValue ) const { return GetNumberValue ( ) <= (number)_iValue ; }
+    inline  bool        AIVariable::operator <=             ( const float32                 _nValue ) const { return GetNumberValue ( ) <= (number)_nValue ; }
+    inline  bool        AIVariable::operator <=             ( const float64                 _nValue ) const { return GetNumberValue ( ) <= (number)_nValue ; }
     inline  bool        AIVariable::operator <=             ( const AIVariable             &_vValue ) const { return GetNumberValue ( ) <= _vValue.GetNumberValue ( ) ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  bool        AIVariable::operator <=             ( const AIVariables< _iCount > &_oValue ) { return *this <= (const AIVariable &)_oValue ; }
 
-    inline  bool                    operator <=             ( const int8                    _iValue, const AIVariable &_vVariable ) { return (float32)_iValue <= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <=             ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue <= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <=             ( const int16                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue <= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <=             ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue <= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <=             ( const int32                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue <= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <=             ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue <= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator <=             ( const float32                 _fValue, const AIVariable &_vVariable ) { return (float32)_fValue <= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <=             ( const int8                    _iValue, const AIVariable &_vVariable ) { return (number)_iValue <= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <=             ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue <= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <=             ( const int16                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue <= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <=             ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue <= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <=             ( const int32                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue <= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <=             ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue <= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <=             ( const float32                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue <= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator <=             ( const float64                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue <= _vVariable.GetNumberValue ( ) ; }
 
-    inline  bool        AIVariable::operator >=             ( const int8                    _iValue ) const { return GetNumberValue ( ) >= (float32)_iValue ; }
-    inline  bool        AIVariable::operator >=             ( const uint8                   _iValue ) const { return GetNumberValue ( ) >= (float32)_iValue ; }
-    inline  bool        AIVariable::operator >=             ( const int16                   _iValue ) const { return GetNumberValue ( ) >= (float32)_iValue ; }
-    inline  bool        AIVariable::operator >=             ( const uint16                  _iValue ) const { return GetNumberValue ( ) >= (float32)_iValue ; }
-    inline  bool        AIVariable::operator >=             ( const int32                   _iValue ) const { return GetNumberValue ( ) >= (float32)_iValue ; }
-    inline  bool        AIVariable::operator >=             ( const uint32                  _iValue ) const { return GetNumberValue ( ) >= (float32)_iValue ; }
-    inline  bool        AIVariable::operator >=             ( const float32                 _fValue ) const { return GetNumberValue ( ) >= (float32)_fValue ; }
+    inline  bool        AIVariable::operator >=             ( const int8                    _iValue ) const { return GetNumberValue ( ) >= (number)_iValue ; }
+    inline  bool        AIVariable::operator >=             ( const uint8                   _iValue ) const { return GetNumberValue ( ) >= (number)_iValue ; }
+    inline  bool        AIVariable::operator >=             ( const int16                   _iValue ) const { return GetNumberValue ( ) >= (number)_iValue ; }
+    inline  bool        AIVariable::operator >=             ( const uint16                  _iValue ) const { return GetNumberValue ( ) >= (number)_iValue ; }
+    inline  bool        AIVariable::operator >=             ( const int32                   _iValue ) const { return GetNumberValue ( ) >= (number)_iValue ; }
+    inline  bool        AIVariable::operator >=             ( const uint32                  _iValue ) const { return GetNumberValue ( ) >= (number)_iValue ; }
+    inline  bool        AIVariable::operator >=             ( const float32                 _nValue ) const { return GetNumberValue ( ) >= (number)_nValue ; }
+    inline  bool        AIVariable::operator >=             ( const float64                 _nValue ) const { return GetNumberValue ( ) >= (number)_nValue ; }
     inline  bool        AIVariable::operator >=             ( const AIVariable             &_vValue ) const { return GetNumberValue ( ) >= _vValue.GetNumberValue ( ) ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  bool        AIVariable::operator >=             ( const AIVariables< _iCount > &_oValue ) { return *this >= (const AIVariable &)_oValue ; }
 
-    inline  bool                    operator >=             ( const int8                    _iValue, const AIVariable &_vVariable ) { return (float32)_iValue >= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >=             ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue >= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >=             ( const int16                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue >= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >=             ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue >= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >=             ( const int32                   _iValue, const AIVariable &_vVariable ) { return (float32)_iValue >= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >=             ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (float32)_iValue >= _vVariable.GetNumberValue ( ) ; }
-    inline  bool                    operator >=             ( const float32                 _fValue, const AIVariable &_vVariable ) { return (float32)_fValue >= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >=             ( const int8                    _iValue, const AIVariable &_vVariable ) { return (number)_iValue >= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >=             ( const uint8                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue >= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >=             ( const int16                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue >= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >=             ( const uint16                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue >= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >=             ( const int32                   _iValue, const AIVariable &_vVariable ) { return (number)_iValue >= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >=             ( const uint32                  _iValue, const AIVariable &_vVariable ) { return (number)_iValue >= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >=             ( const float32                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue >= _vVariable.GetNumberValue ( ) ; }
+    inline  bool                    operator >=             ( const float64                 _nValue, const AIVariable &_vVariable ) { return (number)_nValue >= _vVariable.GetNumberValue ( ) ; }
 
-    inline  bool        AIVariable::operator ==             ( const int8                    _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (float32)_iValue ) : false ; }
-    inline  bool        AIVariable::operator ==             ( const uint8                   _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (float32)_iValue ) : false ; }
-    inline  bool        AIVariable::operator ==             ( const int16                   _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (float32)_iValue ) : false ; }
-    inline  bool        AIVariable::operator ==             ( const uint16                  _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (float32)_iValue ) : false ; }
-    inline  bool        AIVariable::operator ==             ( const int32                   _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (float32)_iValue ) : false ; }
-    inline  bool        AIVariable::operator ==             ( const uint32                  _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (float32)_iValue ) : false ; }
-    inline  bool        AIVariable::operator ==             ( const float32                 _fValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (float32)_fValue ) : false ; }
-    inline  bool        AIVariable::operator ==             ( const bool                    _bValue ) const { return IsBoolean ( ) ? ( GetBooleanValue ( ) ==          _bValue ) : false ; }
+    inline  bool        AIVariable::operator ==             ( const int8                    _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (number)_iValue ) : false ; }
+    inline  bool        AIVariable::operator ==             ( const uint8                   _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (number)_iValue ) : false ; }
+    inline  bool        AIVariable::operator ==             ( const int16                   _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (number)_iValue ) : false ; }
+    inline  bool        AIVariable::operator ==             ( const uint16                  _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (number)_iValue ) : false ; }
+    inline  bool        AIVariable::operator ==             ( const int32                   _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (number)_iValue ) : false ; }
+    inline  bool        AIVariable::operator ==             ( const uint32                  _iValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (number)_iValue ) : false ; }
+    inline  bool        AIVariable::operator ==             ( const float32                 _nValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (number)_nValue ) : false ; }
+    inline  bool        AIVariable::operator ==             ( const float64                 _nValue ) const { return IsNumber  ( ) ? ( GetNumberValue  ( ) == (number)_nValue ) : false ; }
+    inline  bool        AIVariable::operator ==             ( const bool                    _bValue ) const { return IsBoolean ( ) ? ( GetBooleanValue ( ) ==         _bValue ) : false ; }
     inline  bool        AIVariable::operator ==             ( const char                   *_pValue ) const { return CanConvertToString ( ) ? ( S3DX_STREQ( GetStringValue ( ), _pValue ) ) : false ; }
     inline  bool        AIVariable::operator ==             ( const AIVariable             &_vValue ) const { return ( iType == _vValue.iType ) && ( IsString ( ) ? ( S3DX_STREQ( GetStringValue ( ), _vValue.GetStringValue ( ) ) ) : ( iUnknownValue == _vValue.iUnknownValue ) ) ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  bool        AIVariable::operator ==             ( const AIVariables< _iCount > &_oValue ) { return *this == (const AIVariable &)_oValue ; }
 
     inline  bool                    operator ==             ( const int8                    _iValue, const AIVariable &_vVariable ) { return _vVariable == _iValue ; }
@@ -851,7 +895,8 @@ namespace S3DX
     inline  bool                    operator ==             ( const uint16                  _iValue, const AIVariable &_vVariable ) { return _vVariable == _iValue ; }
     inline  bool                    operator ==             ( const int32                   _iValue, const AIVariable &_vVariable ) { return _vVariable == _iValue ; }
     inline  bool                    operator ==             ( const uint32                  _iValue, const AIVariable &_vVariable ) { return _vVariable == _iValue ; }
-    inline  bool                    operator ==             ( const float32                 _fValue, const AIVariable &_vVariable ) { return _vVariable == _fValue ; }
+    inline  bool                    operator ==             ( const float32                 _nValue, const AIVariable &_vVariable ) { return _vVariable == _nValue ; }
+    inline  bool                    operator ==             ( const float64                 _nValue, const AIVariable &_vVariable ) { return _vVariable == _nValue ; }
     inline  bool                    operator ==             ( const bool                    _bValue, const AIVariable &_vVariable ) { return _vVariable == _bValue ; }
     inline  bool                    operator ==             ( const char                   *_pValue, const AIVariable &_vVariable ) { return _vVariable == _pValue ; }
 
@@ -861,11 +906,12 @@ namespace S3DX
     inline  bool        AIVariable::operator !=             ( const uint16                  _iValue ) const { return ! ( *this == _iValue ) ; }
     inline  bool        AIVariable::operator !=             ( const int32                   _iValue ) const { return ! ( *this == _iValue ) ; }
     inline  bool        AIVariable::operator !=             ( const uint32                  _iValue ) const { return ! ( *this == _iValue ) ; }
-    inline  bool        AIVariable::operator !=             ( const float32                 _fValue ) const { return ! ( *this == _fValue ) ; }
+    inline  bool        AIVariable::operator !=             ( const float32                 _nValue ) const { return ! ( *this == _nValue ) ; }
+    inline  bool        AIVariable::operator !=             ( const float64                 _nValue ) const { return ! ( *this == _nValue ) ; }
     inline  bool        AIVariable::operator !=             ( const bool                    _bValue ) const { return ! ( *this == _bValue ) ; }
     inline  bool        AIVariable::operator !=             ( const char                   *_pValue ) const { return ! ( *this == _pValue ) ; }
     inline  bool        AIVariable::operator !=             ( const AIVariable             &_vValue ) const { return ! ( *this == _vValue ) ; }
-    template< uint8 _iCount > 
+    template< uint8 _iCount >
     inline  bool        AIVariable::operator !=             ( const AIVariables< _iCount > &_oValue ) { return *this != (const AIVariable &)_oValue ; }
 
     inline  bool                    operator !=             ( const int8                    _iValue, const AIVariable &_vVariable ) { return _vVariable != _iValue ; }
@@ -874,7 +920,8 @@ namespace S3DX
     inline  bool                    operator !=             ( const uint16                  _iValue, const AIVariable &_vVariable ) { return _vVariable != _iValue ; }
     inline  bool                    operator !=             ( const int32                   _iValue, const AIVariable &_vVariable ) { return _vVariable != _iValue ; }
     inline  bool                    operator !=             ( const uint32                  _iValue, const AIVariable &_vVariable ) { return _vVariable != _iValue ; }
-    inline  bool                    operator !=             ( const float32                 _fValue, const AIVariable &_vVariable ) { return _vVariable != _fValue ; }
+    inline  bool                    operator !=             ( const float32                 _nValue, const AIVariable &_vVariable ) { return _vVariable != _nValue ; }
+    inline  bool                    operator !=             ( const float64                 _nValue, const AIVariable &_vVariable ) { return _vVariable != _nValue ; }
     inline  bool                    operator !=             ( const bool                    _bValue, const AIVariable &_vVariable ) { return _vVariable != _bValue ; }
     inline  bool                    operator !=             ( const char                   *_pValue, const AIVariable &_vVariable ) { return _vVariable != _pValue ; }
 
@@ -888,9 +935,10 @@ namespace S3DX
     inline  AIVariable              AIVariable::operator << ( const uint16      _iValue ) const { return Concat( *this, AIVariable( _iValue ) ) ; }
     inline  AIVariable              AIVariable::operator << ( const int32       _iValue ) const { return Concat( *this, AIVariable( _iValue ) ) ; }
     inline  AIVariable              AIVariable::operator << ( const uint32      _iValue ) const { return Concat( *this, AIVariable( _iValue ) ) ; }
-    inline  AIVariable              AIVariable::operator << ( const float32     _fValue ) const { return Concat( *this, AIVariable( _fValue ) ) ; }
+    inline  AIVariable              AIVariable::operator << ( const float32     _nValue ) const { return Concat( *this, AIVariable( _nValue ) ) ; }
+    inline  AIVariable              AIVariable::operator << ( const float64     _nValue ) const { return Concat( *this, AIVariable( _nValue ) ) ; }
     inline  AIVariable              AIVariable::operator << ( const AIVariable &_vValue ) const { return Concat( *this,             _vValue   ) ; }
-    inline  AIVariable                          operator << ( const char       *_pValue, 
+    inline  AIVariable                          operator << ( const char       *_pValue,
                                                               const AIVariable &_vValue )       { return AIVariable::Concat( _pValue, _vValue ) ; }
 
     // DEPRECATED. Code kept for emergency cases ;)
@@ -901,7 +949,7 @@ namespace S3DX
     inline  AIVariable              AIVariable::operator &  ( const uint16      _iValue ) const { return bool(*this) ? AIVariable( _iValue ) : *this ; }
     inline  AIVariable              AIVariable::operator &  ( const int32       _iValue ) const { return bool(*this) ? AIVariable( _iValue ) : *this ; }
     inline  AIVariable              AIVariable::operator &  ( const uint32      _iValue ) const { return bool(*this) ? AIVariable( _iValue ) : *this ; }
-    inline  AIVariable              AIVariable::operator &  ( const float32     _fValue ) const { return bool(*this) ? AIVariable( _fValue ) : *this ; }
+    inline  AIVariable              AIVariable::operator &  ( const number      _nValue ) const { return bool(*this) ? AIVariable( _nValue ) : *this ; }
     inline  AIVariable              AIVariable::operator &  ( const bool        _bValue ) const { return bool(*this) ? AIVariable( _bValue ) : *this ; }
     inline  AIVariable              AIVariable::operator &  ( const AIVariable &_vValue ) const { return bool(*this) ?             _vValue   : *this ; }
 
@@ -911,7 +959,7 @@ namespace S3DX
     inline  AIVariable              AIVariable::operator |  ( const uint16      _iValue ) const { return bool(*this) ? *this : AIVariable( _iValue ) ; }
     inline  AIVariable              AIVariable::operator |  ( const int32       _iValue ) const { return bool(*this) ? *this : AIVariable( _iValue ) ; }
     inline  AIVariable              AIVariable::operator |  ( const uint32      _iValue ) const { return bool(*this) ? *this : AIVariable( _iValue ) ; }
-    inline  AIVariable              AIVariable::operator |  ( const float32     _fValue ) const { return bool(*this) ? *this : AIVariable( _fValue ) ; }
+    inline  AIVariable              AIVariable::operator |  ( const number      _nValue ) const { return bool(*this) ? *this : AIVariable( _nValue ) ; }
     inline  AIVariable              AIVariable::operator |  ( const bool        _bValue ) const { return bool(*this) ? *this : AIVariable( _bValue ) ; }
     inline  AIVariable              AIVariable::operator |  ( const AIVariable &_vValue ) const { return bool(*this) ? *this :             _vValue   ; }
     */
@@ -958,7 +1006,7 @@ namespace S3DX
     #endif
 
     //-------------------------------------------------------------------------
-    // Macros defining the Lua compliant 'and' and 'or' operators. 
+    // Macros defining the Lua compliant 'and' and 'or' operators.
     // They are provided for C++ AIModels, and cannot be used in dynamically linked plug-ins,
     // unless you define S3DX::__lua_and_helper and/or S3DX::__lua_or_helper in your code.
     // Anyways it is better to use C++ '&&' and '||' operators whenever possible for speed.

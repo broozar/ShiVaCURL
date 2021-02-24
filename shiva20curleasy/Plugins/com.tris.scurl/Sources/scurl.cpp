@@ -15,7 +15,7 @@
 // Windows includes
 #ifdef _WINDOWS
     extern "C" {
-        #include "curl.h"
+        #include <curl/curl.h>
     }
 #endif // _WINDOWS
 
@@ -33,7 +33,7 @@ bool _init = false;
 
 typedef struct {
 	const std::string sID;
-	S3DX::AIVariable MessageTypeConstant;
+	float MessageTypeConstant;
 	std::string sMessage;
 } curlMessage;
 
@@ -193,15 +193,15 @@ void thrEasyGetHTTP(const std::string && sID, const std::string && url) {
 		auto res = curl_easy_perform(curl); // perform blocking operation
 		if (res == CURLE_OK) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kWebsite, std::move(s) });
+			_vCurlMessages.push_back({ sID, scurl.kWebsite, std::move(s) });
 		}
 		else if (res == CURLE_HTTP_RETURNED_ERROR) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kError404, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kError404, curl_easy_strerror(res) });
 		}
 		else {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kErrorWebsite, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kErrorWebsite, curl_easy_strerror(res) });
 		}
 
 		curl_easy_cleanup(curl);
@@ -227,19 +227,19 @@ void thrEasyPostHTTP(const std::string && sID, const std::string && url, const s
 		auto res = curl_easy_perform(curl); // perform blocking operation
 		if (res == CURLE_OK) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kWebsite, std::move(s) });
+			_vCurlMessages.push_back({ sID, scurl.kWebsite, std::move(s) });
 		}
 		else if (res == CURLE_HTTP_RETURNED_ERROR) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kError404, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kError404, curl_easy_strerror(res) });
 		}
 		else if (res == CURLE_HTTP_POST_ERROR) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kErrorPost, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kErrorPost, curl_easy_strerror(res) });
 		}
 		else {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kErrorWebsite, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kErrorWebsite, curl_easy_strerror(res) });
 		}
 
 		curl_easy_cleanup(curl);
@@ -284,19 +284,19 @@ void thrEasyGetHTTPS(const std::string && sID, const std::string && url, const b
 		auto res = curl_easy_perform(curl); // perform blocking operation
 		if (res == CURLE_OK) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kWebsite, std::move(s) });
+			_vCurlMessages.push_back({ sID, scurl.kWebsite, std::move(s) });
 		}
 		else if (res == CURLE_HTTP_RETURNED_ERROR) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kError404, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kError404, curl_easy_strerror(res) });
 		}
 		else if (res == CURLE_SSL_CONNECT_ERROR) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kErrorSSL, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kErrorSSL, curl_easy_strerror(res) });
 		}
 		else {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kErrorWebsite, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kErrorWebsite, curl_easy_strerror(res) });
 		}
 
 		/* always cleanup */
@@ -343,23 +343,23 @@ void thrEasyPostHTTPS(const std::string && sID, const std::string && url, const 
 		auto res = curl_easy_perform(curl); // perform blocking operation
 		if (res == CURLE_OK) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kWebsite, std::move(s) });
+			_vCurlMessages.push_back({ sID, scurl.kWebsite, std::move(s) });
 		}
 		else if (res == CURLE_HTTP_RETURNED_ERROR) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kError404, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kError404, curl_easy_strerror(res) });
 		}
 		else if (res == CURLE_SSL_CONNECT_ERROR) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kErrorSSL, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kErrorSSL, curl_easy_strerror(res) });
 		}
 		else if (res == CURLE_HTTP_POST_ERROR) {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kErrorPost, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kErrorPost, curl_easy_strerror(res) });
 		}
 		else {
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
-			_vCurlMessages.push_back({ std::move(sID), scurl.kErrorWebsite, curl_easy_strerror(res) });
+			_vCurlMessages.push_back({ sID, scurl.kErrorWebsite, curl_easy_strerror(res) });
 		}
 
 		curl_easy_cleanup(curl);
@@ -385,30 +385,30 @@ void thrDownloadHTTP(const std::string && sID, const std::string && url, const s
 
 			if (res == CURLE_OK) {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kFile, "File transfer completed successfully." });
+				_vCurlFiles.push_back({ sID, scurl.kFile, "File transfer completed successfully." });
 			}
 			else if (res == CURLE_PARTIAL_FILE) {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kErrorFilePartial, curl_easy_strerror(res) });
+				_vCurlFiles.push_back({ sID, scurl.kErrorFilePartial, curl_easy_strerror(res) });
 			}
 			else if (res == CURLE_WRITE_ERROR) {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kErrorFileWrite, curl_easy_strerror(res) });
+				_vCurlFiles.push_back({ sID, scurl.kErrorFileWrite, curl_easy_strerror(res) });
 			}
 			else if (res == CURLE_FILESIZE_EXCEEDED) {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kErrorFileSize, curl_easy_strerror(res) });
+				_vCurlFiles.push_back({ sID, scurl.kErrorFileSize, curl_easy_strerror(res) });
 			}
 			else {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kErrorFile, curl_easy_strerror(res) });
+				_vCurlFiles.push_back({ sID, scurl.kErrorFile, curl_easy_strerror(res) });
 			}
 
 			fclose(pagefile);
 		}
 		else {
 			std::lock_guard<std::mutex> _(mu_vCurlFiles);
-			_vCurlFiles.push_back({ std::move(sID), scurl.kErrorFileWrite, "Pagefile WB fopen failed." });
+			_vCurlFiles.push_back({ sID, scurl.kErrorFileWrite, "Pagefile WB fopen failed." });
 		}
 
 		curl_easy_cleanup(curl);
@@ -456,34 +456,34 @@ void thrDownloadHTTPS(const std::string && sID, const std::string && url, const 
 
 			if (res == CURLE_OK) {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kFile, "File transfer completed successfully." });
+				_vCurlFiles.push_back({ sID, scurl.kFile, "File transfer completed successfully." });
 			}
 			else if (res == CURLE_PARTIAL_FILE) {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kErrorFilePartial, curl_easy_strerror(res) });
+				_vCurlFiles.push_back({ sID, scurl.kErrorFilePartial, curl_easy_strerror(res) });
 			}
 			else if (res == CURLE_WRITE_ERROR) {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kErrorFileWrite, curl_easy_strerror(res) });
+				_vCurlFiles.push_back({ sID, scurl.kErrorFileWrite, curl_easy_strerror(res) });
 			}
 			else if (res == CURLE_FILESIZE_EXCEEDED) {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kErrorFileSize, curl_easy_strerror(res) });
+				_vCurlFiles.push_back({ sID, scurl.kErrorFileSize, curl_easy_strerror(res) });
 			}
 			else if (res == CURLE_SSL_CONNECT_ERROR) {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kErrorSSL, curl_easy_strerror(res) });
+				_vCurlFiles.push_back({ sID, scurl.kErrorSSL, curl_easy_strerror(res) });
 			}
 			else {
 				std::lock_guard<std::mutex> _(mu_vCurlFiles);
-				_vCurlFiles.push_back({ std::move(sID), scurl.kErrorFile, curl_easy_strerror(res) });
+				_vCurlFiles.push_back({ sID, scurl.kErrorFile, curl_easy_strerror(res) });
 			}
 
 			fclose(pagefile);
 		}
 		else {
 			std::lock_guard<std::mutex> _(mu_vCurlFiles);
-			_vCurlFiles.push_back({ std::move(sID), scurl.kErrorFileWrite, "Pagefile WB fopen failed." });
+			_vCurlFiles.push_back({ sID, scurl.kErrorFileWrite, "Pagefile WB fopen failed." });
 		}
 
 		curl_easy_cleanup(curl);
@@ -513,21 +513,21 @@ void thrEasyGetHTTP(const std::string && sID, const std::string && url) {
         std::string s;
         performCURL(url3, s);
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-//        _vCurlMessages.push_back({ std::move(sID), scurl.kWebsite, std::move(s) });
-        _vCurlMessages.push_back({ std::move(sID), 2, std::move(s) });
+//        _vCurlMessages.push_back({ sID, scurl.kWebsite, std::move(s) });
+        _vCurlMessages.push_back({ sID, 2, std::move(s) });
     }
     else if (res == 404) {
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-//        _vCurlMessages.push_back({ std::move(sID), scurl.kError404, "404 Error" });
-        _vCurlMessages.push_back({ std::move(sID), 1, "404 Error" });
+//        _vCurlMessages.push_back({ sID, scurl.kError404, "404 Error" });
+        _vCurlMessages.push_back({ sID, 1, "404 Error" });
     }
     else {
         // general error
         std::string err = "";
         statusCodeText(url2, err);
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-//        _vCurlMessages.push_back({ std::move(sID), scurl.kErrorWebsite, err.c_str() });
-        _vCurlMessages.push_back({ std::move(sID), 3, std::move(err) });
+//        _vCurlMessages.push_back({ sID, scurl.kErrorWebsite, err.c_str() });
+        _vCurlMessages.push_back({ sID, 3, std::move(err) });
     }
 }
 
@@ -552,13 +552,13 @@ void thrEasyPostHTTP(const std::string && sID, const std::string && url, const s
     
     if (!s.empty()) {
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-        //        _vCurlMessages.push_back({ std::move(sID), scurl.kWebsite, std::move(s) });
-        _vCurlMessages.push_back({ std::move(sID), 2, std::move(s) });
+        //        _vCurlMessages.push_back({ sID, scurl.kWebsite, std::move(s) });
+        _vCurlMessages.push_back({ sID, 2, std::move(s) });
     }
     else {
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-        //        _vCurlMessages.push_back({ std::move(sID), scurl.kErrorWebsite, err.c_str() });
-        _vCurlMessages.push_back({ std::move(sID), 3, "Empty return string!" });
+        //        _vCurlMessages.push_back({ sID, scurl.kErrorWebsite, err.c_str() });
+        _vCurlMessages.push_back({ sID, 3, "Empty return string!" });
     }
 }
 
@@ -584,13 +584,13 @@ void thrEasyGetHTTPS(const std::string && sID, const std::string && url, const b
         std::string s;
         performCURL(url3, s);
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-//        _vCurlMessages.push_back({ std::move(sID), scurl.kWebsite, std::move(s) });
-        _vCurlMessages.push_back({ std::move(sID), 2, std::move(s) });
+//        _vCurlMessages.push_back({ sID, scurl.kWebsite, std::move(s) });
+        _vCurlMessages.push_back({ sID, 2, std::move(s) });
     }
     else if (res == 404) {
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-//        _vCurlMessages.push_back({ std::move(sID), scurl.kError404, "404 Error" });
-        _vCurlMessages.push_back({ std::move(sID), 1, "404 Error" });
+//        _vCurlMessages.push_back({ sID, scurl.kError404, "404 Error" });
+        _vCurlMessages.push_back({ sID, 1, "404 Error" });
     }
     // MISSING: SSL_CONNECT_ERROR
     else {
@@ -598,8 +598,8 @@ void thrEasyGetHTTPS(const std::string && sID, const std::string && url, const b
         std::string err;
         statusCodeText(url2, err);
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-        //        _vCurlMessages.push_back({ std::move(sID), scurl.kErrorWebsite, err.c_str() });
-        _vCurlMessages.push_back({ std::move(sID), 3, std::move(err) });
+        //        _vCurlMessages.push_back({ sID, scurl.kErrorWebsite, err.c_str() });
+        _vCurlMessages.push_back({ sID, 3, std::move(err) });
     }
 }
 
@@ -626,13 +626,13 @@ void thrEasyPostHTTPS(const std::string && sID, const std::string && url, const 
         std::string s;
         performCURL(url3, s);
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-//        _vCurlMessages.push_back({ std::move(sID), scurl.kWebsite, std::move(s) });
-        _vCurlMessages.push_back({ std::move(sID), 2, std::move(s) });
+//        _vCurlMessages.push_back({ sID, scurl.kWebsite, std::move(s) });
+        _vCurlMessages.push_back({ sID, 2, std::move(s) });
     }
     else if (res == 404) {
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-//        _vCurlMessages.push_back({ std::move(sID), scurl.kError404, "404 Error" });
-        _vCurlMessages.push_back({ std::move(sID), 1, "404 Error" });
+//        _vCurlMessages.push_back({ sID, scurl.kError404, "404 Error" });
+        _vCurlMessages.push_back({ sID, 1, "404 Error" });
     }
     // MISSING: SSL_CONNECT_ERROR
     else {
@@ -640,8 +640,8 @@ void thrEasyPostHTTPS(const std::string && sID, const std::string && url, const 
         std::string err;
         statusCodeText(url2, err);
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-        //        _vCurlMessages.push_back({ std::move(sID), scurl.kErrorWebsite, err.c_str() });
-        _vCurlMessages.push_back({ std::move(sID), 3, std::move(err) });
+        //        _vCurlMessages.push_back({ sID, scurl.kErrorWebsite, err.c_str() });
+        _vCurlMessages.push_back({ sID, 3, std::move(err) });
     }
 }
 
@@ -659,14 +659,14 @@ void thrDownloadHTTP(const std::string && sID, const std::string && url, const s
         std::string s;
         performCURL(url3, s);
         std::lock_guard<std::mutex> _(mu_vCurlFiles);
-//      _vCurlFiles.push_back({ std::move(sID), scurl.kFile, "File transfer completed successfully." });
-        _vCurlFiles.push_back({ std::move(sID), 4, std::move(s) });
+//      _vCurlFiles.push_back({ sID, scurl.kFile, "File transfer completed successfully." });
+        _vCurlFiles.push_back({ sID, 4, std::move(s) });
     }
     // TODO: other file errors
     else {
         std::lock_guard<std::mutex> _(mu_vCurlFiles);
-        // _vCurlFiles.push_back({ std::move(sID), scurl.kErrorFile, curl_easy_strerror(res) });
-        _vCurlFiles.push_back({ std::move(sID), 5, "General file download error!" });
+        // _vCurlFiles.push_back({ sID, scurl.kErrorFile, curl_easy_strerror(res) });
+        _vCurlFiles.push_back({ sID, 5, "General file download error!" });
     }
 }
 
@@ -687,14 +687,14 @@ void thrDownloadHTTPS(const std::string && sID, const std::string && url, const 
         std::string s;
         performCURL(url3, s);
         std::lock_guard<std::mutex> _(mu_vCurlFiles);
-        //      _vCurlFiles.push_back({ std::move(sID), scurl.kFile, "File transfer completed successfully." });
-        _vCurlFiles.push_back({ std::move(sID), 4, std::move(s) });
+        //      _vCurlFiles.push_back({ sID, scurl.kFile, "File transfer completed successfully." });
+        _vCurlFiles.push_back({ sID, 4, std::move(s) });
     }
     // TODO: other file errors
     else {
         std::lock_guard<std::mutex> _(mu_vCurlFiles);
-        // _vCurlFiles.push_back({ std::move(sID), scurl.kErrorFile, curl_easy_strerror(res) });
-        _vCurlFiles.push_back({ std::move(sID), 5, "General file download error!" });
+        // _vCurlFiles.push_back({ sID, scurl.kErrorFile, curl_easy_strerror(res) });
+        _vCurlFiles.push_back({ sID, 5, "General file download error!" });
     }
 }
 
@@ -709,13 +709,13 @@ void thrRaw(const std::string && sID, const std::string && sCommand) {
     
     if (!s.empty()) {
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-        //        _vCurlMessages.push_back({ std::move(sID), scurl.kWebsite, std::move(s) });
-        _vCurlMessages.push_back({ std::move(sID), 2, std::move(s) });
+        //        _vCurlMessages.push_back({ sID, scurl.kWebsite, std::move(s) });
+        _vCurlMessages.push_back({ sID, 2, std::move(s) });
     }
     else {
         std::lock_guard<std::mutex> _(mu_vCurlResults);
-        //        _vCurlMessages.push_back({ std::move(sID), scurl.kErrorWebsite, err.c_str() });
-        _vCurlMessages.push_back({ std::move(sID), 3, "Empty return string!" });
+        //        _vCurlMessages.push_back({ sID, scurl.kErrorWebsite, err.c_str() });
+        _vCurlMessages.push_back({ sID, 3, "Empty return string!" });
     }
 }
 
@@ -745,9 +745,10 @@ int Callback_scurl_messageLoop ( int _iInCount, const S3DX::AIVariable *_pIn, S3
 		{
 			std::lock_guard<std::mutex> _(mu_vCurlResults);
             if (!_vCurlMessages.empty()) {
-				for (auto & i : _vCurlMessages)
-					S3DX::user.sendEvent(S3DX::application.getCurrentUser(), _sAI, _sES, i.sID.c_str(), i.MessageTypeConstant, i.sMessage.c_str());
-
+                for (auto& i : _vCurlMessages) {
+                    S3DX::user.sendEvent(S3DX::application.getCurrentUser(), _sAI, _sES, i.sID.c_str(), i.MessageTypeConstant, i.sMessage.c_str());
+                }
+                    
 				_vCurlMessages.clear();
 			}
 		}
@@ -755,8 +756,9 @@ int Callback_scurl_messageLoop ( int _iInCount, const S3DX::AIVariable *_pIn, S3
 			std::lock_guard<std::mutex> _(mu_vCurlFiles);
 			if (!_vCurlFiles.empty()) {
 
-				for (auto & i : _vCurlFiles)
-					S3DX::user.sendEvent(S3DX::application.getCurrentUser(), _sAI, _sEF, i.sID.c_str(), i.MessageTypeConstant, i.sMessage.c_str());
+                for (auto& i : _vCurlFiles) {
+                    S3DX::user.sendEvent(S3DX::application.getCurrentUser(), _sAI, _sEF, i.sID.c_str(), i.MessageTypeConstant, i.sMessage.c_str());
+                }
 
 				_vCurlFiles.clear();
 			}

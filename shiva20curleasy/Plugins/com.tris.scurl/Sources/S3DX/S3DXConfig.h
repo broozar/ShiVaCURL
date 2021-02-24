@@ -3,8 +3,13 @@
 #define __S3DXConfig_h__
 //-----------------------------------------------------------------------------
 #ifndef S3DX_SDK_VERSION
-#define S3DX_SDK_VERSION    0x02000000  // 2.0.0.0
+#define S3DX_SDK_VERSION    0x02000001  // 2.0.0.1 
 #endif
+
+// Changes 2.0.0.1 :
+//
+// AIVariable number field is now float64 on 64b system
+
 //-----------------------------------------------------------------------------
 #if ( S3DX_SDK_VERSION >= 0x01090000 )
 #   define S3DX_AVAILABLE_0x01090000( __exp__ ) __exp__
@@ -81,11 +86,16 @@
 #else
 #   define S3DX_AVAILABLE_0x02000000( )
 #endif
+#if ( S3DX_SDK_VERSION >= 0x02000001 )
+#   define S3DX_AVAILABLE_0x02000001( __exp__ ) __exp__
+#else
+#   define S3DX_AVAILABLE_0x02000001( )
+#endif
 //-----------------------------------------------------------------------------
 #define S3DX_AVAILABLE( __exp__, __sdk__ ) S3DX_AVAILABLE_##__sdk__( __exp__ )
 //-----------------------------------------------------------------------------
 #ifndef S3DX_MODULE_GUID
-#define S3DX_MODULE_GUID    GUID_ScURL2
+#define S3DX_MODULE_GUID    S3DX
 #endif
 //-----------------------------------------------------------------------------
 #endif

@@ -17,6 +17,13 @@ namespace S3DX
     typedef unsigned short      uint16  ;
     typedef unsigned int        uint32  ;
     typedef          float      float32 ;
+    typedef          double     float64 ;
+    //-------------------------------------------------------------------------
+#if S3DX_ARCH_LP64
+    typedef          float64    number  ;
+#else
+    typedef          float32    number  ;
+#endif
     //-------------------------------------------------------------------------
 #if (defined _XBOX_ONE)
     typedef signed   __int64    int64   ;

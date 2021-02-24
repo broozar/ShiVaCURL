@@ -22,8 +22,13 @@
 extern "C"  _CRTIMP double  strtod  ( const char *, char ** ) ;
 #define                     S3DX_STRTOF  (float)strtod
 #elif (defined __HTML5__)
-extern  "C" float   strtof  ( const char *__restrict, char **__restrict) ;
+extern "C"          float   strtof  ( const char *__restrict, char **__restrict) ;
 #elif (defined ANDROID_NDK)
+#   if (defined __clang__)
+        extern      float   strtof  ( const char *, char ** ) ;
+#   else
+        extern "C"  float   strtof  ( const char *, char ** ) __THROW ;
+#   endif
 extern "C"          double  strtod  ( const char *, char ** ) ;
 #define                     S3DX_STRTOF  (float)strtod
 #elif (defined __DARWIN_ALIAS)
